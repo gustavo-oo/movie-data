@@ -34,24 +34,16 @@ def get_from_api(endpoint: str, params: Dict[str, str] = {}):
         print(f'{response.status_code}: Erro no request do Endpoint {endpoint}. Tentando novamente em {sleep_time} segundos...')
     return response
 
-genres_cache = None  # Initialize cache
 def get_genres() -> Dict[int, str]:
-    global genres_cache
-    if genres_cache is not None:
-        return genres_cache
-    
-    genres_endpoint = "genre/movie/list?language=en"
+    genres_endpoint = "genre/movie/list"
     response = get_from_api(genres_endpoint)
     response_json: Dict[str, List[GenreDict]] = response.json()
-    genres = response_json["genres"]
-    
-    genres_map: Dict[int, str] = {}
-    
-    for genre in genres:
-        genres_map[genre["id"]] = genre["name"]
-        
-    genres_cache = genres_map
-    return genres_map
+    return response_json["genres"]
+
+def get_countries() -> Dict[str, str]:
+    countries_endpoint = "configuration/countries"
+    response = get_from_api(countries_endpoint)
+    return response.json()
 
 total_pages = 0
 def get_movies(page: int, year: int):
@@ -135,9 +127,8 @@ def fetch_movies_in_parallel(start_page: int, end_page: int, year: int, max_work
 
     return movies_accumulator
 
-
-
 if __name__ == '__main__':
+    raw_data_path = "raw_data"
     api_max_page = 500
     file_name = "tmdb_dump"
     start_page, start_year = load_progress()
@@ -145,9 +136,23 @@ if __name__ == '__main__':
 
     batch_size = 50
     end_year = 2023
+    
+    if not os.path.exists(f'{raw_data_path}/{file_name}-genres.csv'):
+        movie_genres = get_genres()
+
+        with open(f'{raw_data_path}/{file_name}-genres.csv', 'a') as file:
+            genres_df = pd.DataFrame(movie_genres)
+            genres_df.to_csv(file, index=False, encoding='utf-8', header=True)
+            
+    if not os.path.exists(f'{raw_data_path}{file_name}-countries.csv'):
+        countries = get_countries()
+
+        with open(f'{raw_data_path}/{file_name}-countries.csv', 'a') as file:
+            countries_df = pd.DataFrame(countries)
+            countries_df.to_csv(file, index=False, encoding='utf-8', header=True)
 
     for year in range(start_year, end_year + 1):
-        with open(f'data/{file_name}-{year}.csv', 'a') as file:
+        with open(f'{raw_data_path}/{file_name}-{year}.csv', 'a') as file:
             for current_page in range (start_page, final_page + 1, batch_size):                
                 upper_limit =  final_page if current_page + batch_size > final_page else current_page + batch_size
                 
