@@ -54,7 +54,7 @@ def get_movies(page: int, year: int):
         'page': page,
         'sort_by': 'popularity.desc',
         'vote_count.gte': '10',
-        'year': year
+        'primary_release_year': year
     }
     
     print(f"Downloading page {page} - Year: {year}")
@@ -154,15 +154,51 @@ if __name__ == '__main__':
     for year in range(start_year, end_year + 1):
         with open(f'{raw_data_path}/{file_name}-{year}.csv', 'a') as file:
             for current_page in range (start_page, final_page + 1, batch_size):                
-                upper_limit =  final_page if current_page + batch_size > final_page else current_page + batch_size
+                upper_limit =  final_page if current_page + batch_size > final_page else current_page + batch_size                
                 
                 movies = fetch_movies_in_parallel(current_page, upper_limit, year, batch_size)
                 final_page = total_pages
+
                 movies_df = pd.DataFrame(movies)
                     
                 print(f'Updating file from page {current_page} to page {upper_limit}')
                 show_headers = current_page == 1
-                movies_df.to_csv(file, index=False, encoding='utf-8', header=show_headers)
+                
+                columns = [
+                    'adult',
+                    'backdrop_path',
+                    'genre_ids',
+                    'id',
+                    'original_language',
+                    'original_title',
+                    'overview',
+                    'popularity',
+                    'poster_path',
+                    'release_date',
+                    'title',
+                    'video',
+                    'vote_average',
+                    'vote_count',
+                    'belongs_to_collection',
+                    'budget',
+                    'genres',
+                    'homepage',
+                    'imdb_id',
+                    'production_companies',
+                    'production_countries',
+                    'revenue',
+                    'runtime',  
+                    'spoken_languages',
+                    'status',
+                    'tagline',
+                    'cast',
+                    'crew',
+                    'keywords'
+                ]
+                movies_df.to_csv(file, columns=columns, index=False, encoding='utf-8', header=show_headers)
 
                 save_progress(upper_limit, year)
+                
+                if(upper_limit == total_pages):
+                    break
         save_progress(1, year+1)

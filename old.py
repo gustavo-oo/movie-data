@@ -110,13 +110,9 @@ if __name__ == '__main__':
     movies_df['production_countries'] = map_production_countries(movies_df['production_countries'])
     movies_df['cast'] = map_cast(movies_df['cast'])
     movies_df['crew'] = map_cast(movies_df['crew'])
-    # print(movies_df.iloc[0]['crew'])
-    # print(movies_df.iloc[0]['production_countries'])
     
-    
-    columns_to_remove = ['adult', 'backdrop_path', 'genre_ids', 'poster_path', 'video', 'homepage', 'popularity', 'runtime']
+    columns_to_remove = ['adult', 'backdrop_path', 'genre_ids', 'poster_path', 'video', 'homepage', 'popularity', 'tagline']
 
     movies_df.drop(columns_to_remove, axis=1, inplace=True)
 
-    
     movies_df.to_csv(f'{prepared_data_common_name}-{year}.csv', index=False, encoding='utf-8', header=True)
