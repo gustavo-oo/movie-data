@@ -2,3 +2,4 @@ progress.txt
 .vscode
 data
 */*.csv
+*/*.html
