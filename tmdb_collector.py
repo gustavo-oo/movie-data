@@ -49,7 +49,7 @@ total_pages = 0
 def get_movies(page: int, year: int):
     global total_pages
     params = {
-        'include_adult': 'true',
+        'include_adult': 'false',
         'include_video': 'false',
         'page': page,
         'sort_by': 'popularity.desc',
