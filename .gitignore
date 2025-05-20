@@ -1,5 +1,5 @@
 progress.txt
 .vscode
 data
-**/*.csv
+# **/*.csv
 **/*.html
