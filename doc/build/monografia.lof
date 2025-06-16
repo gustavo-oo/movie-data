@@ -1,0 +1,126 @@
+\babel@toc {american}{}\relax 
+\babel@toc {american}{}\relax 
+\babel@toc {brazil}{}\relax 
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Etapas do Processo de \acrshort {KDD} (baseado em \cite {fayyad1996data}).}}{9}{figure.2.1}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Esquema de validação cruzada \textit {K-Fold} (Fonte: \cite {scikit2025}).}}{14}{figure.2.2}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Fluxo de transformação e seleção de dados.}}{23}{figure.3.1}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Histograma do Orçamento dos filmes.}}{29}{figure.4.1}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Histograma da Receita dos filmes.}}{30}{figure.4.2}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Histograma da Duração dos filmes.}}{31}{figure.4.3}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Histograma da Quantidade de votos dos filmes.}}{32}{figure.4.4}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Histograma da Avaliação média dos filmes.}}{33}{figure.4.5}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Mapa coroplético de países produtores de filmes no ano de 2013.}}{34}{figure.4.6}%
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Mapa coroplético de países produtores de filmes no ano de 2016.}}{35}{figure.4.7}%
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Mapa coroplético de países produtores de filmes no ano de 2019.}}{35}{figure.4.8}%
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Mapa coroplético de países produtores de filmes no ano de 2020.}}{36}{figure.4.9}%
+\contentsline {figure}{\numberline {4.10}{\ignorespaces Mapa coroplético de países produtores de filmes no ano de 2021.}}{36}{figure.4.10}%
+\contentsline {figure}{\numberline {4.11}{\ignorespaces Mapa coroplético de países produtores de filmes no ano de 2023.}}{37}{figure.4.11}%
+\contentsline {figure}{\numberline {4.12}{\ignorespaces Mapa de palavras-chave.}}{39}{figure.4.12}%
+\contentsline {figure}{\numberline {4.13}{\ignorespaces Grafo de relação entre as palavras-chave dos filmes.}}{41}{figure.4.13}%
+\contentsline {figure}{\numberline {4.14}{\ignorespaces Evolução das principais palavras-chave em filmes produzidos pelo Brasil.}}{42}{figure.4.14}%
+\contentsline {figure}{\numberline {4.15}{\ignorespaces Evolução das principais palavras-chave em filmes produzidos pelos EUA.}}{43}{figure.4.15}%
+\contentsline {figure}{\numberline {4.16}{\ignorespaces Histograma de Gêneros dos Filmes.}}{44}{figure.4.16}%
+\contentsline {figure}{\numberline {4.17}{\ignorespaces Distribuição anual dos principais gêneros de filmes produzidos pelo Brasil.}}{45}{figure.4.17}%
+\contentsline {figure}{\numberline {4.18}{\ignorespaces Distribuição anual dos principais gêneros de filmes produzidos pelos EUA.}}{46}{figure.4.18}%
+\contentsline {figure}{\numberline {4.19}{\ignorespaces Frequência absoluta de Gêneros nos Elencos de Filmes (2013-2023).}}{48}{figure.4.19}%
+\contentsline {figure}{\numberline {4.20}{\ignorespaces Frequência relativa de Gêneros nos Elencos de Filmes (2013-2023).}}{49}{figure.4.20}%
+\contentsline {figure}{\numberline {4.21}{\ignorespaces Ordem de importância dos gêneros no elenco.}}{51}{figure.4.21}%
+\contentsline {figure}{\numberline {4.22}{\ignorespaces Distribuição anual de gêneros em papéis principais e secundários em produções do Brasil.}}{52}{figure.4.22}%
+\contentsline {figure}{\numberline {4.23}{\ignorespaces Distribuição anual de gêneros em papéis principais e secundários em produções dos EUA.}}{53}{figure.4.23}%
+\contentsline {figure}{\numberline {4.24}{\ignorespaces Análise da quantidade de filmes por ator, categorizada por gênero.}}{54}{figure.4.24}%
+\contentsline {figure}{\numberline {4.25}{\ignorespaces Frequência absoluta de Gêneros nos Elencos de Filmes (2013-2023).}}{55}{figure.4.25}%
+\contentsline {figure}{\numberline {4.26}{\ignorespaces Frequência relativa de Gêneros nos Elencos de Filmes (2013-2023).}}{56}{figure.4.26}%
+\contentsline {figure}{\numberline {4.27}{\ignorespaces Heatmap dos gêneros nos departamentos de produção dos filmes.}}{57}{figure.4.27}%
+\contentsline {figure}{\numberline {4.28}{\ignorespaces Heatmap dos gêneros das funções desempenhadas na produção dos filmes.}}{58}{figure.4.28}%
+\contentsline {figure}{\numberline {4.29}{\ignorespaces Distribuição anual de gênero nos departamentos de produção cinematográfica do Brasil.}}{59}{figure.4.29}%
+\contentsline {figure}{\numberline {4.30}{\ignorespaces Distribuição anual de gênero nos departamentos de produção cinematográfica dos EUA.}}{61}{figure.4.30}%
+\contentsline {figure}{\numberline {4.31}{\ignorespaces Orçamento, receita e lucro anual da indústria cinematográfica.}}{63}{figure.4.31}%
+\contentsline {figure}{\numberline {4.32}{\ignorespaces Distribuição de orçamentos de filmes por gênero (até o percentil 90).}}{65}{figure.4.32}%
+\contentsline {figure}{\numberline {4.33}{\ignorespaces Sucesso financeiro dos filmes por gênero.}}{66}{figure.4.33}%
+\contentsline {figure}{\numberline {4.34}{\ignorespaces Distribuição anual do orçamento mediano de filmes por gênero (até o Percentil 90).}}{67}{figure.4.34}%
+\contentsline {figure}{\numberline {4.35}{\ignorespaces Orçamento dos filmes em relação à participação em coleções.}}{68}{figure.4.35}%
+\contentsline {figure}{\numberline {4.36}{\ignorespaces Sucesso financeiro dos filmes em relação à participação em coleções.}}{68}{figure.4.36}%
+\contentsline {figure}{\numberline {4.37}{\ignorespaces Relação entre mediana do orçamento e mediana do ROI por companhias de produção.}}{69}{figure.4.37}%
+\contentsline {figure}{\numberline {4.38}{\ignorespaces Relação entre mediana do orçamento e mediana do ROI por companhias de produção, segmentada por gênero (Percentil 90).}}{71}{figure.4.38}%
+\contentsline {figure}{\numberline {4.39}{\ignorespaces Mediana do orçamento dos países produtores de filmes.}}{72}{figure.4.39}%
+\contentsline {figure}{\numberline {4.40}{\ignorespaces Mediana do \acrshort {ROI} dos países produtores de filmes (percentil 90).}}{73}{figure.4.40}%
+\contentsline {figure}{\numberline {4.41}{\ignorespaces Sumário dos resultados de treinamento da regressão linear simples.}}{75}{figure.4.41}%
+\contentsline {figure}{\numberline {4.42}{\ignorespaces Regressão linear simples - \acrshort {ROI} real x \acrshort {ROI} previsto.}}{76}{figure.4.42}%
+\contentsline {figure}{\numberline {4.43}{\ignorespaces Gráfico Q-Q para verificação da normalidade dos resíduos.}}{77}{figure.4.43}%
+\contentsline {figure}{\numberline {4.44}{\ignorespaces Resíduos x Valores previstos.}}{78}{figure.4.44}%
+\contentsline {figure}{\numberline {4.45}{\ignorespaces Variância explicada x Número de componentes.}}{79}{figure.4.45}%
+\contentsline {figure}{\numberline {4.46}{\ignorespaces Sumário dos resultados de treinamento da regressão linear múltipla.}}{80}{figure.4.46}%
+\contentsline {figure}{\numberline {4.47}{\ignorespaces Regressão linear múltipla - \acrshort {ROI} real x \acrshort {ROI} previsto.}}{81}{figure.4.47}%
+\contentsline {figure}{\numberline {4.48}{\ignorespaces Gráfico Q-Q para verificação da normalidade dos resíduos.}}{82}{figure.4.48}%
+\contentsline {figure}{\numberline {4.49}{\ignorespaces Resíduos x Valores previstos.}}{83}{figure.4.49}%
+\contentsline {figure}{\numberline {4.50}{\ignorespaces Árvore de classificação de \acrshort {ROI}s - Ramo à esquerda.}}{86}{figure.4.50}%
+\contentsline {figure}{\numberline {4.51}{\ignorespaces Árvore de classificação de \acrshort {ROI}s - Ramo à direita.}}{87}{figure.4.51}%
+\addvspace {10\p@ }
+\babel@toc {american}{}\relax 
+\babel@toc {american}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {american}{}\relax 
+\babel@toc {brazil}{}\relax 

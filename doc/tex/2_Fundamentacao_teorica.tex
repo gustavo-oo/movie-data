@@ -1,0 +1,292 @@
+\newcommand{\texCommand}[1]{\texttt{\textbackslash{#1}}}%
+
+\newcommand{\exemplo}[1]{%
+\vspace{\baselineskip}%
+\noindent\fbox{\begin{minipage}{\textwidth}#1\end{minipage}}%
+\\\vspace{\baselineskip}}%
+
+\newcommand{\exemploVerbatim}[1]{%
+\vspace{\baselineskip}%
+\noindent\fbox{\begin{minipage}{\textwidth}%
+#1\end{minipage}}%
+\\\vspace{\baselineskip}}%
+
+
+Este capítulo abordará a importância da análise de dados na indústria cinematográfica, destacando como as informações extraídas influenciam decisões estratégicas e criativas. Serão apresentados também conceitos estatísticos, financeiros, de mineração de dados e ferramentas utilizadas neste trabalho, servindo como base para os capítulos seguintes.
+
+\section{Indústria do cinema}
+A indústria cinematográfica surgiu no final do século XIX, impulsionada por avanços tecnológicos e pela busca por novas formas de entretenimento. Os irmãos Lumière, frequentemente considerados os pioneiros do cinema, realizaram a primeira exibição pública de filmes em 1895, evento que marcou o início do cinema como meio de comunicação de massa \cite{monaco2009how}. Desde então, o cinema passou por transformações significativas, evoluindo de curtas-metragens mudos para produções sonoras e, posteriormente, para filmes em cores e digitais. O desenvolvimento de novas tecnologias, como o CinemaScope na década de 1950, os efeitos visuais computadorizados nos anos 1990 e a atual predominância do cinema digital, ampliaram as possibilidades narrativas e a qualidade estética das produções \cite{bordwell2013film}.
+
+Ao longo do século XX, o cinema consolidou-se como uma das principais formas de arte e entretenimento, moldando culturas e refletindo questões sociais. O surgimento de Hollywood transformou a indústria cinematográfica em um sistema globalizado, estabelecendo o modelo de grandes estúdios, que integravam produção, distribuição e exibição em um único sistema \cite{bordwell2013film}. Esse modelo industrial consolidou um padrão narrativo conhecido como \quotes{modo de produção clássico}, caracterizado por continuidade narrativa, estrutura linear e desenvolvimento de personagens bem definidos \cite{maltby2003hollywood}. Além disso, o cinema tornou-se uma ferramenta poderosa para a construção de identidades culturais e a difusão de valores sociais, desempenhando um papel central na formação do imaginário coletivo \cite{monaco2009how}.
+
+Atualmente, a globalização do mercado cinematográfico foi intensificada pela digitalização e pelo avanço da internet, que possibilitaram a distribuição de filmes para audiências globais quase instantaneamente. O crescimento dos serviços de \textit{streaming} transformou a maneira como os conteúdos audiovisuais são consumidos, descentralizando a distribuição e permitindo que produções independentes alcancem visibilidade internacional \cite{sharma2020data}. Além de distribuírem conteúdos, essas plataformas passaram a produzir filmes e séries originais, utilizando algoritmos de mineração de dados para identificar tendências de consumo e desenvolver produções voltadas para públicos segmentados \cite{sharma2020data}. Esse novo modelo desafia o tradicional sistema de estúdios e abre espaço para uma maior diversidade de produções, redefinindo as dinâmicas da indústria cinematográfica no século XXI.
+
+
+\subsection{Indústria Brasileira de Cinema}
+    No Brasil, o cinema é caracterizado por uma rica diversidade cultural e por desafios históricos relacionados à infraestrutura e ao financiamento. O início da indústria nacional ocorreu no final do século XIX, com produções documentais curtas, e se consolidou ao longo do século XX. Apesar de momentos de destaque, como o sucesso das chanchadas e a internacionalização de filmes, o cinema brasileiro frequentemente enfrentou dificuldades estruturais, como a falta de investimentos e a concorrência com produções estrangeiras \cite{ramos1997historia}.
+    
+    Ao longo dos anos, o cinema brasileiro mostrou resiliência ao superar barreiras econômicas e estruturais. Na década de 1990, a chamada retomada do cinema brasileiro marcou um novo capítulo, impulsionado por políticas públicas, como a Lei do Audiovisual (Lei nº 8.685/1993), que fomentaram a produção nacional ao atrair investimentos e estimular a coprodução \cite{ramos1997historia}.
+    
+    Atualmente, o cinema brasileiro enfrenta desafios como o impacto da pandemia de COVID-19 e cortes em políticas de incentivo, mas continua mostrando vitalidade e reafirmando sua relevância cultural no cenário global \cite{rocha2023cinema}.
+
+\subsection{Indústria Americana de Cinema}
+A indústria cinematográfica americana é reconhecida como a maior e mais influente do mundo. Desde o início do século XX, o modelo de estúdios se tornou predominante nos Estados Unidos, permitindo a produção em larga escala e o domínio de mercados internacionais. Segundo Maltby \cite{maltby2003hollywood}, os estúdios hollywoodianos moldaram uma narrativa padronizada, conhecida como \quotes{modo de produção clássico}, caracterizada por estrutura linear, continuidade narrativa e personagens bem definidos.
+
+Ao longo das décadas, a indústria americana continuou a liderar inovações tecnológicas, como a introdução do som, do cinema em cores e dos efeitos visuais avançados. Atualmente, Hollywood mantém sua relevância com a produção de grandes \quotes{blockbusters} e franquias de sucesso global, consolidando os Estados Unidos como o epicentro da produção cinematográfica mundial \cite{wyatt1994high}. 
+
+
+\subsection{\acrfull{TMDB}}
+O \acrfull{TMDB} é uma plataforma de referência internacional que fornece um vasto repositório de informações sobre filmes, séries de televisão e profissionais da indústria do entretenimento. Criado em 2008, a ferramenta se diferencia por seu modelo colaborativo, que permite a usuários de todo o mundo contribuírem ativamente para a ampliação e atualização constante de seu acervo. Além disso, são disponibilizados dados como elenco, diretores, sinopses, pôsteres, trailers e classificações, oferecendo informações abrangentes e organizadas de maneira acessível \cite{tmdb2025}.
+
+Além de sua função informativa, o \acrshort{TMDB} é amplamente utilizado em estudos de mineração de dados e aprendizado de máquina, possibilitando análises avançadas no setor do entretenimento. Seu extenso banco de dados é aplicado na previsão de popularidade de produções audiovisuais, identificação de tendências de consumo e no desenvolvimento de sistemas de recomendação baseados em variáveis como gênero, elenco e avaliação do público \cite{nycdatascience2024}\cite{cmu2021capstone}. A constante atualização dos dados consolida a plataforma como uma fonte confiável para pesquisas acadêmicas e aplicações comerciais voltadas à indústria cinematográfica.
+
+\section{Desempenho Financeiro}
+\subsection{Lucro líquido}
+Segundo o \acrfull{CFI}\cite{cfiNetIncome}, o lucro líquido é definido como o montante de lucro contábil que uma empresa possui após quitar todas as suas despesas, incluindo custos de vendas, despesas administrativas e impostos. De forma simplificada, este pode ser definido pela fórmula:
+
+\equacao{eq-lucro}{\text{Lucro líquido} = \text{Receita} - \text{Custo}}%
+
+\subsection{\acrfull{ROI}}
+Segundo o \acrfull{CFI}\cite{cfiRoi}, o \acrshort{ROI} é uma medida amplamente utilizada para avaliar a eficiência de um investimento, ao comparar o retorno gerado com o custo inicial. Dessa forma, quanto maior o seu valor, mais bem-sucedido é o investimento (em respeito ao período de tempo analisado). Para o seu cálculo, a principal fórmula utilizada, de acordo com o instituto, seria a seguinte:
+
+\equacao{eq-roi}{\text{ROI} = \frac{\text{Lucro Líquido}}{\text{Custo}}}%
+
+\section{Conceitos Fundamentais da Estatística}
+\subsection{População e amostra}
+Segundo Triola \cite{triola2018introducao}, a população é definida como o conjunto completo de indivíduos ou elementos que compartilham uma ou mais características em comum e que são o objeto de estudo. Por outro lado, a amostra representa um subconjunto dessa população, escolhido para a análise com o objetivo de fornecer \textit{insights} que possam ser generalizados para o todo.
+
+Segundo Montgomery e Runger \cite{montgomery2014applied}, o uso de amostras é crucial devido à inviabilidade, tanto em termos de custo, quanto em termos de tempo, de estudar toda a população em muitas situações práticas. Para garantir que os resultados sejam representativos e úteis, é necessário adotar métodos de amostragem adequados, como a amostragem aleatória simples, a amostragem estratificada e a sistemática, que visam minimizar vieses e garantir a qualidade dos dados analisados.
+
+A análise de uma amostra bem definida permite realizar inferências robustas sobre a população, incluindo estimativas de parâmetros e testes de hipóteses. No entanto, os resultados podem ser influenciados por erros amostrais, que refletem a variabilidade natural entre diferentes amostras. Métodos estatísticos, como o cálculo do erro padrão e a construção de intervalos de confiança, são fundamentais para avaliar a precisão das inferências e aumentar a confiabilidade das conclusões extraídas \cite{hair2019multivariate}.
+
+\subsection{Desvio padrão}
+Segundo Everitt \cite{everitt2002cambridge}, o desvio padrão é uma medida estatística que quantifica a dispersão dos valores em um conjunto de dados em relação à sua média. Indicando o grau de variabilidade dos dados, tal métrica é essencial para a inferência estatística, permitindo a estimação da incerteza em medições e experimentos. Sendo assim, quanto maior seu valor, maior a dispersão dos dados em torno da média, já valores menores indicam que as observações estão mais próximas do valor central.
+
+\subsubsection{Desvio padrão amostral}
+O desvio padrão amostral é utilizado quando se trabalha com uma amostra da população e não com a totalidade dos dados. Sua principal função é estimar a dispersão dos valores na população, corrigindo o viés da variabilidade amostral, no qual a fórmula pode ser expressa como:
+\equacao{eq_desvio_padrao}{s = \sqrt{\frac{1}{n-1} \sum_{i=1}^{n} (x_i - \bar{x})^2}}
+
+Diferentemente do desvio padrão populacional, que utiliza n no denominador, o desvio amostral emprega n-1, um ajuste conhecido como correção de Bessel. Esse fator é necessário porque, ao calcular a média amostral perde-se um grau de liberdade, e a amostra tende a subestimar a dispersão real da população \cite{taylor1994nist}.
+
+\subsubsection{Desvio padrão amostral ponderado}
+O desvio padrão amostral ponderado é uma variação do desvio padrão amostral que considera a relevância relativa de cada observação no conjunto de dados. Sendo uma abordagem útil quando diferentes valores possuem pesos distintos,  ajustando a dispersão dos dados de acordo com os pesos atribuídos, refletindo melhor a variabilidade real dos valores observados, sendo descrito pela seguinte equação: \cite{hastie2009elements}.
+
+
+\equacao{eq_desvio_padrao_ponderado}{sd_w = \sqrt{\frac{\sum_{i=1}^{n} w_i (x_i - \bar{x})^2}{\frac{(N' - 1)\sum_{i=1}^{n} w_i}{N'}}}
+}
+
+\section{Dados, informação e conhecimento}
+Segundo Davenport e Prusak \cite{davenport1998working}, \quotes{dados} são observações registradas que representam eventos ou objetos, frequentemente apresentados em formatos numéricos, textuais, gráficos ou visuais. Eles formam a base para a geração de informações e conhecimento; no entanto, por si só, não possuem significado até serem organizados e interpretados.
+
+Quando os dados são organizados e interpretados dentro de um contexto, eles se transformam em \quotes{informação}. De acordo com Setzer \cite{setzer1999dado}, informação é o significado atribuído aos dados por meio de convenções utilizadas para sua interpretação. Ou seja, a informação emerge da interpretação dos dados, adquirindo relevância e propósito.
+
+O próximo nível nessa hierarquia é o \quotes{conhecimento}, que, conforme Setzer \cite{setzer1999dado}, é a compreensão e internalização da informação pelo indivíduo, permitindo sua aplicação em situações específicas. O conhecimento é construído a partir da experiência e da reflexão sobre a informação, capacitando o indivíduo a tomar decisões informadas e a resolver problemas.
+
+No contexto deste trabalho, os dados são organizados em números e caracteres estruturados de forma específica; tal organização possibilita seu processamento e análise, permitindo a identificação de padrões e tendências que subsidiam decisões e a geração de conhecimento.
+
+% \section{Mineração de Dados}
+% Fayyad, Piatetsky-Shapiro e Smyth \cite{fayyad1996data} definem a mineração de dados como \quotes{a aplicação de algoritmos específicos para extrair padrões de dados}. Eles destacam que a mineração de dados é uma etapa dentro do processo mais amplo de Descoberta de Conhecimento em Bases de Dados, também conhecido como \acrfull{KDD}, que envolve desde a preparação dos dados até a interpretação dos resultados. A mineração de dados foca na identificação de padrões válidos, novos, potencialmente úteis e compreensíveis a partir de grandes volumes de dados. Esses padrões podem se manifestar de diversas formas, como associações, sequências, classificações ou agrupamentos, e sua descoberta é fundamental para transformar dados brutos em conhecimento acionável. 
+
+\section{\textit{\acrfull{KDD}}}
+O Knowledge Discovery in Databases (KDD), ou Descoberta de Conhecimento em Bases de Dados, é um processo estruturado que visa extrair conhecimento útil a partir de grandes volumes de dados. Conforme descrito por Fayyad, Piatetsky-Shapiro e Smyth \cite{fayyad1996data}, o processo de \acrshort{KDD} é composto por várias etapas sequenciais e interdependentes, cada uma desempenhando um papel crucial na transformação de dados brutos em conhecimento acionável.
+
+A seguir, são apresentadas as principais etapas do processo de \acrshort{KDD}, ilustradas pela \refFig{fig-kdd}.
+
+\figura[H]{kdd}{Etapas do Processo de \acrshort{KDD} (baseado em \cite{fayyad1996data})}{fig-kdd}{width=.8\textwidth}%
+
+\subsection{Seleção dos Dados}
+Esta etapa envolve a escolha dos dados relevantes a partir de fontes disponíveis, visando identificar aqueles que são pertinentes ao objetivo da análise. A seleção cuidadosa assegura que o conjunto de dados utilizado seja representativo e adequado para as fases subsequentes. 
+
+\subsection{Pré-processamento dos Dados}
+Nesta fase, os dados selecionados passam por um processo de limpeza e organização. Isso inclui a remoção de inconsistências, tratamento de valores ausentes e correção de erros, garantindo a qualidade e a integridade dos dados para análises posteriores. 
+
+\subsection{Transformação dos Dados}
+Consiste na conversão dos dados pré-processados em formatos apropriados para a mineração. Isso pode envolver normalização, agregação ou criação de novas variáveis que facilitem a aplicação de algoritmos de mineração de dados. 
+
+\subsection{Mineração de Dados}
+Etapa central do processo, onde são aplicados métodos estatísticos e algoritmos de aprendizado de máquina para identificar padrões, associações ou tendências significativas nos dados. As técnicas utilizadas podem incluir classificação, regressão, agrupamento e detecção de anomalias. 
+
+\subsection{Interpretação e Avaliação dos Resultados}
+Após a mineração, os resultados obtidos são interpretados e avaliados quanto à sua relevância e utilidade. Esta etapa assegura que os padrões descobertos sejam válidos, compreensíveis e aplicáveis ao contexto do problema em estudo.
+
+
+% \subsection{CRISP-DM}
+% O CRISP-DM (Cross-Industry Standard Process for Data Mining) é uma metodologia padrão amplamente adotada para a condução de projetos de mineração de dados. O modelo busca estabelecer um processo estruturado e consistente para guiar todas as etapas de um projeto de análise de dados, desde a definição do problema até a implementação das soluções, sendo composto pelas seguintes fases interdependentes e iterativas.
+% \begin{enumerate}
+%     \item Compreensão do Negócio: Identificar os objetivos do negócio e definir o problema a ser resolvido com base nos dados.
+%     \item Compreensão dos Dados: Explorar os dados disponíveis, identificando sua qualidade, formato e relevância para o problema em questão.
+%     \item Preparação dos Dados: Limpar, transformar e selecionar os dados que serão utilizados, criando um conjunto adequado para a modelagem
+%     \item Modelagem: Aplicar algoritmos de mineração de dados para criar modelos que representem padrões nos dados.
+%     \item Avaliação: Validar os modelos desenvolvidos para garantir que atendam aos objetivos do negócio.
+%     \item Implantação: Implementar os resultados obtidos no processo, tornando-os úteis para tomada de decisões ou melhorias no negócio. 
+% \end{enumerate}
+
+% Essa estrutura busca promover a colaboração entre equipes multidisciplinares e garantir que todas as etapas sejam realizadas de forma integrada e alinhada aos objetivos do negócio. Além disso, a sua adaptabilidade a diferentes contextos e setores justifica a escolha da metodologia em projetos modernos de análise e ciência de dados.
+
+\section{Técnicas para Mineração de Dados}
+
+\subsection{Regressão linear}
+
+De acordo com o livro \textit{Introduction to Linear Regression Analysis} \cite{linear_regression}, a regressão linear é uma técnica estatística que investiga e modela a relação entre uma variável dependente e uma ou mais variáveis independentes (ou preditoras).
+
+\subsubsection{Regressão linear simples}
+
+No caso de apenas uma variável preditora, o modelo é conhecido como regressão linear simples, sendo descrito pela seguinte equação:
+
+\equacao{eq-regressao-simples-populacao}{y = \beta_0 + \beta_1 x_1 + \epsilon}
+
+onde $\beta_0$ e $\beta_1$ são os coeficientes constantes desconhecidos, $x_1$ a variável independente, e $\varepsilon$ o termo de erro ou resíduo não explicado pelo modelo. Essa equação, segundo os autores, é chamada de modelo de regressão populacional, sendo aplicável caso tenha-se conhecimento da completa relação entre as variáveis. Assim, de forma a obter uma aproximação para essa curva real, após a coleta de amostras do objeto de estudo, pode-se aplicar o modelo de regressão amostral, denotado pela equação 
+
+\equacao{eq-regressao-simples-amostra}{y_i = \beta_0 + \beta_1 x_i + \epsilon_i, \quad i = 1, 2, \dots, n}
+
+onde os pares ($y_i$, $x_i$) são as $i$ observações coletadas, $\beta_0$ e $\beta_1$ os coeficientes a serem estimados e $\epsilon_i$ o resíduo de cada observação não explicado pelo modelo.
+
+Para estimar os coeficientes, é utilizado o método da soma dos mínimos quadrados, o qual busca minimizar a soma dos quadrados dos resíduos $\epsilon_i$. A minimização, construída a partir da \refEq{eq-regressao-simples-amostra}, é formalmente expressa como:
+\equacao{eq-ols-simple}{
+    \min_{\beta_0, \beta_1} \sum_{i=1}^{n} \epsilon_i^2 = \sum_{i=1}^{n} (y_i - \beta_0 - \beta_1 x_i)^2
+}
+
+que, após solucionada, tem como resultado o modelo de regressão estimado como:
+\equacao{eq-regressao-simples}{
+    \hat{y} = \hat{\beta}_0 + \hat{\beta}_1 x
+}
+ na qual a partir dos coeficientes estimados $\hat{\beta}_0$  e $\hat{\beta}_1$ determina a média estimada de $y$ para um valor de $x$.
+
+\subsubsection{Regressão linear múltipla}
+
+Quando mais variáveis são utilizadas, o modelo é chamado de regressão linear múltipla. Dessa forma, essa relação pode ser generalizada pela equação populacional:
+
+\equacao{eq-regressao-multipla-populacao}{
+    y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_k x_k + \varepsilon
+}
+onde $\beta$ são os coeficientes a serem determinados, $x$ as variáveis independentes, e $\epsilon$ o termo de erro ou resíduo não explicado pelo modelo.
+
+Do mesmo modo da regressão linear simples, de forma a obter uma aproximação para essa curva, o modelo amostral pode ser visto como:
+
+\equacao{eq-regressao-multipla-amostra}{
+    y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \cdots + \beta_k x_{ik} + \varepsilon_i \\
+    = \beta_0 + \sum_{j=1}^{k} \beta_j x_{ij} + \varepsilon_i, \quad i = 1, 2, \ldots, n
+}
+
+onde $\beta_0$ a $\beta_j$ são os coeficientes a serem estimados, os pares ($y_i$, $x_i$) as $i$ observações coletadas e $\epsilon_i$ o resíduo de cada observação.
+
+Também é possível estimar os coeficientes dessa equação a partir do método dos mínimos quadrados, denotado como:
+
+\equacao{eq-ols-multiple}{\min_{\beta_0, \beta_1, \cdots, \beta_k} \sum_{i=1}^{n} \epsilon_i^2 = \sum_{i=1}^{n} (y_i - \beta_0 - \sum_{j=1}^{k} \beta_j x_{ij})^2 }
+
+E o modelo de regressão múltipla ajustado como:
+
+\equacao{eq-regressao-multipla}{
+    \hat{y} = \hat{\beta}_0 + \sum_{j=1}^{k} \hat{\beta_j} x_{j}
+}
+ na qual, a partir dos coeficientes estimados $\hat{\beta}_0$, a $\hat{\beta}_j$ determina a média estimada de $y$ para determinados valores das variáveis $x_j$.
+
+\subsubsection{Parâmetros de Avaliação do Modelo}
+A avaliação de modelos de regressão linear envolve métricas estatísticas que ajudam a interpretar a qualidade e significância dos resultados. Entre os principais parâmetros estão:
+
+\begin{enumerate}
+    \item \texit{F-statistic}: Mede a qualidade geral do modelo, verificando se pelo menos uma das variáveis independentes tem uma relação estatisticamente significativa com a variável dependente. Um valor F elevado, acompanhado de um p-valor pequeno, indica que o modelo é estatisticamente significativo.
+    \item Prob(F-statistic): O valor de \textit{Prob(F-statistic)} mostra a probabilidade do \textit{F-Statistic} indicar que o modelo é diferente do modelo nulo, ou seja, aquele em que nenhuma variável preditiva é inserida. 
+    \item $R^2$ (Coeficiente de Determinação): Indica a proporção da variância na variável dependente que é explicada pelas variáveis independentes. Um R² elevado sugere que o modelo explica bem os dados, embora não garanta adequação em todos os casos.
+    \item $R^2$ ajustado: Leva em conta o número de variáveis no modelo, ajustando o valor de $R^2$ para evitar \textit{overfitting} do modelo ao incluir variáveis adicionais irrelevantes. É especialmente útil para comparar modelos com diferentes números de preditores.
+    \item \acrfull{MAE}: Mede o erro médio absoluto entre os valores previstos e os valores reais, fornecendo uma métrica intuitiva de erro em unidades da variável dependente. Um valor menor deste parâmetro indica previsões mais precisas.
+\end{enumerate}
+
+\subsubsection{Suposições para utilização da regressão linear}
+Para garantir a confiabilidade e a precisão dos modelos de regressão linear (tanto simples quanto múltipla), o conjunto de dados deve atender às seguintes suposições:
+\begin{enumerate}
+    \item A relação entre a variável dependente e as variáveis preditoras deve ser linear (ou aproximadamente linear).
+    \item Os termos de erro $\epsilon_i$ devem ter média zero
+    \item Os termos de erro $\epsilon_i$ devem ter uma variância constante $\sigma^2$
+    \item Os erros não são correlacionados
+    \item Os erros possuem uma distribuição normal
+\end{enumerate}
+
+Variações nessas suposições tendem a tornar o modelo menos confiável e, portanto, não adequado para o conjunto de dados. Assim, a fim de determinar se as propriedades são atendidas, uma das formas principais é a análise dos resíduos (ou termos de erro), a qual será discutida durante a execução das regressões lineares no \refCap{4_Analise_dos_dados}.
+
+\subsection{\textit{K-Fold}}
+O \textit{K-Fold Cross-Validation} é uma técnica de validação estatística utilizada para avaliar o desempenho de modelos de aprendizado de máquina. Essa abordagem é amplamente empregada em cenários onde o objetivo é medir a capacidade de generalização de um modelo em relação a novos dados, evitando problemas como \textit{overfitting} ou \textit{underfitting}. Segundo Hastie, Tibshirani e Friedman \cite{hastie2009elements}, a validação cruzada é uma estratégia essencial para estimar o erro de um modelo de aprendizado de máquina e selecionar hiperparâmetros de forma eficiente.
+
+No \textit{K-Fold}, o conjunto de dados é dividido em K partes iguais (ou 
+\textit{folds}), sendo que cada uma delas é utilizada como conjunto de validação uma vez, enquanto as demais K-1 partes são utilizadas como conjunto de treinamento. Esse método garante que todas as observações sejam utilizadas tanto para treino quanto para validação, reduzindo a variabilidade das estimativas e proporcionando uma avaliação mais estável do modelo.
+
+A \refFig{fig-k-fold} a seguir ilustra o processo para K=5, onde cada linha representa uma iteração do treinamento e validação do modelo. De modo que a cada rodada, um fold diferente é utilizado como conjunto de teste, enquanto os outros são usados como conjunto de treinamento. O processo é repetido K vezes, e no final, as métricas de desempenho são agregadas, proporcionando uma avaliação mais confiável e melhorando a capacidade de generalização do modelo \cite{hastie2009elements}.
+
+\figura[H]{k-fold}{Esquema de validação cruzada \textit{K-Fold} (Fonte: \cite{scikit2025})}{fig-k-fold}{width=.8\textwidth}%
+
+\subsection{Árvore de Decisão}
+
+A árvore de decisão é uma técnica de modelagem que organiza os dados em uma estrutura hierárquica semelhante a uma árvore. Nessa estrutura, cada nó interno representa uma condição de decisão baseada em uma variável, e os nós finais, chamados de folhas, correspondem às classes ou valores previstos. Essa abordagem é amplamente utilizada em problemas de classificação e regressão, seguindo um procedimento recursivo que divide os dados em subconjuntos mais homogêneos \cite{breiman1984classification}.
+
+O processo de construção da árvore inicia-se pelo nó raiz, onde a variável mais relevante é selecionada para realizar a primeira divisão dos dados. A relevância é medida por critérios de pureza, como a redução da entropia ou o ganho de informação. Divisões subsequentes são realizadas de forma recursiva até que uma condição de parada seja atingida, como a profundidade máxima da árvore, um número mínimo de amostras em um nó ou quando todas as instâncias em um nó pertencem à mesma classe \cite{quinlan1986induction}.
+
+Uma característica importante das árvores de decisão é sua capacidade de lidar com dados mistos, combinando variáveis categóricas e numéricas sem a necessidade de pré-processamento extensivo. Além disso, elas são inerentemente interpretáveis, permitindo que os resultados sejam visualizados e compreendidos com facilidade \cite{breiman1984classification}.
+
+\subsection{Árvore de Classificação}
+
+A árvore de classificação é uma aplicação específica das árvores de decisão voltada para problemas de classificação, onde o objetivo é prever a classe ou categoria de um determinado conjunto de dados. Essa técnica é particularmente útil em problemas binários ou multiclasse. A estrutura da árvore é composta por três componentes principais: o nó raiz, os nós intermediários e as folhas. O nó raiz representa a primeira decisão a ser tomada, enquanto os nós intermediários correspondem a decisões subsequentes, e as folhas representam as classes finais que se deseja prever \cite{quinlan1986induction}.
+
+A construção de uma árvore de classificação segue um processo recursivo de divisão dos dados com base em condições definidas pelas variáveis do conjunto. Cada divisão é realizada utilizando critérios que medem a pureza ou homogeneidade das classes, como o índice de Gini, a entropia ou o ganho de informação. O processo continua até que um critério de parada seja atingido, como um número mínimo de amostras por nó ou uma profundidade máxima da árvore \cite{breiman1984classification}.
+
+As árvores de classificação podem ser treinadas utilizando diferentes algoritmos que variam na forma como selecionam as divisões, tratam valores ausentes e lidam com variáveis categóricas e numéricas. Além disso, parâmetros como profundidade máxima, número mínimo de amostras por nó e critério de divisão podem ser ajustados para controlar o desempenho e a complexidade do modelo \cite{quinlan1986induction}.
+
+\section{Ferramentas Utilizadas}
+
+% O Python é uma linguagem de programação interpretada, de tipagem dinâmica e multiparadigma, que suporta programação procedural, orientada a objetos e funcional. Possui gerenciamento automático de memória e um amplo conjunto de bibliotecas especializadas para diferentes aplicações, sua estrutura modular permite a utilização de pacotes externos que otimizam tarefas como manipulação de dados, cálculos matemáticos, visualização e processamento geoespacial. 
+
+% Neste trabalho, foram selecionadas bibliotecas específicas para processamento e visualização de dados. Pandas e NumPy foram utilizadas para manipulação de estruturas de dados e operações numéricas vetorizadas. Seaborn permitiu a criação de gráficos estatísticos avançados, enquanto Folium e GeoPandas ofereceram suporte para visualização e análise geoespacial. Já para análise textual, WordCloud foi usado para auxiliar na geração de nuvens de palavras, e NetworkX para a modelagem e análise de redes complexas. Tais bibliotecas garantiram um ambiente eficiente para a exploração e interpretação dos dados no estudo.
+
+
+% Pandas, Numpy, Seaborn, Folium, geopandas, WordCloud, networkx, scikit learn, stats model
+
+\subsection{Python e Bibliotecas}
+
+O Python\cite{python} é uma linguagem de programação interpretada, de tipagem dinâmica e multiparadigma, que suporta programação procedural, orientada a objetos e funcional. Possui gerenciamento automático de memória e um amplo conjunto de bibliotecas especializadas para diferentes aplicações. Sua estrutura modular permite a utilização de pacotes externos que otimizam tarefas como manipulação de dados, cálculos matemáticos, visualização e processamento geoespacial.
+
+Neste trabalho, foram selecionadas bibliotecas específicas para processamento e visualização de dados:
+
+\begin{itemize}
+    \item Pandas: Utilizada para manipulação de estruturas de dados, especialmente DataFrames, facilitando operações de limpeza e transformação de dados \cite{pandas}.
+    \item NumPy: Empregada para operações numéricas vetorizadas e manipulação de arrays multidimensionais, oferecendo suporte eficiente para cálculos matemáticos \cite{numpy}.
+    \item Seaborn: Permitindo a criação de gráficos estatísticos avançados com base no Matplotlib, facilitando a visualização de distribuições e relações entre variáveis \cite{seaborn}.
+    \item Folium: Fornecendo suporte para visualização geoespacial, permitindo a criação de mapas interativos com facilidade \cite{folium}.
+    \item GeoPandas: Estendendo as capacidades do Pandas para suportar dados geoespaciais, facilitando a manipulação e análise de dados geográficos \cite{geopandas}.
+    \item WordCloud: Auxiliando na geração de nuvens de palavras a partir de textos, útil para análise textual e visualização de frequências de termos \cite{wordcloud}.
+    \item  NetworkX: Utilizada para a modelagem e análise de redes complexas, permitindo a criação, manipulação e estudo da estrutura de grafos \cite{networkx}.
+    \item Scikit-learn: Fornecendo ferramentas para aprendizado de máquina, incluindo algoritmos de classificação, regressão e clustering, além de funcionalidades para pré-processamento de dados e validação de modelos \cite{scikit-learn}.
+    \item Statsmodels: Oferecendo classes e funções para a estimativa de muitos modelos estatísticos diferentes, bem como para a realização de testes estatísticos e exploração de dados \cite{seabold2010statsmodels}.
+\end{itemize}
+
+
+
+\subsection{Jupyter Notebook}
+O Jupyter Notebook \cite{jupyter_notebook} é um ambiente interativo de código aberto que permite a execução de código em células organizadas de forma sequencial. Baseado na arquitetura cliente-servidor, o Jupyter suporta diversas linguagens de programação, sendo o Python a mais utilizada. Ele permite a combinação de código executável, visualizações gráficas e textos explicativos em um único documento, tornando-o amplamente utilizado para análise de dados, aprendizado de máquina e visualização interativa.
+
+Neste trabalho, o Jupyter Notebook foi escolhido como ferramenta principal devido à sua capacidade de organizar e documentar o fluxo de análise de dados. Além de facilitar a execução modular de código e integração com bibliotecas Python, permitindo a manipulação eficiente de dados tabulares, cálculos matemáticos e visualizações estatísticas.
+
+\subsection{API REST}
+Segundo a IBM \cite{ibm_rest_api}, uma \acrshort{API} \acrfull{REST}(\textit{Representational State Transfer}) é uma interface de programação de aplicações que adere aos princípios de design do estilo arquitetural \acrshort{REST}. Essas \acrshort{API}s fornecem uma maneira flexível e leve de integrar aplicações e conectar componentes em arquiteturas de microsserviços \cite{ibm_rest_api}. Elas são amplamente adotadas devido à sua simplicidade, escalabilidade e flexibilidade, sendo projetadas para facilitar a comunicação entre clientes e servidores, e sendo frequentemente utilizadas no desenvolvimento de aplicações web e mobile.
+
+A arquitetura \acrshort{REST} organiza seus recursos de forma padronizada e intuitiva, utilizando URIs (\textit{Uniform Resource Identifiers}) para identificá-los de maneira única. As operações sobre esses recursos são realizadas por meio dos métodos HTTP padrão, como \quotes{GET}, \quotes{POST}, \quotes{PUT} e \quotes{DELETE}, permitindo a manipulação dos dados de forma estruturada e eficiente \cite{restfulapi_statelessness}.
+
+Um dos princípios fundamentais das \acrshort{API}s REST é a \quotes{comunicação sem estado} (\textit{stateless}), o que significa que cada requisição contém todas as informações necessárias para ser processada, sem depender do armazenamento de estado no servidor entre as requisições. Isso garante maior independência e escalabilidade, pois os servidores não precisam armazenar informações de sessão, tornando o sistema mais eficiente e robusto \cite{restfulapi_statelessness}. Além disso, as \acrshort{API}s \acrshort{REST} normalmente utilizam formatos leves, como \textbf{JSON} (JavaScript Object Notation) ou \textbf{XML} (Extensible Markup Language), para o intercâmbio de dados, proporcionando interoperabilidade entre diferentes linguagens e plataformas \cite{ibm_rest_api}. 
+
+
+\subsection{GeoJSON}
+O GeoJSON é uma extensão do JSON projetada especificamente para representar dados geoespaciais. Ele permite o armazenamento e a troca de informações sobre geometrias, como pontos, linhas e polígonos, além de propriedades associadas a essas geometrias, seguindo um padrão definido pelo \acrfull{IETF}, garantindo sua compatibilidade com sistemas de informação geográfica e bibliotecas de visualização como Folium \cite{geojson_specification}.
+
+
+\section{Trabalhos Relacionados}
+
+A mineração de dados na indústria cinematográfica tem sido amplamente explorada em diversas pesquisas acadêmicas, abordando desde a previsão de sucesso financeiro de filmes até a análise de padrões de produção e elenco. Nesta seção, serão apresentados estudos relevantes que compartilham similaridades com este trabalho, destacando suas contribuições e diferenças.
+
+Swami, Batlaw, Phogat e Goyal \cite{swami2021} propuseram um modelo baseado em \textit{Random Forest Classifier} para prever o \acrshort{ROI} de filmes antes de seu lançamento. O estudo utilizou um conjunto extenso de dados extraídos de diferentes bases, incorporando variáveis como orçamento, elenco, equipe de produção e percepções do público.
+
+Udandarao e Gupta \cite{udandarao2024} desenvolveram um modelo para prever a receita de filmes utilizando uma abordagem comparativa entre diferentes algoritmos de aprendizado de máquina, incluindo Regressão Linear, Árvore de Decisão, \textit{Random Forest}, \textit{Bagging}, \textit{XGBoosting} e \textit{Gradient Boosting}. 
+
+Bahraminasr e Vafaei-Sadr \cite{bahraminasr2020} realizaram uma análise exploratória extensiva dos dados do \acrfull{IMDB}, uma base de dados alternativa, cobrindo um período de 1979 a 2019. O estudo apresenta uma base de dados robusta de mais de 79 mil títulos, analisando aspectos como tendências de classificação, relação entre gênero e sucesso comercial, influência das classificações etárias e comportamento demográfico nas avaliações dos filmes. A principal contribuição desse trabalho reside na compilação de um conjunto de dados abrangente e na aplicação de estatísticas descritivas para compreender padrões no setor cinematográfico.
+
+
+ A principal contribuição deste trabalho em relação às pesquisas mencionadas está na abordagem multidimensional da indústria cinematográfica, integrando análises financeiras, culturais e de diversidade na produção e elenco. Além disso diferente dos estudos focados apenas em previsões financeiras, este trabalho combina técnicas exploratórias e preditivas para identificar padrões na indústria, analisando tendências de gênero, temáticas e impacto de variáveis no retorno financeiro. Além disso, ao comparar diferentes mercados, como o brasileiro e o estadunidense, identifica particularidades regionais que influenciam o desempenho dos filmes.
+
+

@@ -1,0 +1,48 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Classe do documento
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Opções:
+%  - Graduação: bacharelado|engenharia|licenciatura
+%  - Pós-graduação: [qualificacao], mestrado|doutorado, ppca|ppginf
+% \documentclass[engenharia]{UnB-CIC}%
+\documentclass[engenharia]{UnB-CIC}%
+\usepackage{makecell}
+\usepackage{pdfpages}% incluir PDFs, usado no apêndice
+\usepackage{float}
+\usepackage{gensymb}
+\def\UrlBreaks{\do\/\do-}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Informações do Trabalho
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\orientador{\prof \dr Jan Mendonça Correa}{CIC/UnB}%
+%\coorientador{\prof \dr José Ralha}{CIC/UnB}
+\coordenador{\prof \dr Guilherme Novaes Ramos}{CIC/UnB}%
+\diamesano{14}{junho}{2025}%
+
+\membrobanca{\prof \dr Trocar}{Trocar}%
+\membrobanca{\prof \dr Trocar}{Trocar}%
+
+\autor{Gustavo}{Pereira Chaves}%
+
+\titulo{Aplicação de Algoritmos de Mineração de Dados na Indústria do Cinema}%
+
+\palavraschave{Mineração de Dados, Indústria Cinematográfica, Modelos Preditivos, Análise de Dados, Impacto Cultural}%
+\keywords{Data Mining, Film Industry, Predictive Models, Data Analysis, Cultural Impact}%
+
+\newcommand{\unbcic}{\texttt{UnB-CIC}}%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Texto
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}%
+    \capitulo{1_Introducao}{Introdução}%
+    \capitulo{2_Fundamentacao_teorica}{Fundamentação teórica}%
+    \capitulo{3_Preparacao_dos_dados}{Preparação dos dados}%
+    \capitulo{4_Analise_dos_dados}{Análise dos dados}%
+    \capitulo{5_Conclusoes}{Conclusões}%
+
+    % \apendice{Apendice_Fichamento}{Fichamento de Artigo Científico}%
+    % \anexo{Anexo1}{Documentação Original \unbcic\ (parcial)}%
+\end{document}%

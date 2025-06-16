@@ -1,0 +1,55 @@
+This is BibTeX, Version 0.99d (TeX Live 2022/dev/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: monografia.aux
+The style file: babunsrt.bst
+Database file #1: bibliografia.bib
+Warning--entry type for "seabold2010statsmodels" isn't style-file defined
+--line 194 of file bibliografia.bib
+Repeated entry---line 485 of file bibliografia.bib
+ : @book{hastie2009elements
+ :                         ,
+I'm skipping whatever remains of this entry
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Warning--empty language in fayyad1996data
+You've used 54 entries,
+            2465 wiz_defined-function locations,
+            876 strings with 13509 characters,
+and the built_in function-call counts, 12232 in all, are:
+= -- 902
+> -- 335
+< -- 2
++ -- 141
+- -- 87
+* -- 1250
+:= -- 1542
+add.period$ -- 114
+call.type$ -- 54
+change.case$ -- 43
+chr.to.int$ -- 0
+cite$ -- 55
+duplicate$ -- 765
+empty$ -- 1654
+format.name$ -- 226
+if$ -- 2836
+int.to.chr$ -- 0
+int.to.str$ -- 54
+missing$ -- 53
+newline$ -- 238
+num.names$ -- 55
+pop$ -- 410
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 303
+stack$ -- 0
+substring$ -- 154
+swap$ -- 296
+text.length$ -- 2
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 1
+while$ -- 65
+width$ -- 56
+write$ -- 538
+(There was 1 error message)

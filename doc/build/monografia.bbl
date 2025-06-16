@@ -1,0 +1,446 @@
+\begin{thebibliography}{10}
+  \providebibliographyfont{name}{}%
+  \providebibliographyfont{lastname}{}%
+  \providebibliographyfont{title}{\emph}%
+  \providebibliographyfont{jtitle}{\btxtitlefont}%
+  \providebibliographyfont{etal}{\emph}%
+  \providebibliographyfont{journal}{}%
+  \providebibliographyfont{volume}{}%
+  \providebibliographyfont{ISBN}{\MakeUppercase}%
+  \providebibliographyfont{ISSN}{\MakeUppercase}%
+  \providebibliographyfont{url}{\url}%
+  \providebibliographyfont{numeral}{}%
+  \expandafter\btxselectlanguage\expandafter {\btxfallbacklanguage}
+
+\expandafter\btxselectlanguage\expandafter {\btxfallbacklanguage}
+\bibitem {fayyad1996data}
+\btxnamefont {\btxlastnamefont {Fayyad}, Usama}, \btxnamefont {Gregory
+  \btxlastnamefont {Piatetsky-Shapiro}}\btxandcomma {} \btxandlong {}\
+  \btxnamefont {Padhraic \btxlastnamefont {Smyth}}\btxauthorcolon\
+  \btxjtitlefont {\btxifchangecase {From data mining to knowledge discovery in
+  databases}{From Data Mining to Knowledge Discovery in Databases}}.
+\newblock \btxjournalfont {AI Magazine}, 17(3):37--54, 1996.
+\newblock {\latintext
+  \btxurlfont{https://aaai.org/ojs/index.php/aimagazine/article/view/1230}}\empty
+  \btxurldatecomment {\btxkeywordlanguage {\btxurldatefont{14-05-2025}}}.
+
+\bibitem {scikit2025}
+\btxnamefont {\btxlastnamefont {{Scikit-Learn Developers}}}\btxauthorcolon\
+  \btxtitlefont {\btxifchangecase {Cross-validation: evaluating estimator
+  performance}{Cross-validation: evaluating estimator performance}}, 2025.
+\newblock {\latintext
+  \btxurlfont{https://scikit-learn.org/stable/modules/cross_validation.html}}\empty
+  \btxurldatecomment {\btxkeywordlanguage {\btxurldatefont{29-01-2025}}}.
+
+\bibitem {monaco2009how}
+\btxnamefont {\btxlastnamefont {Monaco}, James}\btxauthorcolon\ \btxtitlefont
+  {How to Read a Film: Movies, Media, and Beyond}.
+\newblock \btxpublisherfont {Oxford University Press}, Oxford, 2009.
+
+\bibitem {bordwell2013film}
+\btxnamefont {\btxlastnamefont {Bordwell}, David} \btxandlong {}\ \btxnamefont
+  {Kristin \btxlastnamefont {Thompson}}\btxauthorcolon\ \btxtitlefont {Film
+  Art: An Introduction}.
+\newblock \btxpublisherfont {McGraw-Hill}, New York, 2013.
+
+\bibitem {maltby2003hollywood}
+\btxnamefont {\btxlastnamefont {Maltby}, Richard}\btxauthorcolon\ \btxtitlefont
+  {Hollywood Cinema}.
+\newblock \btxpublisherfont {Blackwell Publishing}, Oxford, 2003.
+
+\bibitem {sharma2020data}
+\btxnamefont {\btxlastnamefont {Sharma}, Amit}\btxauthorcolon\ \btxjtitlefont
+  {\btxifchangecase {Data-driven decision-making in the film
+  industry}{Data-Driven Decision-Making in the Film Industry}}.
+\newblock \btxjournalfont {Journal of Big Data}, 2020.
+
+\bibitem {ramos1997historia}
+\btxnamefont {\btxlastnamefont {Ramos}, Fernão}\btxauthorcolon\ \btxtitlefont
+  {História do Cinema Brasileiro}.
+\newblock \btxpublisherfont {Art Editora}, São Paulo, 1997.
+
+\bibitem {rocha2023cinema}
+\btxnamefont {\btxlastnamefont {Rocha}, Fabiano}\btxauthorcolon\ \btxjtitlefont
+  {\btxifchangecase {O cinema brasileiro pós-pandemia: desafios e
+  perspectivas}{O cinema brasileiro pós-pandemia: desafios e perspectivas}}.
+\newblock \btxjournalfont {Revista de Cinema Brasileiro}, 2023.
+
+\bibitem {wyatt1994high}
+\btxnamefont {\btxlastnamefont {Wyatt}, Justin}\btxauthorcolon\ \btxtitlefont
+  {High Concept: Movies and Marketing in Hollywood}.
+\newblock \btxpublisherfont {University of Texas Press}, Austin, 1994.
+
+\bibitem {tmdb2025}
+\btxnamefont {\btxlastnamefont {{The Movie Database (TMDB)}}}\btxauthorcolon\
+  \btxtitlefont {\btxifchangecase {About {TMDB}}{About {TMDB}}}, 2025.
+\newblock {\latintext \btxurlfont{https://www.themoviedb.org/about}}\empty
+  \btxurldatecomment {\btxkeywordlanguage {\btxurldatefont{29-01-2025}}}.
+
+\bibitem {nycdatascience2024}
+\btxnamefont {\btxlastnamefont {{NYC Data Science Academy}}}\btxauthorcolon\
+  \btxtitlefont {\btxifchangecase {Visualizing movie data to recommend with
+  tmdb}{Visualizing Movie Data to Recommend with TMDB}}, 2024.
+\newblock {\latintext
+  \btxurlfont{https://nycdatascience.com/blog/student-works/visualizing-movie-data-to-recommend-with-tmdb/}}\empty
+  \btxurldatecomment {\btxkeywordlanguage {\btxurldatefont{28-01-2025}}}.
+
+\bibitem {cmu2021capstone}
+\btxnamefont {\btxlastnamefont {{Carnegie Mellon University}}}\btxauthorcolon\
+  \btxtitlefont {\btxifchangecase {Capstone research: Movie data analysis with
+  tmdb}{Capstone Research: Movie Data Analysis with TMDb}}, 2021.
+\newblock {\latintext
+  \btxurlfont{https://www.stat.cmu.edu/capstoneresearch/spring2021/315files/team19.html}}\empty
+  \btxurldatecomment {\btxkeywordlanguage {\btxurldatefont{29-01-2025}}}.
+
+\bibitem {cfiNetIncome}
+\btxnamefont {\btxlastnamefont {{Corporate Finance Institute}}}\btxauthorcolon\
+  \btxtitlefont {\btxifchangecase {Net income}{Net Income}}.
+\newblock {\latintext
+  \btxurlfont{https://corporatefinanceinstitute.com/resources/accounting/what-is-net-income/}}\empty
+  \btxurldatecomment {\btxkeywordlanguage {\btxurldatefont{06-10-2024}}}.
+
+\bibitem {cfiRoi}
+\btxnamefont {\btxlastnamefont {{Corporate Finance Institute}}}\btxauthorcolon\
+  \btxtitlefont {\btxifchangecase {Return on investment (roi)}{Return on
+  Investment (ROI)}}.
+\newblock {\latintext
+  \btxurlfont{https://corporatefinanceinstitute.com/resources/accounting/return-on-investment-roi/}}\empty
+  \btxurldatecomment {\btxkeywordlanguage {\btxurldatefont{06-10-2024}}}.
+
+\bibitem {triola2018introducao}
+\btxnamefont {\btxlastnamefont {Triola}, Mario\btxfnamespacelong
+  F.}\btxauthorcolon\ \btxtitlefont {Introdução à Estatística}.
+\newblock \btxpublisherfont {Pearson}, São Paulo, \btxeditionnumlong {13ª}{},
+  2018.
+
+\bibitem {montgomery2014applied}
+\btxnamefont {\btxlastnamefont {Montgomery}, Douglas\btxfnamespacelong C.}
+  \btxandlong {}\ \btxnamefont {George\btxfnamespacelong C. \btxlastnamefont
+  {Runger}}\btxauthorcolon\ \btxtitlefont {Applied Statistics and Probability
+  for Engineers}.
+\newblock \btxpublisherfont {Wiley}, Hoboken, \btxeditionnumlong {6th}{}, 2014.
+
+\bibitem {hair2019multivariate}
+\btxnamefont {\btxlastnamefont {Hair}, Joseph\btxfnamespacelong F.},
+  \btxnamefont {William\btxfnamespacelong C. \btxlastnamefont {Black}},
+  \btxnamefont {Barry\btxfnamespacelong J. \btxlastnamefont
+  {Babin}}\btxandcomma {} \btxandlong {}\ \btxnamefont {Rolph\btxfnamespacelong
+  E. \btxlastnamefont {Anderson}}\btxauthorcolon\ \btxtitlefont {Multivariate
+  Data Analysis}.
+\newblock \btxpublisherfont {Cengage}, Andover, \btxeditionnumlong {8th}{},
+  2019.
+
+\bibitem {everitt2002cambridge}
+\btxnamefont {\btxlastnamefont {Everitt}, Brian\btxfnamespacelong
+  S.}\btxauthorcolon\ \btxtitlefont {The Cambridge Dictionary of Statistics}.
+\newblock \btxpublisherfont {Cambridge University Press}, Cambridge, UK,
+  \btxeditionnumlong {2nd}{}, 2002.
+
+\bibitem {taylor1994nist}
+\btxnamefont {\btxlastnamefont {Taylor}, Barry\btxfnamespacelong N.}
+  \btxandlong {}\ \btxnamefont {Chris\btxfnamespacelong E. \btxlastnamefont
+  {Kuyatt}}\btxauthorcolon\ \btxtitlefont {\btxifchangecase {Guidelines for
+  evaluating and expressing the uncertainty of nist measurement
+  results}{Guidelines for Evaluating and Expressing the Uncertainty of NIST
+  Measurement Results}}.
+\newblock \Btxtechreplong {}\ NIST Technical Note 1297, National Institute of
+  Standards and Technology (NIST), Gaithersburg, MD, USA, 1994.
+\newblock {\latintext
+  \btxurlfont{https://www.nist.gov/pml/nist-technical-note-1297}}\empty
+  \btxurldatecomment {\btxkeywordlanguage {\btxurldatefont{14-05-2025}}}.
+
+\bibitem {hastie2009elements}
+\btxnamefont {\btxlastnamefont {Hastie}, Trevor}, \btxnamefont {Robert
+  \btxlastnamefont {Tibshirani}}\btxandcomma {} \btxandlong {}\ \btxnamefont
+  {Jerome \btxlastnamefont {Friedman}}\btxauthorcolon\ \btxtitlefont {The
+  Elements of Statistical Learning: Data Mining, Inference, and Prediction}.
+\newblock \btxpublisherfont {Springer}, \btxeditionnumlong {2nd}{}, 2009.
+\newblock {\latintext
+  \btxurlfont{https://web.stanford.edu/~hastie/ElemStatLearn/}}\empty
+  \btxurldatecomment {\btxkeywordlanguage {\btxurldatefont{29-01-2025}}}.
+
+\bibitem {davenport1998working}
+\btxnamefont {\btxlastnamefont {Davenport}, Thomas\btxfnamespacelong H.}
+  \btxandlong {}\ \btxnamefont {Laurence \btxlastnamefont
+  {Prusak}}\btxauthorcolon\ \btxtitlefont {Working Knowledge: How Organizations
+  Manage What They Know}.
+\newblock \btxpublisherfont {Harvard Business School Press}, Boston, 1998.
+
+\bibitem {setzer1999dado}
+\btxnamefont {\btxlastnamefont {Setzer}, Valdemar\btxfnamespacelong
+  W.}\btxauthorcolon\ \btxtitlefont {\btxifchangecase {Dado, informação,
+  conhecimento e competência}{Dado, Informação, Conhecimento e
+  Competência}}, 1999.
+\newblock {\latintext
+  \btxurlfont{https://www.ime.usp.br/~vwsetzer/dado-info.html}}\empty
+  \btxurldatecomment {\btxkeywordlanguage {\btxurldatefont{29-01-2025}}}.
+
+\bibitem {linear_regression}
+\btxnamefont {\btxlastnamefont {Montgomery}, Douglas\btxfnamespacelong C.},
+  \btxnamefont {Elizabeth\btxfnamespacelong A. \btxlastnamefont
+  {Peck}}\btxandcomma {} \btxandlong {}\ \btxnamefont {G.\btxfnamespacelong
+  Geoffrey \btxlastnamefont {Vining}}\btxauthorcolon\ \btxtitlefont
+  {Introduction to Linear Regression Analysis}.
+\newblock \btxpublisherfont {John Wiley \& Sons}, \btxeditionnumlong {5th}{},
+  2012\ifbtxprintISBN {, \mbox{\btxISBN~\btxISBNfont {9780470542811}}}.
+
+\bibitem {breiman1984classification}
+\btxnamefont {\btxlastnamefont {Breiman}, Leo}, \btxnamefont
+  {Jerome\btxfnamespacelong H. \btxlastnamefont {Friedman}}, \btxnamefont
+  {Richard\btxfnamespacelong A. \btxlastnamefont {Olshen}}\btxandcomma {}
+  \btxandlong {}\ \btxnamefont {Charles\btxfnamespacelong J. \btxlastnamefont
+  {Stone}}\btxauthorcolon\ \btxtitlefont {Classification and Regression Trees}.
+\newblock \btxpublisherfont {Wadsworth International Group}, Belmont, CA, 1984.
+
+\bibitem {quinlan1986induction}
+\btxnamefont {\btxlastnamefont {Quinlan}, J.\btxfnamespacelong
+  Ross}\btxauthorcolon\ \btxjtitlefont {\btxifchangecase {Induction of decision
+  trees}{Induction of Decision Trees}}.
+\newblock \btxjournalfont {Machine Learning}, 1(1):81--106, 1986.
+
+\bibitem {python}
+\btxnamefont {\btxlastnamefont {{Python Software Foundation}}}\btxauthorcolon\
+  \btxtitlefont {Python Language Reference, version 3.x}, 2024.
+\newblock {\latintext \btxurlfont{https://www.python.org/}}\empty
+  \btxurldatecomment {\btxkeywordlanguage {\btxurldatefont{29-01-2024}}}.
+
+\bibitem {pandas}
+\btxnamefont {\btxlastnamefont {{The pandas development team}}}\btxauthorcolon\
+  \btxtitlefont {\btxifchangecase {{P}andas documentation}{{P}andas
+  documentation}}, 2023.
+\newblock {\latintext \btxurlfont{https://pandas.pydata.org/docs/}}\empty
+  \btxurldatecomment {\btxkeywordlanguage {\btxurldatefont{08-06-2024}}}.
+
+\bibitem {numpy}
+\btxnamefont {\btxlastnamefont {Harris}, Charles\btxfnamespacelong R.},
+  \btxnamefont {K.\btxfnamespacelong Jarrod \btxlastnamefont
+  {Millman}}\btxandcomma {} \btxandlong {}\ \btxnamefont
+  {Stéfan\btxfnamespacelong J.\btxfnamespacelong et\btxfnamespacelong al.
+  van~der \btxlastnamefont {Walt}}\btxauthorcolon\ \btxjtitlefont
+  {\btxifchangecase {Array programming with numpy}{Array programming with
+  NumPy}}.
+\newblock \btxjournalfont {Nature}, 585:357–362, 2020.
+\newblock {\latintext \btxurlfont{https://numpy.org/doc/stable/}}\empty
+  \btxurldatecomment {\btxkeywordlanguage {\btxurldatefont{29-01-2025}}}.
+
+\bibitem {seaborn}
+\btxnamefont {\btxlastnamefont {Waskom}, Michael\btxfnamespacelong
+  L.}\btxauthorcolon\ \btxjtitlefont {\btxifchangecase {seaborn: statistical
+  data visualization}{seaborn: statistical data visualization}}.
+\newblock \btxjournalfont {Journal of Open Source Software}, 6(60):3021, 2021.
+
+\bibitem {folium}
+\btxnamefont {\btxlastnamefont {{The Folium Development Team}}}\btxauthorcolon\
+  \btxtitlefont {\btxifchangecase {{Folium API Reference}}{{Folium API
+  Reference}}}.
+\newblock {\latintext
+  \btxurlfont{https://python-visualization.github.io/folium/latest/reference.html}}\empty
+  \btxurldatecomment {\btxkeywordlanguage {\btxurldatefont{25-06-2024}}}.
+
+\bibitem {geopandas}
+\btxnamefont {\btxlastnamefont {{The GeoPandas Development
+  Team}}}\btxauthorcolon\ \btxtitlefont {\btxifchangecase {Geopandas: Python
+  tools for geographic data}{GeoPandas: Python tools for geographic data}},
+  2025.
+\newblock {\latintext \btxurlfont{https://geopandas.org/}}\empty
+  \btxurldatecomment {\btxkeywordlanguage {\btxurldatefont{29-01-2025}}}.
+
+\bibitem {wordcloud}
+\btxnamefont {\btxlastnamefont {{Andreas Mueller}}}\btxauthorcolon\
+  \btxtitlefont {\btxifchangecase {{W}ordcloud for python
+  documentation}{{W}ordCloud for Python documentation}}, 2020.
+\newblock {\latintext
+  \btxurlfont{https://github.com/amueller/word_cloud}}\empty \btxurldatecomment
+  {\btxkeywordlanguage {\btxurldatefont{20-07-2024}}}.
+
+\bibitem {networkx}
+\btxnamefont {\btxlastnamefont {Hagberg}, Aric\btxfnamespacelong A.},
+  \btxnamefont {Daniel\btxfnamespacelong A. \btxlastnamefont
+  {Schult}}\btxandcomma {} \btxandlong {}\ \btxnamefont
+  {Pieter\btxfnamespacelong J. \btxlastnamefont {Swart}}\btxauthorcolon\
+  \btxtitlefont {\btxifchangecase {Exploring network structure, dynamics, and
+  function using networkx}{Exploring Network Structure, Dynamics, and Function
+  using NetworkX}}.
+\newblock \Btxinlong {}\ \btxnamefont {\btxlastnamefont {Varoquaux}, Ga\"el},
+  \btxnamefont {Travis \btxlastnamefont {Vaught}}\btxandcomma {} \btxandlong
+  {}\ \btxnamefont {Jarrod \btxlastnamefont {Millman}}\ (\btxeditorslong {}):
+  \btxtitlefont {Proceedings of the 7th Python in Science Conference},
+  \btxpageslong {}\ 11 -- 15, Pasadena, CA USA, 2008.
+
+\bibitem {scikit-learn}
+\btxnamefont {\btxlastnamefont {Pedregosa}, Fabian}, \btxnamefont {Gaël
+  \btxlastnamefont {Varoquaux}}\btxandcomma {} \btxandlong {}\ \btxnamefont
+  {Alexandre\btxfnamespacelong et\btxfnamespacelong al. \btxlastnamefont
+  {Gramfort}}\btxauthorcolon\ \btxjtitlefont {\btxifchangecase {Scikit-learn:
+  Machine learning in python}{Scikit-learn: Machine Learning in Python}}.
+\newblock \btxjournalfont {Journal of Machine Learning Research},
+  12:2825--2830, 2011.
+\newblock {\latintext \btxurlfont{https://scikit-learn.org/}}\empty
+  \btxurldatecomment {\btxkeywordlanguage {\btxurldatefont{29-01-2025}}}.
+
+\bibitem {seabold2010statsmodels}
+\btxnamefont {\btxlastnamefont {Seabold}, Skipper} \btxandlong {}\ \btxnamefont
+  {Josef \btxlastnamefont {Perktold}}\btxauthorcolon\ \btxtitlefont
+  {\btxifchangecase {statsmodels: Econometric and statistical modeling with
+  python}{statsmodels: Econometric and statistical modeling with python}},
+  2010.
+\newblock {\latintext
+  \btxurlfont{https://www.statsmodels.org/stable/index.html}}\empty
+  \btxurldatecomment {\btxkeywordlanguage {\btxurldatefont{14-05-2025}}}.
+
+\bibitem {jupyter_notebook}
+\btxtitlefont {\btxifchangecase {Jupyter {N}otebooks in {VS} {C}ode}{Jupyter
+  {N}otebooks in {VS} {C}ode}}, 2023.
+\newblock {\latintext
+  \btxurlfont{https://code.visualstudio.com/docs/datascience/jupyter-notebooks}}\empty
+  \btxurldatecomment {\btxkeywordlanguage {\btxurldatefont{04-06-2024}}}.
+
+\bibitem {ibm_rest_api}
+\btxnamefont {\btxlastnamefont {{IBM}}}\btxauthorcolon\ \btxtitlefont
+  {\btxifchangecase {What is a rest api?}{What is a REST API?}}, 2023.
+\newblock {\latintext
+  \btxurlfont{https://www.ibm.com/think/topics/rest-apis}}\empty
+  \btxurldatecomment {\btxkeywordlanguage {\btxurldatefont{29-01-2025}}}.
+
+\bibitem {restfulapi_statelessness}
+\btxnamefont {\btxlastnamefont {{Restful API}}}\btxauthorcolon\ \btxtitlefont
+  {\btxifchangecase {{Statelessness in REST APIs}}{{Statelessness in REST
+  APIs}}}, 2023.
+\newblock {\latintext \btxurlfont{https://restfulapi.net/statelessness/}}\empty
+  \btxurldatecomment {\btxkeywordlanguage {\btxurldatefont{29-01-2025}}}.
+
+\bibitem {geojson_specification}
+\btxnamefont {\btxlastnamefont {{Internet Engineering Task Force
+  (IETF)}}}\btxauthorcolon\ \btxtitlefont {\btxifchangecase {{The GeoJSON
+  Format}}{{The GeoJSON Format}}}, 2016.
+\newblock {\latintext
+  \btxurlfont{https://datatracker.ietf.org/doc/html/rfc7946}}\empty
+  \btxurldatecomment {\btxkeywordlanguage {\btxurldatefont{29-01-2025}}}.
+
+\bibitem {swami2021}
+\btxnamefont {\btxlastnamefont {Swami}, Devendra}, \btxnamefont {Yash
+  \btxlastnamefont {Phogat}}, \btxnamefont {Aadiraj \btxlastnamefont
+  {Batlaw}}\btxandcomma {} \btxandlong {}\ \btxnamefont {Ashwin
+  \btxlastnamefont {Goyal}}\btxauthorcolon\ \btxjtitlefont {\btxifchangecase
+  {Analyzing movies to predict their commercial viability for
+  producers}{Analyzing Movies to Predict Their Commercial Viability for
+  Producers}}.
+\newblock \btxjournalfont {arXiv preprint}, 2021.
+
+\bibitem {udandarao2024}
+\btxnamefont {\btxlastnamefont {Udandarao}, Vikranth} \btxandlong {}\
+  \btxnamefont {Pratyush \btxlastnamefont {Gupta}}\btxauthorcolon\
+  \btxjtitlefont {\btxifchangecase {Movie revenue prediction using machine
+  learning models}{Movie Revenue Prediction Using Machine Learning Models}}.
+\newblock \btxjournalfont {arXiv preprint}, 2024.
+
+\bibitem {bahraminasr2020}
+\btxnamefont {\btxlastnamefont {Bahraminasr}, M.} \btxandlong {}\ \btxnamefont
+  {A. \btxlastnamefont {Vafaei-Sadr}}\btxauthorcolon\ \btxjtitlefont
+  {\btxifchangecase {Imdb data from two generations, from 1979 to 2019: Dataset
+  introduction and preliminary analysis}{IMDb data from Two Generations, from
+  1979 to 2019: Dataset Introduction and Preliminary Analysis}}.
+\newblock \btxjournalfont {arXiv preprint}, 2020.
+
+\bibitem {iso3166-1}
+\btxnamefont {\btxlastnamefont {{International Organization for
+  Standardization}}}\btxauthorcolon\ \btxtitlefont {\btxifchangecase {{ISO
+  3166-1: Codes for the representation of names of countries and their
+  subdivisions -- Part 1: Country codes}}{{ISO 3166-1: Codes for the
+  representation of names of countries and their subdivisions -- Part 1:
+  Country codes}}}, 2020.
+\newblock {\latintext
+  \btxurlfont{https://www.iso.org/iso-3166-country-codes.html}}\empty
+  \btxurldatecomment {\btxkeywordlanguage {\btxurldatefont{29-01-2025}}}.
+
+\bibitem {tmdb_bible}
+\btxnamefont {\btxlastnamefont {{The Movie Database (TMDB)}}}\btxauthorcolon\
+  \btxtitlefont {\btxifchangecase {{TMDB Bible: Official Guidelines and
+  Standards}}{{TMDB Bible: Official Guidelines and Standards}}}, 2024.
+\newblock {\latintext \btxurlfont{https://www.themoviedb.org/bible}}\empty
+  \btxurldatecomment {\btxkeywordlanguage {\btxurldatefont{29-01-2025}}}.
+
+\bibitem {variety-movie}
+\btxnamefont {\btxlastnamefont {Rubin}, Rebecca}\btxauthorcolon\ \btxtitlefont
+  {\btxifchangecase {Now showing: Fewer movies. theaters brace for dramatic
+  drop in new films}{Now Showing: Fewer Movies. Theaters Brace for Dramatic
+  Drop in New Films}}, \btxprintmonthyear{.}{Fevereiro}{2022}{long}.
+\newblock {\latintext
+  \btxurlfont{https://variety.com/2022/film/features/hollywood-studios-theatrical-release-disney-universal-1235161950/}}\empty
+  \btxurldatecomment {\btxkeywordlanguage {\btxurldatefont{18-06-2024}}}.
+
+\bibitem {globalfilmmarket}
+\btxnamefont {\btxlastnamefont {Li}, Qiao}, \btxnamefont {David
+  \btxlastnamefont {Wilson}}\btxandcomma {} \btxandlong {}\ \btxnamefont
+  {Yanqiu \btxlastnamefont {Guan}}\btxauthorcolon\ \btxtitlefont {The Global
+  Film Market Transformation in the Post-Pandemic Era: Production, Distribution
+  and Consumption}.
+\newblock \btxpublisherfont {Routledge}, 2023.
+
+\bibitem {mid_budget}
+\btxnamefont {\btxlastnamefont {Iyer}, Neil}\btxauthorcolon\ \btxtitlefont
+  {\btxifchangecase {{The Demise of Mid-Budget Cinema}}{{The Demise of
+  Mid-Budget Cinema}}}, \btxprintmonthyear{.}{10}{2022}{long}.
+\newblock {\latintext
+  \btxurlfont{https://independent-magazine.org/2022/10/22/the-demise-of-mid-budget-cinema/}}\empty
+  \btxurldatecomment {\btxkeywordlanguage {\btxurldatefont{09-06-2024}}}.
+
+\bibitem {nps_score}
+\btxnamefont {\btxlastnamefont {Reichheld}, Fred} \btxandlong {}\ \btxnamefont
+  {Rob \btxlastnamefont {Markey}}\btxauthorcolon\ \btxtitlefont {The Ultimate
+  Question 2.0: How Net Promoter Companies Thrive in a Customer-Driven World}.
+\newblock \btxpublisherfont {Harvard Business Review Press},
+  \btxprintmonthyear{.}{9}{2011}{long}.
+
+\bibitem {anscombe}
+\btxnamefont {\btxlastnamefont {Anscombe}, F.\btxfnamespacelong
+  J.}\btxauthorcolon\ \btxjtitlefont {\btxifchangecase {Graphs in statistical
+  analysis}{Graphs in Statistical Analysis}}.
+\newblock \btxjournalfont {The American Statistician}, 27(1):17--21, 1973.
+\newblock DOI: \url{10.1080/00031305.1973.10478966}.
+
+\bibitem {riseofthepostcredits}
+\btxnamefont {\btxlastnamefont {{Alex Abad-Santos}}}\btxauthorcolon\
+  \btxtitlefont {\btxifchangecase {The rise of the post-credits scene,
+  explained}{The rise of the post-credits scene, explained}}, 2022.
+\newblock {\latintext
+  \btxurlfont{https://www.vox.com/22893634/marvel-post-credits-scene-history}}\empty
+  \btxurldatecomment {\btxkeywordlanguage {\btxurldatefont{20-07-2024}}}.
+
+\bibitem {studiobinderProducerDirector}
+\btxnamefont {\btxlastnamefont {StudioBinder}}\btxauthorcolon\ \btxtitlefont
+  {\btxifchangecase {Producer vs director: The roles \& responsibilities
+  explained}{Producer vs Director: The Roles \& Responsibilities Explained}},
+  2019.
+\newblock {\latintext
+  \btxurlfont{https://www.studiobinder.com/blog/producer-vs-director/}}\empty
+  \btxurldatecomment {\btxkeywordlanguage {\btxurldatefont{11-11-2024}}}.
+
+\bibitem {euronews2024oscars}
+\btxnamefont {\btxlastnamefont {Euronews}}\btxauthorcolon\ \btxtitlefont
+  {\btxifchangecase {Oscars 2024: Gender-balanced productions stagnate, only 3
+  oscar-nominated films get reframe stamp}{Oscars 2024: Gender-balanced
+  productions stagnate, only 3 Oscar-nominated films get ReFrame stamp}}, 2024.
+\newblock {\latintext
+  \btxurlfont{https://www.euronews.com/culture/2024/03/04/oscars-2024-gender-balanced-productions-stagnate-only-3-oscar-nominated-films-get-reframe-}}\empty
+  \btxurldatecomment {\btxkeywordlanguage {\btxurldatefont{28-09-2024}}}.
+
+\bibitem {homenko2015}
+\btxnamefont {\btxlastnamefont {Neto}, Alexander\btxfnamespacelong
+  Homenko}\btxauthorcolon\ \btxtitlefont {Gestão estratégica na indústria
+  criativa brasileira: heterogeneidade de desempenho nas coproduções
+  internacionais de filmes de longa-metragem}.
+\newblock \btxphdthesis {}, Pontifícia Universidade Católica de São Paulo,
+  2015.
+
+\bibitem {latimes_writers_strike_2023}
+\btxnamefont {\btxlastnamefont {Staff}, Los\btxfnamespacelong
+  Angeles\btxfnamespacelong Times}\btxauthorcolon\ \btxtitlefont
+  {\btxifchangecase {Writers' strike: What happened, how it ended and its
+  impact on hollywood}{Writers' strike: What happened, how it ended and its
+  impact on Hollywood}}, 2023.
+\newblock {\latintext
+  \btxurlfont{https://www.latimes.com/entertainment-arts/business/story/2023-05-01/writers-strike-what-to-know-wga-guild-hollywood-productions}}\empty
+  \btxurldatecomment {\btxkeywordlanguage {\btxurldatefont{11-11-2024}}}.
+
+\end{thebibliography}

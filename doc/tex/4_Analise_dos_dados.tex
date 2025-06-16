@@ -1,0 +1,654 @@
+%http://aprender_unb.br/course/view.php?id=25
+%http://www.cs.berkeley.edu/~jrs/speaking.html
+\setcounter{secnumdepth}{3}
+
+Este capítulo será dedicado à análise dos dados da indústria cinematográfica, apresentando gráficos e interpretações elaboradas a partir dos dados coletados. O objetivo é identificar padrões, avaliar tendências de mercado e compreender o impacto cultural das produções. Ademais, serão discutidos métodos estatísticos e técnicas de mineração de dados que possibilitam a extração de informações relevantes. Além disso, este capítulo contempla as etapas de \textit{Mineração de Dados} e \textit{Interpretação e Avaliação dos Resultados} do processo \textit{\acrshort{KDD}}, garantindo que os modelos extraídos sejam analisados criticamente e que suas conclusões sejam devidamente validadas.
+
+
+\section{Análise inicial dos dados}
+Para obter uma visão mais abrangente da amostra de dados coletada, algumas análises devem se realizadas, a fim de verificar o escopo inicial e incitar observações mais profundas em pontos de interesse.
+
+\subsection{Análise das variáveis numéricas} \label{var-numericas}
+
+Foi realizada uma análise anual, com a quantidade de filmes produzidos e média das colunas numéricas, resultando na \refTab{tab_tabela_geral}. Vale ressaltar que, como a média de votos já era calculada para cada filme pelo eixo \textit{vote\_average}, fez-se então uma média ponderada utilizando a coluna \textit{vote\_count}.
+
+\tabela{Visão geral de filmes produzidos por ano}{tab_tabela_geral}{|c|c|c|c|c|c|c|}%
+{\hline
+\textbf{Ano} & 
+\makecell{\textbf{Quantidade} \\ \textbf{de} \\ \textbf{Filmes}} & 
+\makecell{\textbf{Orçamento} \\ \textbf{Médio} \\ \textbf{(Milhões} \\ \textbf{de US\$)}} & 
+\makecell{\textbf{Receita} \\ \textbf{Média} \\ \textbf{(Milhões} \\ \textbf{de US\$)}} & 
+\makecell{\textbf{Duração} \\ \textbf{Média} \\ \textbf{(Minutos)}} & 
+\makecell{\textbf{Quantidade} \\ \textbf{de} \\ \textbf{Votos Média}} & 
+\makecell{\textbf{Avaliação} \\ \textbf{Média}} \\\hline
+2013  & 330  & 29.30  & 84.49  & 111.97  & 2372.05  & 6.79  \\\hline
+2014  & 314  & 27.96  & 89.64  & 109.75  & 2648.03  & 7.01  \\\hline
+2015  & 298  & 28.64  & 97.03  & 111.99  & 2429.60  & 6.81  \\\hline
+2016  & 338  & 30.99  & 92.91  & 112.04  & 2470.69  & 6.83  \\\hline
+2017  & 304  & 29.99  & 104.87  & 112.58  & 2613.95  & 6.96  \\\hline
+2018  & 272  & 30.72  & 110.84  & 112.61  & 2359.91  & 7.00  \\\hline
+2019  & 251  & 32.86  & 119.09  & 111.95  & 2376.76  & 7.14  \\\hline
+2020  & 131  & 26.15  & 39.88  & 106.04  & 1548.56  & 7.04  \\\hline
+2021  & 157  & 45.57  & 94.43  & 115.19  & 2137.90  & 7.21  \\\hline
+2022  & 173  & 39.37  & 105.11  & 115.13  & 1499.87  & 7.11  \\\hline
+2023  & 205  & 45.16  & 107.47  & 117.77  & 1106.56  & 7.14 \\\hline}%
+
+A partir disso, calculou-se também o desvio padrão de cada uma das variáveis da \refTab{tab_tabela_geral}, sendo apresentado na \refTab{tab_desvio_padrao}. Para tal, utilizou-se a função \textit{std} da biblioteca Pandas\cite{pandas}. Esta toma como argumento um eixo de um \textit{Dataframe} e faz o cálculo conforme a \refEq{eq_desvio_padrao}. Ademais, excepcionalmente para a coluna \textbf{Avaliação}, por falta de suporte da biblioteca para cálculo do desvio padrão ponderado, foi construída a função \textit{vote\_deviation}, a qual implementa a \refEq{eq_desvio_padrao_ponderado} utilizando operações com \textit{Dataframes}.
+
+\tabela{Desvio padrão amostral dos dados numéricos}{tab_desvio_padrao}{|c|c|}%
+{\hline
+\textbf{Coluna} & 
+\textbf{Desvio Padrão Amostral} \\\hline
+Orçamento  &  5.02 . 10^7  \\\hline
+Receita & 2.17 . 10^8 \\\hline
+Duração  & 2.11 . 10^1  \\\hline
+Quantidade de Votos  & 3.69 . 10^3  \\\hline
+Avaliação Média & $7.29 . 10^{-1}$  \\\hline}%
+
+De posse dos resultados da \refTab{tab_tabela_geral} é perceptível uma queda na quantidade de produções cinematográficas nos anos de 2020 e 2021, o que confirma as dificuldades enfrentadas pelo setor durante a pandemia\cite{variety-movie}. No entanto, mesmo após esse período, vê-se apenas uma leve recuperação desses números, assim como apontado no livro \textit{The Global Film Market Transformation in the Post-Pandemic Era}\cite{globalfilmmarket}.
+
+Além disso, apesar de em média os filmes possuírem um orçamento classificado como médio\cite{mid_budget}, o desvio padrão mostra que há pouca uniformidade dos dados, necessitando de uma análise mais profunda, a fim de entender melhor o seu comportamento. O mesmo se repete para o restante das colunas, exceto pelo eixo \textbf{Avaliação}. Este, por sua vez, apresenta um valor entre zero e um, indicando que, em geral, o nível de satisfação média com os filmes tende a um valor próximo a 7. Observando o conceito de \acrfull{NPS}\cite{nps_score}, que classifica os clientes de uma empresa — neste caso, os espectadores — de acordo com a nota especificada em uma escala de 0 a 10, em promotores (9 a 10), neutros (7 a 8) e detratores (0 a 6), pode-se inferir que o público geralmente tende a ser enquadrado como neutro.
+
+Assim, considerando o alto desvio padrão dessas variáveis numéricas (com exceção da avaliação), de forma a obter uma visão mais abrangente da distribuição, criou-se um histograma para cada uma destas, gerando as \refFigs{fig-budget-hist}{fig-vote-count-hist}. Para cada um dos gráficos foi adotado um intervalo de apresentação, de forma a remover \textit{outliers} que agregavam pouca informação às imagens geradas.
+
+\subsubsection{Histograma do Orçamento}
+\figura[H]{budget-hist}{Histograma do Orçamento dos filmes}{fig-budget-hist}{width=.8\textwidth}%
+
+Observando a figura, vê-se uma maior concentração de filmes com orçamento menor que 10 milhões de dólares. Por outro lado, denotado por uma curva decrescente, vê-se uma grande concentração de capital em poucas produções, com algumas ultrapassando os 200 milhões de dólares. Essa distribuição também explica o grande desvio padrão dessa variável na amostra, já que a média tende a ser prejudicada pela existência desses valores extremos.
+
+\subsubsection{Histograma da Receita}
+\figura[H]{revenue-hist}{Histograma da Receita dos filmes}{fig-revenue-hist}{width=.8\textwidth}%
+Para a receita, tem-se um comportamento semelhante ao de orçamento, com uma concentração maior em receitas menores que 20 milhões de dólares, além de um declínio acentuado do gráfico. Isso denota uma dificuldade na obtenção de grandes lucros pela maioria das produções.
+
+\subsubsection{Histograma da Duração}
+\figura[H]{runtime-hist}{Histograma da Duração dos filmes}{fig-runtime-hist}{width=.8\textwidth}%
+É notável que a maior parte das produções está presente no intervalo entre 90 e 120 minutos, denotando um padrão da indústria para a duração dos filmes. Há também uma menor concentração de filmes, ainda que relevante, com duração superior e inferior a isso, indicando que essas obras tendem a ser mais nichadas.
+
+Nesse gráfico, ainda que mais uniforme em relação aos anteriores, tem-se uma tendência a valores de duração maiores, resultando em um desvio padrão menor que as demais variáveis (exceto pela média de avaliação), mas denotando ainda uma grande uniformidade nos dados.
+
+\subsubsection{Histograma da Quantidade de votos}
+\figura[H]{vote-count-hist}{Histograma da Quantidade de votos dos filmes}{fig-vote-count-hist}{width=.8\textwidth}%
+
+O histograma de quantidade de votos mostra um comportamento semelhante aos gráficos das \refFigs{fig-budget-hist}{fig-revenue-hist}. Vê-se que a maior parte dos filmes em análise possui uma quantidade de votos entre 0 e 1000, enquanto que uma menor quantidade de produções detém maior número de votos. A partir disso, depreende-se, portanto, que os filmes mais populares possuem menor frequência na amostra.
+
+\subsubsection{Histograma da Avaliação média}
+\figura[H]{vote-average-hist}{Histograma da Avaliação média dos filmes}{fig-vote-average-hist}{width=.8\textwidth}%
+Percebe-se que, assim como visto pela média ponderada da \refTab{tab_tabela_geral}, há uma maior concentração de filmes com notas médias entre 6 e 7. Além disso, para valores mais distantes do ponto central (menores que 4 e maiores que 8), têm-se uma menor frequência. 
+
+Esse comportamento tem provável explicação devido ao fato de que a aplicação da média tende a mascarar a distribuição da nota individual de um espectador para determinado filme, assim como demonstra Anscombe em \textit{Graphs in Statistical Analysis} \cite{anscombe}. No entanto, devido a carência dessas observações individualizados no conjunto de dados coletado, não é possível realizar uma análise mais profunda. 
+
+
+\subsection{Distribuição anual da quantidade de filmes por país}\label{chropleth-year-country}
+Para visualizar geograficamente os países que mais produziram filmes nos anos analisados, foram criados mapas coropléticos considerando a variável \textit{production\_countries}. Para atingir esse objetivo, três processos principais foram necessários:
+
+\begin{enumerate}
+    \item Contagem de países produtores: Utilizando a biblioteca Pandas\cite{pandas}, foram contadas todas as ocorrências dos países e criado um novo \textit{Dataframe} para essa apresentação. Além disso, para suavização dos dados, esta contagem foi transformada em escala logarítmica.
+\item Tratamento de países não presentes no GeoJSON: Alguns países possuíam nomes diferentes dos presentes no GeoJSON. Assim, estes foram renomeados para atender ao valor correto. No entanto, para algumas exceções, que não estavam mapeadas no arquivo com outra nomenclatura, foi necessário considerá-los parte pertencente de regiões próximas. Assim, as seguintes transformações foram necessárias:
+
+\tabela{Mapeamento de Países Produtores de Filmes}{tab_mapeamento_paises}{|c|c|}%
+{\hline
+\textbf{País Original} & 
+\textbf{País Considerado} \\\hline
+Hong Kong & China \\\hline
+Serbia & Republic of Serbia \\\hline
+Aruba & Netherlands \\\hline
+Singapore & Malaysia \\\hline
+Congo & Democratic Republic of the Congo \\\hline
+Bahamas & The Bahamas \\\hline
+Guadaloupe & France \\\hline
+}%
+
+\item Geração dos mapas: Unindo os dados gerados pelos processos anteriores utilizando a função \textit{Choropleth} da biblioteca Folium\cite{folium}, obtêm-se a sequência de \refFigs{fig_choropleth_2013}{fig_choropleth_2023}.
+\end{enumerate}
+
+Cabe ressaltar que, apesar de ter sido realizada a aplicação desse processo em todos os anos da amostra, alguns anos foram propositalmente omitidos devido à grande semelhança com gráficos dos anos próximos.
+\figura[H]{choropleth\_2013}{Mapa coroplético de países produtores de filmes no ano de 2013}{fig_choropleth_2013}{width=.8\textwidth}%
+
+\figura[H]{choropleth\_2016}{Mapa coroplético de países produtores de filmes no ano de 2016}{fig_choropleth_2016}{width=.8\textwidth}%
+
+\figura[H]{choropleth\_2019}{Mapa coroplético de países produtores de filmes no ano de 2019}{fig_choropleth_2019}{width=.8\textwidth}%
+
+\figura[H]{choropleth\_2020}{Mapa coroplético de países produtores de filmes no ano de 2020}{fig_choropleth_2020}{width=.8\textwidth}%
+
+\figura[H]{choropleth\_2021}{Mapa coroplético de países produtores de filmes no ano de 2021}{fig_choropleth_2021}{width=.8\textwidth}%
+
+\figura[H]{choropleth\_2023}{Mapa coroplético de países produtores de filmes no ano de 2023}{fig_choropleth_2023}{width=.8\textwidth}%
+
+A partir desses resultados, é perceptível a influência dos Estados Unidos na indústria mundial de cinema, sendo o país com a maior quantidade de filmes produzidos em todos os anos da amostra. Além disso, destaca-se a presença de outras regiões importantes nesse cenário, como Canadá, França, Reino Unido, Índia, China, Rússia e Austrália, presentes nas faixas mais escuras dos mapas.
+
+Outro ponto de atenção é com relação a ausência de dados do continente Africano e da América do Sul (principalmente nos anos de 2021 e 2023).   
+
+Na América do Sul, vê-se uma quantidade pequena, porém relevante, de filmes produzidos no período pré-pandemia (até 2019), com destaque para Argentina e Brasil. No entanto, nos anos subsequentes, observa-se uma redução significativa na produção cinematográfica, culminando na ausência de registros em 2023.
+
+Essa quebra de padrão em relação aos anos anteriores sugere que, mesmo que algumas produções tenham ocorrido, elas certamente diminuíram em frequência, refletindo possivelmente os impactos contínuos da pandemia e outros fatores econômicos e sociais na indústria cinematográfica sul-americana.
+
+Pode-se observar também uma falta de dados do continente africano, evidenciada pela ausência de produções em grande parte do território. Esse fato pode ser atribuído a duas possíveis causas: a baixa produção de conteúdos cinematográficos no continente ou a insuficiência da fonte de dados utilizada, que pode não abranger a maioria desses países. No entanto, como o \acrshort{TMDB} é uma base alimentada pela comunidade, não é possível chegar a uma conclusão definitiva além do fato registrado.
+
+
+\section{Análise de conteúdo dos filmes}
+Para obter uma compreensão aprofundada dos temas abordados pelos filmes em análise, propomos uma abordagem multifacetada que examina tanto as palavras-chave quanto os gêneros associados a cada filme. Esta análise será realizada por meio de três métodos complementares:
+
+\begin{enumerate}
+\item Mapa de Palavras: Serão visualizadas as palavras-chave mais frequentes para identificar os temas e tópicos predominantes nos filmes, onde quanto maior a sua representação visual, maior a sua frequência. Este mapa permitirá uma visão geral dos assuntos mais recorrentes e facilitará a identificação de padrões e tendências.
+
+\item Grafo de Relacionamento entre Palavras-chave: Será construído um grafo para explorar as conexões e relações entre diferentes palavras-chave. Esta visualização ajudará a revelar como os temas estão interligados, destacando associações importantes e a co-ocorrência de tópicos nos filmes.
+
+\item Histograma de Gêneros dos Filmes: Será analisada a distribuição dos gêneros dos filmes por meio de um histograma. Isso permitirá visualizar a diversidade de produções e compreender melhor como se dá a popularidade de cada um deles.
+\end{enumerate}
+
+Ao combinar essas técnicas de análise, esperamos obter uma visão abrangente e detalhada sobre os principais temas e gêneros que caracterizam os filmes em análise, permitindo uma melhor compreensão de suas narrativas e contextos.
+
+\subsection{Mapa de palavras-chave} \label{mapa-de-palavras}
+Para a criação do mapa de palavras, foi contada a frequência individual de cada palavra presente no vetor \textit{keywords} de cada filme. Após isso, foi feita a filtragem das 25 palavras mais frequentes e a sua posterior tradução, visando uma melhor apresentação dos dados. Assim, utilizando o método \textit{generate\_from\_frequencies} da biblioteca \textit{WordCloud}\cite{wordcloud}, obteve-se a \refFig{fig-wordcloud}.
+
+\figura[H]{wordcloud}{Mapa de palavras-chave}{fig-wordcloud}{width=1\textwidth}%
+
+Com esse resultado, pode-se observar que muitos dos filmes são baseados em conteúdos já existentes em outras mídias, denotado pela presença de palavras-chave como \quotes{baseado em história real}, \quotes{baseado em romance ou livro}, \quotes{baseado em quadrinhos} e \quotes{biografia}.
+
+Observamos também uma predominância da expressão \quotes{diretora mulher} nos dados, o que sugere que há um número significativo de filmes dirigidos por mulheres. No entanto, a ausência de outras palavras-chave relacionadas ao gênero dos diretores levanta outra hipótese: a predominância pode não refletir uma alta representatividade, mas sim servir como uma característica de distinção. Isso indica que o número real de filmes com diretoras mulheres pode ser menor do que aparenta, e a frequência destacada pode ser mais uma questão de diferenciação do que uma representação proporcional.
+
+Por fim, identificamos a presença de diversos temas relacionados a relacionamentos pessoais e interpessoais. Palavras-chave como \quotes{LGBT}, \quotes{amor}, \quotes{amizade}, \quotes{relacionamento marido-mulher}, \quotes{relacionamento pai-filho}, \quotes{relacionamento pai-filha} e \quotes{vingança} indicam que muitos filmes exploram essas dinâmicas emocionais e sociais. Isso reflete um interesse significativo em explorar e representar as complexidades das interações humanas e os conflitos emocionais, evidenciando uma preocupação com temas que ressoam profundamente com o público e que muitas vezes abordam questões universais e pessoais.
+
+\subsection{Grafo de Relacionamento entre Palavras-chave}
+Para a criação do grafo que conecta as palavras-chave encontradas na \refFig{fig-wordcloud}, foi criado um algoritmo que calcula as coocorrência entre as palavras do vetor \textit{keywords}, ou seja, quantas vezes elas aparecem juntas em todos os filmes em análise. Além disso, para suavizar o resultado, a frequência foi normalizada pelo valor máximo de coocorrência encontrado. A partir disso, utilizando a biblioteca \textit{networkx}\cite{networkx}, criou-se os nós do grafo como as palavras-chave e as arestas com a opacidade determinada pela frequência relativa de coocorrências encontrada. Para as arestas, foi-se determinado um threshold de 0.1, tornando mais evidente os relacionamentos mais fortes e ocultando aqueles que possuíram uma opacidade extremamente baixa. Dessa forma, gerou-se a \refFig{fig-relation-graph}.
+
+\figura[H]{relation-graph-2}{Grafo de relação entre as palavras-chave dos filmes}{fig-relation-graph}{width=1\textwidth}%
+
+Inicialmente, é perceptível a forte relação entre \quotes{super-herói}, \quotes{baseado em quadrinhos}, \quotes{cena pós-créditos}, \quotes{cena durante os créditos} e \quotes{sequência}. Isso evidencia elementos comuns dessa classe de filmes, que, ao serem baseados em histórias em quadrinhos, tendem a possuir diversas sequências e cenas pós-filme que apresentam ganchos para as próximas produções, gerando maior engajamento \cite{riseofthepostcredits}.
+
+Por outro lado, é observado outro grande destaque para as palavras-chave \quotes{magia} e \quotes{relacionamento pai-filha}, que no resultado obtido não possuem nenhuma relação com as demais. Isso denota que estes podem ser filmes mais específicos e que os subtemas possuem menor relevância. Pode-se concluir o mesmo de outras que possuem um grau menor de coocorrências, como por exemplo \quotes{distopia}, \quotes{amor} e \quotes{lgbt}
+
+Além disso, vê-se algumas palavras com um grande número de conexões, como \quotes{sequência}, \quotes{baseado em romance ou livro} e \quotes{baseado em história real}, mostrando que são recorrentes na amostra coletada e reforçando as conclusões obtidas no Capítulo \ref{mapa-de-palavras}.
+
+\subsubsection{Evolução das principais palavras-chave de filmes produzidos pelo Brasil e EUA}
+Utilizando o filtro específico de dados do Brasil e EUA, pode-se também ser realizada uma análise mais detalhada da evolução das palavras-chave nos anos da amostra. Para isso, foram selecionadas a 5 palavras-chave mais frequentes de cada país ao longo dos anos e construídas as \refFigs{fig-keyword-year-br}{fig-keyword-year-eua}, apresentando o percentual de filmes em que elas ocorrem:
+
+\figura[H]{keyword-year-br}{Evolução das principais palavras-chave em filmes produzidos pelo Brasil}{fig-keyword-year-br}{width=1\textwidth}%
+
+Vê-se que \quotes{biografia} representou cerca de 9\% dos filmes do ano de 2013, sendo um importante fator de diferenciação. Além disso, é perceptível o uso da palavra \quotes{diretora mulher} e \quotes{romance} para descrever filmes no ano de 2015, representando respectivamente 18\% e 12\% das produções realizadas. Ademais, vê-se que filmes com \quotes{tema gay}, \quotes{lgbt} e \quotes{romance} foram também características principais nos filmes exibidos, apresentando algumas variações com pouca tendência clara. No entanto, uma queda de todos os temas até o ano de 2023 evidencia o provável surgimento de novas palavras-chave, mas que, devido a uma menor frequência total, acabaram por não ser representadas.
+
+\figura[H]{keyword-year-eua}{Evolução das principais palavras-chave em filmes produzidos pelos EUA}{fig-keyword-year-eua}{width=1\textwidth}%
+
+Assim como observado também na análise da \refFig{fig-keyword-year-br}, há também uma grande predominância da palavra \quotes{diretora mulher}, com uma presença inicial de aproximadamente 11.5\%. No entanto, é observado um declínio acentuado da sua utilização, chegando a representar 3\% dos filmes de 2022 e 5\% em 2023.
+
+Vê-se também que os temas de \quotes{assassinato} e \quotes{curta-metragem} foram temas também relevantes durante os anos observados, com algumas variações sem padrões claros.
+
+Já para a palavra-chave \quotes{natal} é observado um crescimento a partir de 2016, representando mais de 6\% dos filmes nos anos de 2019 e 2021. No entanto, após isso, é visto também uma redução do seu uso até cerca de 3\% das producões do ano de 2023.
+
+Outro ponto relevante é a palavra-chave \quotes{baseado em romance ou livro}, que contrário as demais, apresenta uma aparente tendência de crescimento, partindo de aproximadamente 2\% de presença para 6\% no ano de 2023.
+
+\subsection{Histograma de Gêneros dos Filmes}\label{movie-genre-hist}
+Já para a criação do histograma de gêneros dos filmes, foi calculada a frequência absoluta de cada um destes e utilizado o método \textit{histplot} da biblioteca \textit{seaborn}\cite{seaborn}, gerando a \refFig{fig-genres_histogram}. Cabe ressaltar que, como a variável \textit{genres} é um vetor de gêneros, foi necessário utilizar o método \textit{explodes} da biblioteca Pandas \cite{pandas}, a fim de criar uma ocorrência do mesmo filme para cada gênero a que pertence.
+
+\figura[H]{genres-histogram}{Histograma de Gêneros dos Filmes}{fig-genres_histogram}{width=1\textwidth}%
+
+Em primeira análise, é perceptível que filmes de drama e comédia são os mais frequentes no histograma, o que corrobora também uma maior frequência de temas pessoais e interpessoais descritos no Capítulo \ref{mapa-de-palavras}.
+
+Pode-se depreender também que a frequência dos filmes de ação e suspense está relacionada aos filmes ficcionais, observados principalmente pela palavra-chave \quotes{baseado em romance ou livro}.
+
+Em contrapartida, observa-se os gêneros \quotes{Faroeste}, \quotes{Documentário}, \quotes{Guerra} e \quotes{Música} ocupando as últimas posições, mostrando que são temas mais nichados e com menor procura.
+
+Por fim, como \textit{outlier}, vê-se o gênero \quotes{Filmes para TV}, que ao possuir uma frequência extremamente baixa, mostra-se pouco relevante na classificação de um filme pelo \acrshort{TMDB}.
+
+
+\subsubsection{Distribuição anual dos principais gêneros de filmes produzidos pelo Brasil e EUA}
+Utilizando a seleção específica de filmes do Brasil e EUA, pode-se observar também a evolução dos gêneros das produções ao longo do anos e compreender melhor suas variações. Foram selecionadas então os 5 gêneros mais frequentes para cada país e construídas as \refFigs{fig-genre-year-br-2}{fig-genre-year-eua-2}, apresentando o percentual de filmes que estão classificados em cada gênero.
+
+\figura[H]{genre-year-br-2}{Distribuição anual dos principais gêneros de filmes produzidos pelo Brasil}{fig-genre-year-br-2}{width=1\textwidth}%
+
+É perceptível que os filmes produzidos pelo Brasil tendem a ser dos gêneros \quotes{drama} ou \quotes{comédia}, representando por volta de 80\% dos filmes produzidos anualmente. Além disso, no ano de 2023, nota-se uma grande evolução do gênero \quotes{drama}, estabelecendo uma diferença de mais de 20\% em relação ao segundo.
+
+Já para filmes de \quotes{romance}, é visto um padrão um pouco mais variável, com anos de maior e menor produção até o ano de 2020. Contudo, a partir de 2021 pode ser observado um crescimento significativo desse gênero, chegando a representar 28\% dos filmes de produção brasileira.
+
+Para os filmes do gênero \quotes{documentário}, por outro lado, o gráfico presenta flutuações mais bruscas, com um pico de quase 28\% no ano de 2019 e uma queda brusca nos anos seguintes.
+
+Por fim, \quotes{suspense} apresenta a menor participação entre os cinco principais gêneros, possuindo uma trajetória estável, com maiores variações nos de 2016 e 2020.
+
+\figura[H]{genre-year-eua-2}{Distribuição anual dos principais gêneros de filmes produzidos pelos EUA}{fig-genre-year-eua-2}{width=1\textwidth}%
+
+Inicialmente é possível notar que os gêneros \quotes{comédia} e \quotes{drama}, semelhante ao Brasil, são também os mais frequentes nos filmes produzidos. Além disso, a partir do de 2022, vê-se uma inversão no gênero mais popular, com as produções de \quotes{comédia} passando a ocupar a primeira posição, efeito oposto ao visto nos filmes brasileiros.
+
+
+Os gêneros de \quotes{ação} e \quotes{suspense} mantiveram-se relativamente estáveis ao longo da década, representando cada um deles aproximadamente 20\% da indústria.
+
+Por fim, uma tendência relevante é com relação ao gênero \quotes{terror}, que a partir do ano de 2019 veio apresentando um crescimento constante de produções, passando a representar uma fatia de mais de 20\% dos filmes produzidos pelos EUA.
+
+\section{Análise de Gênero do elenco e produção}
+A análise de gênero nas produções cinematográficas, com base nas variáveis \textit{cast} (elenco) e \textit{crew} (equipe de produção), é essencial para avaliar a equidade de gênero na indústria. Focando nas classificações de gênero disponíveis na amostra, que incluem homens, mulheres e pessoas não binárias, o estudo permite observar a evolução da participação desses grupos ao longo dos anos, fornecendo também uma compreensão dos diferentes papéis desempenhados na criação dos filmes.
+
+\subsection{Análise anual de frequência de gêneros do elenco}\label{freq-genero}
+De forma a observar a evolução anual da presença dos gêneros nos elencos dos filmes, foram realizadas duas análises complementares: a frequência absoluta e a relativa. A primeira, que contabiliza o número total de participantes de cada gênero em todos os filmes de um determinado ano, permite identificar tendências gerais e variações na participação ao longo do tempo. Já a análise relativa, expressa em porcentagens, ajusta essas observações para o tamanho variável das produções e do elenco, proporcionando uma visão mais equilibrada sobre a representação proporcional de cada gênero.
+
+Para criar ambas as visualizações, foi necessário inicialmente realizar a contagem absoluta dos gêneros em cada ano utilizando a biblioteca Pandas\cite{pandas}. Cabe ressaltar que para a frequência relativa, apenas dividiu-se a frequência absoluta pelo total do respectivo ano. Assim,  de posse desses valores, utilizando o método \textit{lineplot} da biblioteca Seaborn\cite{seaborn}, foram geradas as \refFigs{fig-gender-freq-abs}{fig-gender-freq-rel}.
+
+\figura[H]{gender-freq-absolute}{Frequência absoluta de Gêneros nos Elencos de Filmes (2013-2023)}{fig-gender-freq-abs}{width=1\textwidth}%
+
+Como primeiro ponto de atenção, nota-se a baixa presença de pessoas classificadas como \quotes{não-binárias}, ao mesmo tempo em que é apresentada quantidades significativas de classificações \quotes{não definidas}. Essa discrepância levanta questões importantes sobre a precisão e a sensibilidade das práticas de categorização de gênero na indústria cinematográfica. Isso pode refletir uma falta de conscientização ou de consideração adequada para a diversidade de identidades de gênero, resultando em uma categorização insuficiente ou imprecisa. Além disso, o uso frequente da categoria \quotes{não definida} pode indicar uma lacuna na coleta de dados ou uma relutância em explorar mais profundamente as identidades de gênero que não se enquadram nas classificações tradicionais.
+
+Outro ponto de destaque é a maior presença de pessoas identificadas como homens em comparação as outras em todos os anos da amostra. A disparidade sugere que a indústria ainda enfrenta desafios significativos na promoção de uma participação mais equitativa entre os gêneros.
+
+Por fim, pode-se observar também um queda nos números absolutos de atores no ano de 2020, visto a redução de produções cinematográficas observadas no Capítulo \ref{var-numericas}.
+
+\figura[H]{gender-freq-relative}{Frequência relativa de Gêneros nos Elencos de Filmes (2013-2023)}{fig-gender-freq-rel}{width=1\textwidth}%
+
+Como visto na \refFig{fig-gender-freq-rel}, a baixa frequência de pessoas não-binárias acaba representando também uma baixa frequência relativa, não suscitando novas análises.
+
+Nota-se que a participação das mulheres nos elencos de filmes apresentou um leve crescimento de 2.89\% entre 2013 e 2020. No entanto, após esse período, observa-se uma queda acentuada, com a menor participação registrada em 2021, quando as mulheres representaram apenas 24,13\% do elenco analisado. Este declínio é acompanhado por um aumento na proporção de classificações como \quotes{não definido}, que nesse mesmo ano ultrapassou a participação feminina, sugerindo uma possível mudança nas práticas de categorização de gênero ou um maior número de registros sem especificação clara do gênero dos participantes.
+
+Como última análise, conclui-se que os homens consistentemente representam a maior parte do elenco ao longo de todo o período analisado, que mesmo após o declínio a partir do ano de 2020, manteve-se em larga vantagem em relação aos demais gêneros.
+
+\subsection{Distribuição de gênero em papéis principais e secundários}
+A partir da propriedade \textit{order} do elenco de cada filme, foi possível analisar a distribuição da importância dos papéis desempenhados pelos atores, de acordo com suas classificações de gênero. Como mencionado na seção \ref{coleta-dados}, quanto menor o valor dessa variável, maior a relevância do personagem dentro da narrativa. No entanto, não há um padrão no conjunto de dados para diferenciar a posição dos personagens secundários nos créditos de um filme, o que pode dificultar a análise para personagens menos relevantes no roteiro. Além disso, alguns filmes apresentam um número excessivo de personagens secundários, o que compromete a interpretação dos dados. Para contornar essa questão, optou-se por considerar apenas os papéis com \textit{order} menor que 10, garantindo um foco nos personagens mais relevantes.
+
+Considerando essa filtragem, foi realizada uma inversão dos da variável \textit{order}, de modo que os papéis principais recebessem valores maiores e os papéis secundários, valores menores. Essa transformação foi adotada para facilitar a visualização e interpretação dos dados no gráfico.
+
+Para representar essas informações de forma clara, construiu-se o gráfico da \refFig{fig-cast-gender-violin-plot} utilizando um \textit{Violin plot}, agregando todos os personagens de filmes da amostra e identificando o gênero do ator que os interpreta. Esse tipo de gráfico permite observar a distribuição dos dados de forma intuitiva ao combinar um \textit{Box Plot} com um gráfico de densidade, permitindo extrair informações mais claras sobre possíveis padrões.
+
+\figura[H]{cast-gender-violin-plot-2}{Ordem de importância dos gêneros no elenco}{fig-cast-gender-violin-plot}{width=1\textwidth}%
+
+Inicialmente, observando a faixa de maior importância (valor 10), vê-se que a curva de densidade para o gênero \quotes{homem} é muito  maior do que a dos demais gêneros, mostrando uma prevalência masculina na interpretação de papéis principais. Somado a isso, vê-se que o gênero \quotes{mulher} tende a ser enquadrado em papéis secundários, observado pela curva de densidade maior para o valor 9 de importância. Já para as demais faixas, existe uma certa equivalência entre os dois gêneros, ainda que de forma proporcional ao gênero, visto que a curva de densidade não está normalizada pela quantidade de ocorrências totais.
+
+A análise também revela que personagens de gênero \quotes{não definido / não especificado} tendem a ocupar papéis de menor importância, como indicado pela mediana mais baixa e o deslocamento da curva de densidade. Essa tendência sugere que personagens menos relevantes na narrativa frequentemente não têm seu gênero especificado, o que pode distorcer a representatividade dos demais gêneros nos dados.
+
+Assim como observado no capítulo \ref{freq-genero}, o gênero \quotes{não-binário}, ao apresentar uma frequência extremamente baixa em relação aos demais, possui um maior espaçamento entre as suas ocorrências, causando uma certa distorção na representação contínua densidade. No entanto, nota-se que uma curva de densidade mais presente entre as faixas de importância 6 e 10, além da mediana próxima a  dos gêneros \quotes{homem} e \quotes{mulher}. Isso mostra que, apesar de não interpretar tanto papéis principais, pessoas classificadas como \quotes{não-binárias} tendem a estar entre os mais relevantes.
+
+\subsubsection{Distribuição anual de gêneros em papéis principais e secundários em produções do Brasil e EUA}
+Utilizando o subconjunto de dados do Brasil e EUA, é possível analisar também a evolução de gênero do elenco na distribuição de papéis principais e secundários ao longo do anos. Para isso, foi adotada uma abordagem que classifica os personagens com valor de $\textit{order} <= 4$ em \quotes{principais} e o demais como \quotes{secundários}, facilitando a apresentação anualizada. Dessa forma, foram criados gráficos para ambos os países, apresentando a evolução para os dois tipos de papéis de forma percentual nas \refFigs{fig-gender-order-year-br}{fig-gender-order-year-eua}.
+
+
+\figura[H]{gender-order-year-br}{Distribuição anual de gêneros em papéis principais e secundários em produções do Brasil}{fig-gender-order-year-br}{width=1\textwidth}%
+
+Como ponto inicial, assim como visto também na análise geral da \refFig{fig-cast-gender-violin-plot}, observa-se também que os homens desempenham mais papéis principais que as mulheres em todos os anos da amostra. O gênero \quotes{não definido / não especificado} também é visto em menor proporção, assim como esperado pela \refFig{fig-cast-gender-violin-plot}. Já para as pessoas não-binárias, mesmo observando uma linha próxima a 0\%, ao analisar mais profundamente os dados, vê-se duas ocorrências em papéis principais nos anos de 2015 e 2017.
+
+Ao observar os papéis secundários, têm-se uma maior presença do gênero \quotes{não definido / não especificado}, já visto como relacionado a papéis de menor importância. Com relação aos demais gêneros, é visto um comportamento semelhante ao dos papéis principais, com homens performando em maior quantidade do que as mulheres e pessoas não-binárias com apenas uma única ocorrência no ano de 2017.
+
+Analisando os dois gráficos em conjunto, conclui-se que houve pouca evolução do Brasil nos papéis desempenhados por cada gênero no período de tempo observado.
+
+\figura[H]{gender-order-year-eua}{Distribuição anual de gêneros em papéis principais e secundários em produções dos EUA}{fig-gender-order-year-eua}{width=1\textwidth}%
+
+Para a distribuição de gênero dos EUA, vê-se um comportamento semelhante ao do Brasil para os papéis principais, com homens desempenhando em maior quantidade, seguido das mulheres, não definido / não especificado e não-binário. Além disso, apesar de pouco expressivo, há a presença de pessoas do gênero \quotes{não-binário} em todos os anos observados.
+
+Por outro lado, observando os papéis secundários, vê-se que há mais pessoas classificadas como \quotes{homem} do que como \quotes{não definido / não especificado}, mostrando que para produções estadunidenses há um maior conhecimento dos atores que interpretam os papéis menos relevantes. Isso é refletido também pela curva percentual de mulheres mais alta do que a brasileira. 
+
+Ademais, vê-se a repetição do padrão de não evolução da distribuição de gênero ao longo dos anos analisados e que, considerando que os EUA representa o maior produtor de filmes do mundo (visto os resultados do \ref{chropleth-year-country}), pode revelar uma tendência de não evolução da indústria como um todo.
+
+\subsection{Quantidade de filmes realizados por ator  gênero}
+
+Além de quantificar o número total de participações em filmes, pode-se realizar uma análise detalhada do número de filmes em que cada ator participou, segmentando-os por gênero. Para essa visualização, utilizou-se o método barplot do Seaborn\cite{seaborn}. O gráfico gerado apresenta, no eixo x, a quantidade de filmes em que os atores atuaram, enquanto o eixo y exibe quantos atores estão em cada faixa de participação. Cada barra do gráfico foi colorida e segmentada de acordo com o gênero dos atores, permitindo uma comparação visual clara entre os diferentes grupos.
+
+\figura[H]{movies-per-actor}{Análise da quantidade de filmes por ator, categorizada por gênero}{fig-movies-per-actor}{width=1\textwidth}%
+
+Como tendência geral, conforme o número de filmes realizados aumenta, observa-se uma redução na quantidade de atores que alcançam essa marca. Esse padrão é esperado, pois o volume de trabalho em filmes tende a ser mais concentrado em um número menor de atores, enquanto a maioria participa de um número menor de produções.
+
+Observa-se que, para participações em apenas um filme, o gênero \quotes{não definido / não especificado} mostra-se como o mais presente, denotando uma nova característica para essa classificação: atores classificados dessa forma tendem a não participarem novamente em novos filmes, indicando uma possível tendência para serem desconhecidos ou novatos na indústria cinematográfica. Em contraste, atores com gêneros claramente definidos parecem ter uma maior probabilidade de atuar em múltiplos filmes, o que pode refletir uma maior visibilidade e oportunidades dentro da indústria.
+
+Ademais, observa-se que o gênero masculino prepondera em todas as faixas de quantidade de filmes, indicando que os atores homens tendem a interpretar mais personagens em comparação com os demais gêneros, com um máximo de participação em até 30 filmes.
+
+Por outro lado, o gênero \quotes{mulher} apresenta a segunda maior quantidade de participações, embora significativamente abaixo da observada para os homens, com um máximo de 21 filmes interpretados pela mesma pessoa.
+
+Já ao analisar o gênero \quotes{não-binário}, apesar das baixas participações gerais, é possível observar que há atores com um máximo de 8 filmes produzidos. Isso demonstra que, embora menos representados, alguns destes têm conseguido uma quantidade maior de trabalhos, ainda que não comparável aos gráficos de homens e mulheres.
+
+\subsection{Análise anual de frequência de gêneros na produção} \label{freq-genero-crew}
+Assim como no Capítulo \ref{freq-genero}, será analisada a frequência absoluta e relativa das equipes que trabalharam na produção dos filmes, com o objetivo de comparar os resultados com as análises anteriores e extrair informações relevantes sobre a distribuição de gênero nesse contexto dos bastidores. Dessa forma, utilizando os mesmo métodos descritos, agora para o vetor \textit{crew}, obtêm-se as \refFigs{fig-crew-freq-abs}{fig-crew-freq-rel}.
+
+\figura[H]{crew-freq-abs}{Frequência absoluta de Gêneros nos Elencos de Filmes (2013-2023)}{fig-crew-freq-abs}{width=1\textwidth}%
+
+Pode-se notar que o gênero \quotes{não definido / não especificado} predomina em todos os anos. Isso possivelmente indica que as pessoas envolvidas na produção dos filmes são menos reconhecidas em comparação aos atores, o que torna a classificação de gênero mais difícil e menos precisa.
+
+Observa-se também uma repetição do padrão observado na \refFig{fig-gender-freq-abs}: \quotes{Homens} performando mais trabalhos do que os demais, enquanto que \quotes{não-binários} apresentam uma participação mínima na amostra.
+
+\figura[H]{crew-freq-rel}{Frequência relativa de Gêneros nos Elencos de Filmes (2013-2023)}{fig-crew-freq-rel}{width=1\textwidth}%
+
+Ao analisarmos a frequência relativa, vê-se que proporcionalmente a quantidade de \quotes{mulheres} e pessoas \quotes{não-binárias} possuiu poucas variações ao longo do tempo, indicando mínimas evoluções na equidade de gênero nesse setor.
+
+Além disso, observando os anos de 2014, 2019, 2020 e 2021, vê-se que a redução das classificações \quotes{não definidas} se traduz, em grande parte, em um maior aumento do gênero masculino em relação aos demais. Isso indica que a disparidade pode ser ainda maior do que aparenta, caso as classificações fossem mais precisas.
+
+
+\subsection{\textit{Heatmap} de gêneros na produção dos filmes}
+Na variável  \textit{crew}, têm-se as propriedades \textit{department} e \textit{job}, que ao indicar o departamento e a função realizada pelas pessoas, respectivamente, permite analisar a existência de padrões na especificidade dos trabalhos desempenhados por cada gênero na produção de um filme. Cabe ressaltar que, devido a existência de 851 classificações para \textit{job}, foi feita a escolha de apresentar apenas os 50 mais frequentes, permitindo assim uma melhor visualização. Assim, em ambos os casos, foi utilizado um \textit{Heatmap} que apresenta a frequência absoluta de cada gênero para os departamentos/funções realizadas nas \refFigs{fig-heatmap-dep}{fig-heatmap-job}. 
+
+\figura[H]{heatmap-department}{Heatmap dos gêneros nos departamentos de produção dos filmes}{fig-heatmap-dep}{width=1\textwidth}%
+
+A partir da \refFig{fig-heatmap-dep}, vê-se que o gênero \quotes{não definido / não especificado} mostra-se significativamente presente na maioria dos departamentos, já que possuem a maior quantidade absoluta, como visto no Capítulo \ref{freq-genero-crew}. 
+
+Ademais, observa-se também que os homens são mais presentes nos departamentos de \quotes{equipe de apoio}, \quotes{produção}, \quotes{roteiro} e \quotes{som} do que os demais gêneros, indicando uma preponderância masculina nesses setores. Em contrapartida, mostram-se menos presentes em \quotes{figurino e maquiagem} e \quotes{iluminação}, seja por classificações imprecisas do gênero \quotes{não definido / não especificado}, seja por maior participação feminina.
+
+Em última instância, pode-se observar que as maiores participações do gênero \quotes{mulher} são nos departamentos de \quotes{equipe de apoio}, \quotes{figurino e maquiagem} e \quotes{produção}.
+
+\figura[H]{heatmap-job}{Heatmap dos gêneros das funções desempenhadas na produção dos filmes}{fig-heatmap-job}{width=1\textwidth}%
+
+Analisando agora de forma mais específica os trabalhos desempenhados por cada gênero, evidenciados na \refFig{fig-heatmap-job}, é evidente a baixa participação de mulheres nos trabalhos de produção de um filme, possuindo uma presença maior como dublês e organizadoras do elenco, com um pouco mais de 2000 pessoas presentes em cada.
+
+Por outro lado, observa-se que os homens atuam principalmente como produtores e diretores, papéis muito relevantes para a construção de uma obra cinematográfica\cite{studiobinderProducerDirector}. Além disso, vê-se uma alta frequência de participações como dublês, reflexo de mais atores masculinos nos filmes, como visto nas \refFigs{fig-gender-freq-abs}{fig-gender-freq-rel}.
+
+Ademais, como já esperado pela grande frequência dos gêneros \quotes{não definido / não especificado} na \refFig{fig-heatmap-dep}, vê-se também uma participação significativa desta em todos os tipos de trabalhos, principalmente como dublês, produtores executivos e maquiadores, podendo denotar um menor reconhecimento desses cargos, e, portanto, uma classificação menos clara.
+
+\subsubsection{Distribuição anual de gêneros nos departamentos de produção cinematográfica do Brasil e EUA}
+Utilizando o subconjunto de dados do Brasil e dos EUA, é possível analisar a evolução da participação de diferentes gêneros nos principais departamentos de produção cinematográfica ao longo dos anos. Dessa forma, foram gerados gráficos percentuais para todos os departamentos de ambos os países e sumarizados nas \refFigs{fig-crew-department-year-br}{fig-crew-department-year-eua}.
+
+\figura[H]{crew-department-year-br-2}{Distribuição anual de gênero nos departamentos de produção cinematográfica do Brasil}{fig-crew-department-year-br}{width=1\textwidth}%
+
+Observa-se que os homens continuam a representar a maior parte dos profissionais em quase todos os departamentos, seguidos dos gêneros \quotes{não definido / não especificado}, \quotes{mulher} e \quotes{não-binário}.
+
+Em departamentos como \quotes{arte} e \quotes{produção}, nota-se uma participação relevante das mulheres, apresentando uma porcentagem de pessoas semelhante ou até maior do que os homens (no caso de \quotes{figurino e maquiagem}), mostrando a existência de áreas mais receptivas para esse gênero.
+
+Já o gênero \quotes{não-binário} mantém uma representatividade extremamente baixa na indústria cinematográfica brasileira, com presença mínima na maior parte dos departamentos analisados.
+
+Outro aspecto relevante é a oscilação recorrente nos percentuais de gêneros ao longo dos anos, o que pode estar relacionado à quantidade reduzida de classificações de gênero para pessoas que trabalharam em produções de determinados períodos. Essa variação se destaca principalmente nos departamentos de \quotes{iluminação} e \quotes{efeitos visuais}, nos quais há anos com participação masculina próxima de 100\%.
+
+\figura[H]{crew-department-year-eua-2}{Distribuição anual de gênero nos departamentos de produção cinematográfica dos EUA}{fig-crew-department-year-eua}{width=1\textwidth}%
+
+Já para os departamentos de produção dos EUA vê-se uma grande estabilidade dos gráficos, com algumas oscilações entre o gênero \quotes{homem} e \quotes{não definido / não especificado} como maiores percentuais.
+
+Vê-se também que no departamento de \quotes{figurino e maquiagem} as mulheres têm maior presença que os homens, possuindo quase o dobro de representação. No entanto, nos departamentos de \quotes{câmera}, \quotes{efeitos visuais} e \quotes{iluminação} vê-se uma participação ínfima, ocupando menos de 5\% dos trabalhos realizados.
+
+Em suma, observando os resultados obtidos das \refFigs{fig-crew-department-year-br}{fig-crew-department-year-eua} e as análises anteriores das \refFigs{fig-gender-order-year-br}{fig-gender-order-year-eua}, aliado a um estudo realizado pelo ReFrame e apontado pelo Euro News\cite{euronews2024oscars}, vê-se que, nos últimos anos, não houve evoluções relativas à diversidade de gênero. O artigo denota que os papéis principais femininos, tanto de produção quanto de atuação, permanecem muito abaixo dos masculinos, evidenciando a recorrência da problemática e a carência de iniciativas, por parte das produtoras, para a sua solução.
+
+\section{Análise econômica dos filmes} \label{4-analise-economica}
+O cinema, além do aspecto cultural, também é visto como uma indústria, que gera capital e empregos \cite{homenko2015}. Dessa forma, o estudo das variáveis \textit{budget} e \textit{revenue} visa evidenciar esse aspecto, de forma a compreender como o investimento está relacionado a produção e ao impacto gerado no público.
+
+Ademais, como o principal objetivo é avaliar o sucesso financeiro dos filmes considerando os demais aspectos, optou-se pelo uso do \acrshort{ROI} como indicador-chave, pois ele permite uma análise independente do orçamento absoluto. Diferentemente de métricas baseadas em valores monetários, que tendem a favorecer produções de alto orçamento, o \acrshort{ROI}, por ser uma medida relativa e adimensional, possibilita a avaliação proporcional do retorno financeiro, incluindo produções de menor investimento.
+
+Para o cálculo desse indicador, utilizou-se operações com \textit{Dataframes} baseadas na \refEq{eq-lucro} e a \refEq{eq-roi}, com as colunas \textit{budget} e \textit{revenue} referenciando os parâmetros \quotes{Custo} e \quotes{Receita}, respectivamente. 
+
+%Além disso, quando necessária uma melhor apresentação do gráfico de \acrshort{ROI}, caso possua grandes variações, foi adotada uma escala logarítmica. No entanto, como o valor mínimo desse indicador é \textbf{-1}, o que inviabiliza a aplicação direta da função, conforme descrito no Capítulo \ref{log-section}, somou-se uma constante de \textbf{2} aos valores de \acrshort{ROI}, elevando o valor mínimo para \textbf{1} e possibilitando a visualização adequada nessa escala.%
+
+\subsection{Evolução anual do orçamento, receita e lucro}
+Como primeira análise, é possível verificar o total de investimentos realizados na indústria em cada ano da amostra, observando as tendências de financiamento ao longo do tempo e permitindo identificar períodos de maior ou menor investimento. Para isso, calculou-se o total investido em cada ano (soma da variável \textit{budget}), o retorno total (soma da variável \textit{revenue}) e o lucro (retorno subtraído do valor investido, assim como na \refEq{eq-lucro}).
+
+\figura[H]{budget-revenue-profit}{Orçamento, receita e lucro anual da indústria cinematográfica}{fig-budget-revenue-profit}{width=1\textwidth}%
+
+Observando a \refFig{fig-budget-revenue-profit} pode-se notar alguns pontos de interesse. Inicialmente, vê-se que o lucro da indústria vinha apresentando um crescimento substancial até o ano de 2017, mostrando-se como um setor em ascensão. No entanto, mesmo antes da pandemia da COVID-19, cujos efeitos já foram observados nas análises dos capítulos \ref{var-numericas} e \ref{freq-genero}, o lucro com as produções já vinha apresentando um certo declínio (entre 2016 e 2020), não chegando a se reestabelecer aos patamares anteriores no período da amostra.
+
+Além disso, observa-se que o investimento atingiu seu pico em 2016, ultrapassando 10 bilhões de dólares. Embora tenha havido uma queda nos anos seguintes, é possível visualizar sinais de recuperação desse financiamento, com o investimento em 2023 se aproximando do máximo encontrado. No entanto, a receita gerada não acompanhou essa retomada, permanecendo abaixo dos valores registrados em períodos passados. Isso indica que os efeitos da pandemia - e outros fatores mais específicos da indústria, como a greve dos roteiristas \cite{latimes_writers_strike_2023} ocorrida em 2023 - ainda impactam a indústria e podem continuar a afetar as produções nos próximos anos.
+
+\subsection{Sucesso financeiro em relação aos gêneros dos filmes} \label{sucesso-financeiro}
+
+Dando continuidade à análise dos gêneros apresentada no Capítulo \ref{movie-genre-hist}, pode-se explorar a relação entre os gêneros cinematográficos e o sucesso financeiro dos filmes a eles pertencentes. Para isso, foram utilizadas três abordagens complementares, com o objetivo de examinar tanto os orçamentos (\textit{budget}) quanto sua evolução ao longo dos anos, além do sucesso financeiro (\acrshort{ROI}) de cada gênero.
+
+Inicialmente, foi construído um \textit{Box plot} para visualizar a distribuição dos orçamentos por gênero, permitindo identificar padrões e discrepâncias no investimento alocado em diferentes tipos de produções. Em seguida, um segundo \textit{Box plot} foi elaborado para analisar a variação do \acrshort{ROI} por gênero, destacando quais categorias apresentam maior rentabilidade em relação ao capital investido. Por fim, um \textit{Heatmap} foi criado para apresentar a evolução da mediana dos orçamentos ao longo dos anos, possibilitando uma visão temporal agregada do investimento realizado em cada gênero.
+
+Para garantir uma melhor visualização dos dados e minimizar a influência de valores extremos, todos os gráficos foram gerados considerando o percentil 90, ou seja, incluindo apenas os 90\% inferiores dos orçamentos e dos \acrshort{ROI}s. As figuras resultantes dessas análises podem ser observadas nas  \refFigs{fig-budget-genre}{fig-budget-genre-year}:
+
+\figura[H]{budget-genre-3}{Distribuição de orçamentos de filmes por gênero (até o percentil 90)}{fig-budget-genre}{width=1\textwidth}%
+
+Ao observar a \refFig{fig-budget-genre}, nota-se que o gênero animação figura com a maior mediana de orçamentos, com cerca de 50\% das produções possuindo até 30 milhões de dólares.
+
+Outro ponto relevante é com relação ao intervalo interquartil dos gêneros \quotes{família}, \quotes{fantasia}, \quotes{animação} e \quotes{aventura}, mostrando uma grande variabilidade de orçamentos para filmes com essas temáticas.
+
+Já o combinar esse gráfico com o histograma construído na \refFig{fig-genres_histogram}, vê-se que os dois gêneros mais frequentes (\quotes{comédia} e \quotes{drama}) apresentam orçamento mediano inferior a maior parte dos demais. Além disso, observa-se também que documentários possuem tanto um baixo orçamento, quanto baixo número de produções.
+
+
+\figura[H]{roi-genre-2}{Sucesso financeiro dos filmes por gênero}{fig-roi-genre}{width=1\textwidth}%
+
+Analisando a \refFig{fig-roi-genre} é possível visualizar um grande intervalo interquartil em todos os gêneros, indicando que os \acrshort{ROI}s têm grande variabilidade.
+
+Além disso, é perceptível que alguns gêneros de filmes possuem um sucesso financeiro mediano acima dos demais, como os classificados como \quotes{família}, \quotes{animação}, \quotes{aventura}, \quotes{ação}, \quotes{ficção-científica} e \quotes{comédia}. Esse \acrshort{ROI} maior não é necessariamente relacionado a orçamentos superiores, visto os menores investimentos em filmes de \quotes{comédia}, por exemplo.
+
+Por outro lado, vê-se que filmes de \quotes{faroeste} performam entre os piores, apresentando um \acrshort{ROI} mediano negativo e, portanto, causando prejuízo a suas empresas produtoras.
+
+\figura[H]{budget-genre-year}{Distribuição anual do orçamento mediano de filmes por gênero (até o Percentil 90)}{fig-budget-genre-year}{width=1\textwidth}%
+
+Analisando a \refFig{fig-budget-genre-year}, é notável que os gêneros de \quotes{romance}, \quotes{suspense}, \quotes{terror}, \quotes{documentário}  e \quotes{drama} apresentam orçamentos consistentemente baixos ao longo dos anos, ilustrados pelas cores mais escuras do gráfico.
+
+Percebe-se também, através das células mais claras, alguns investimentos acima dos demais, como é o caso do gênero \quotes{Guerra} no ano de 2014 e do gênero \quotes{animação} e \quotes{família} no ano de 2019.
+
+Por fim, analisando um panorama geral, vê-se que a maior parte dos gêneros concentra-se em orçamentos menores, com o lançamento de algumas produções ocasionais de maior investimento em alguns anos.
+
+
+\subsection{Sucesso financeiro em relação a coleções}
+Pode-se avaliar também o impacto financeiro que as coleções de filmes trazem para as produções. Realizando uma análise semelhante a do Capítulo \ref{sucesso-financeiro}, serão criados dois Violin Plots: um em relação ao orçamento, e o outro em relação ao \acrshort{ROI}. Para essa análise, os filmes foram classificados em \quotes{Possui coleção} e \quotes{Não possui coleção} utilizando a variável \textit{belongs\_to\_collection}. Assim, foram geradas as \refFigs{fig-budget-collection}{fig-roi-collection}:
+
+\figura[H]{budget-collection}{Orçamento dos filmes em relação à participação em coleções}{fig-budget-collection}{width=1\textwidth}%
+
+\figura[H]{roi-collection}{Sucesso financeiro dos filmes em relação à participação em coleções}{fig-roi-collection}{width=1\textwidth}%
+
+Vê-se, através da \refFig{fig-budget-collection}, que filmes pertencentes a coleções tendem a possuir maior investimento, evidenciado pelo 2\degree e 3\degree quartis em valores maiores e pela curva de densidade deslocada para maiores orçamentos.
+
+Somado a isso, ao observarmos a \refFig{fig-roi-collection}, nota-se uma diferença significativa no sucesso financeiro entre os dois tipos de filmes. Nos filmes que fazem parte de uma coleção, o primeiro quartil mostra-se próximo da mediana(2\degree quartil) dos filmes que não possuem coleção. Além disso, a curva de densidade para filmes em coleção também denota uma maior quantidade de filmes em faixas de \acrshort{ROI} maiores, enquanto que os filmes sem coleção apresentam maior concentração em valores menores desse indicador.
+
+Assim, pode-se inferir que o maior investimento em filmes pertencentes a coleções tende a ser justificado, considerando a maior probabilidade de retorno financeiro positivo para essas produções.
+
+\subsection{Relação entre orçamento e \acrshort{ROI} medianos em companhias de produção cinematográfica}\label{kde-budget-roi-companies}%
+Para analisar a relação entre o \acrshort{ROI} mediano das companhias de produção e seus respectivos orçamentos medianos, foi construído um gráfico de dispersão na Figura 4.37, onde cada ponto representa uma companhia. Para melhorar a visualização e evitar distorções causadas por valores extremos, foram aplicados filtros baseados no percentil 90 tanto para o \acrshort{ROI} quanto para o orçamento, garantindo que apenas as companhias com suas medianas abaixo dessa porcentagem fossem consideradas.
+
+\figura[H]{kde-companies}{Relação entre mediana do orçamento e mediana do ROI por companhias de produção}{fig-kde-companies}{width=1\textwidth}%
+
+O gráfico evidencia uma alta densidade de companhias de produção com orçamento mediano entre 0 e 10 milhões de dólares, muitas das quais apresentam um \acrshort{ROI} próximo a -1. Esse comportamento sugere que a maioria dessas empresas opera com baixos investimentos e não consegue obter lucro em suas produções. No entanto, é possível observar, em menor densidade, algumas companhias dentro dessa mesma faixa de orçamento que alcançam \acrshort{ROI}s superiores a 5. Esse fenômeno pode estar relacionado a estratégias específicas dessas empresas, como a produção de filmes de nicho altamente lucrativos ou o aproveitamento de oportunidades no mercado de distribuição.
+
+Para companhias com orçamento acima de 10 milhões de dólares e \acrshort{ROI} positivo, os dados apresentam uma distribuição mais dispersa, com uma tendência decrescente na densidade à medida que o orçamento aumenta. Isso sugere que, embora existam empresas de grande porte que obtêm retornos elevados, a maior parte apresenta ganhos mais moderados, possivelmente devido a custos elevados de produção, estratégias de marketing diferenciadas ou desafios na recuperação do investimento inicial. Essa relação entre orçamento e retorno reforça a ideia de que um alto investimento não necessariamente se traduz em um \acrshort{ROI} elevado, mas pode reduzir a volatilidade dos resultados financeiros.
+
+\subsubsection{Segmentação da relação orçamento–ROI por gênero de filme}%
+Para aprofundar a análise econômica apresentada na Seção \ref{kde-budget-roi-companies}, segmentou-se a relação entre o orçamento mediano das companhias de produção e o \acrshort{ROI} mediano segundo o gênero cinematográfico. A \refFig{fig-kde-budget-roi-by-genre} exibe um \textit{grid} de estimativas de densidade por núcleo (KDE), no qual cada subgráfico representa um gênero distinto. Os eixos mantêm a mesma interpretação adotada anteriormente: o eixo horizontal indica o orçamento mediano das companhias (em milhões de dólares), enquanto o eixo vertical expressa o \acrshort{ROI} mediano. Para garantir comparabilidade e mitigar distorções provenientes de valores extremos, foi preservado o corte no percentil~90 para ambas as variáveis.
+
+Observa-se, de modo geral, um \textit{cluster} denso situado em orçamentos reduzidos e \acrshort{ROI} negativo (\emph{ROI}~$\approx{-1}$) em praticamente todos os gêneros. Esse padrão indica que a maior parte das produtoras opera com baixos investimentos e não recupera o capital empregado, condição já verificada no panorama agregado das companhias. Contudo, a morfologia das nuvens de densidade revela nuances relevantes quando o recorte por gênero é aplicado.
+
+\begin{itemize}
+    \item \textbf{Terror, Música e Mistério}: apresentam caudas alongadas em direção a valores de \acrshort{ROI} elevado (até 6–10), mesmo com orçamentos inferiores a 10~milhões de dólares.
+    \item \textbf{Ação, Fantasia, Aventura e Ficção-científica}: concentram produtoras com orçamentos medianos significativamente mais altos (frequentemente acima de 30~milhões), mas raramente excedem \acrshort{ROI}~$=4$. O padrão de afunilamento visto nesses painéis (principalmente no de aventura) reforça a hipótese onde o aumento de escala tende a acompanhar margens mais estreitas.
+    \item \textbf{Família}: destaca-se por combinar altos orçamentos com a maior dispersão vertical, apresentando regiões com densidades expressivas em \acrshort{ROI}s positivos.
+    \item \textbf{Faroeste}: exibe densidade rarefeita, mas quase toda situada em \acrshort{ROI} negativo, indicando desempenho historicamente limitado e menor atratividade comercial recente.
+\end{itemize}
+
+Em síntese, a segmentação evidencia que o gênero modula não apenas a escala típica de investimento, mas também a assimetria entre risco e retorno. Enquanto alguns gêneros de produção enxuta (terror, por exemplo) oferecem oportunidades de ganhos extraordinários a custo relativamente baixo, outros de grande orçamento (ação, aventura) tendem a entregar retornos mais previsíveis, porém proporcionalmente modestos.
+
+% Figura posicionada no local apropriado do documento
+\figura[H]{kde-budget-roi-by-genre}{Relação entre mediana do orçamento e mediana do ROI por companhias de produção, segmentada por gênero (Percentil 90)}{fig-kde-budget-roi-by-genre}{width=.7\textwidth}%
+
+
+
+
+
+\subsection{Sucesso financeiro em relação a países produtores de filmes}
+A análise da relação entre orçamento e retorno financeiro (\acrshort{ROI}) dos filmes também pode ser feita considerando os países responsáveis por sua produção. Para isso, foi calculada a média dessas métricas para cada país presente na amostra, permitindo uma visão mais representativa do desempenho financeiro das produções ao redor do mundo e reduzindo a influência de valores extremos. Para evitar que \textit{outliers} de países com retornos financeiros excepcionalmente altos ou baixos (devido a existência de poucas produções) distorcessem a coloração do gráfico, aplicou-se previamente um corte no percentil 90 do \acrshort{ROI}, garantindo uma distribuição mais equilibrada dos dados. Como forma de visualização, foram gerados mapas utilizando escalas de cores para indicar os valores medianos de orçamento e \acrshort{ROI} por país, apresentados nas Figuras \ref{fig-budget-country} e \ref{fig-roi-country}.
+
+\figura[H]{budget-country-2}{Mediana do orçamento dos países produtores de filmes}{fig-budget-country}{width=1\textwidth}%
+
+\figura[H]{roi-country-2}{Mediana do \acrshort{ROI} dos países produtores de filmes (percentil 90)}{fig-roi-country}{width=1\textwidth}%
+
+Inicialmente, observando a \refFig{fig-budget-country}, é possível notar que a China representa o país com maior investimento mediano realizado em filmes, presente na última faixa de classificação do mapa. Ademais, vê-se também maiores investimentos em outras poucas regiões como a Japão, América do Norte e Austrália. Em contrapartida, os menores orçamentos são observados na América do Sul e no restante da Ásia, consequência também da baixa quantidade de produções recentes observadas no Capítulo \ref{chropleth-year-country}.    
+
+
+Analisando a \refFig{fig-roi-country}, observa-se que a Índia, Nova Zelândia, Japão e China apresentam os maiores \acrshort{ROI}s médios da amostra, indicando que esses países conseguem gerar retornos financeiros relativamente altos em relação aos seus investimentos em produção cinematográfica. No entanto, a maior parte do mundo exibe retornos mais contidos, incluindo países com retornos medianos negativos, indicando prejuízo em grande parte de suas produções.
+
+Por fim, observa-se que, mesmo entre os países que possuem os maiores orçamentos medianos, a mediana do \acrshort{ROI} não atinge níveis extraordinários. Isso sugere que a diferenciação financeira entre os países está mais relacionada ao retorno absoluto das produções do que ao retorno relativo.
+
+\section{Previsão do sucesso financeiro de um filme}
+De forma a evoluir a análise gráfica apresentada no Capítulo \ref{4-analise-economica}, é possível construir modelos preditivos que estimam o desempenho financeiro de uma produção cinematográfica e que denotam também quais fatores têm maior influência nesse resultado. Desse modo, foram adotadas duas abordagens distintas, a regressão linear e árvore de decisão, a fim de verificar a adequação de ambos ao conjunto de dados e aprofundar o entendimento da relação entre as variáveis preditoras e a variável de interesse (\acrshort{ROI}).
+
+\subsection{Previsão utilizando regressão linear} \label{regressao-linear}
+Inicialmente, através de uma regressão, pode-se verificar a possível existência de uma relação linear entre os parâmetros de uma produção (gênero, orçamento, palavras-chave e demais variáveis envolvidas) e o sucesso financeiro resultante.
+
+Para tal, podem ser aplicadas tanto a regressão linear simples, avaliando o impacto apenas do orçamento em uma produção, quanto uma evolução utilizando a regressão linear múltipla, buscando combinar diferentes fatores que compõem um filme. Dessa forma, para complementar as abordagens, foram seguidos os seguintes passos:
+
+\begin{enumerate}
+    \item Construção do modelo de regressão linear simples
+    \item Evolução para regressão linear múltipla
+    \item Validação cruzada
+\end{enumerate}
+
+
+\subsection{Regressão linear simples}
+Para a aplicação da regressão linear simples, foi necessário, portanto, isolar os valores de \acrshort{ROI} e orçamento de cada filme da amostra. Além disso, assim como já observado em análises anteriores, a grande variabilidade nessas variáveis incita a necessidade da aplicação da função logarítmica, de maneira a obter resultados mais satisfatórios. 
+
+Após isso, os dados foram separados em um subconjunto de teste e um de treino, correspondendo, respectivamente, a 20\% e 80\% dos dados totais. Utilizando esses dados, é possível avaliar os parâmetros e hipóteses da regressão antes de efetivamente validá-lo.
+
+Em primeira instância, aplicando a regressão linear utilizando o subconjunto de treino, com a variável dependente \quotes{\acrshort{ROI}} e a variável independente \quotes{orçamento}, foi obtido o seguinte resultado:
+
+\figura[H]{roi-simple-regression}{Sumário dos resultados de treinamento da regressão linear simples}{fig-roi-simple-regression-2}{width=1\textwidth}%
+
+Como primeiro ponto de atenção, pode-se observar um $R^2$ extremamente baixo, mostrando que a regressão explica apenas $1.9\%$ da variabilidade do conjunto de treino. Devido a existência de apenas uma variável independente, vê-se também um $R^2$ ajustado semelhante. Além disso, é possível observar que a probabilidade do \textit{F-Statistic} equivalente a $1,19.e^-10$ (próxima a 0\%) indica que o modelo construído é diferente do modelo nulo.
+
+Aplicando esse modelo para prever os dados de teste e comparando os valores previstos com os valores reais, obteve-se a \refFig{fig-fitted-real-simple-roi}. Cabe ressaltar que, para efeitos comparativos, foi traçada uma reta vermelha correspondente ao modelo ideal, com $R^2$ correspondente a 100\%.
+
+\figura[H]{fitted-real-simple-roi}{Regressão linear simples - \acrshort{ROI} real x \acrshort{ROI} previsto}{fig-fitted-real-simple-roi}{width=1\textwidth}%
+
+Analisando a \refFig{fig-fitted-real-simple-roi}, observa-se um desvio significativo entre os dados e a linha de referência, com uma dispersão sem padrões claros. Esse desvio reflete o valor aproximadamente 0 do $R^2$, sugerindo que o modelo não consegue explicar adequadamente a variabilidade dos dados. Além disso, considerando que a função logarítmica foi aplicada ao \acrshort{ROI}, a métrica de erro média absoluto passa a representar erros relativos ao logaritmo. Nesse contexto, o \acrshort{MAE} de 0.66 indica que, em média, as previsões do modelo apresentam um desvio 93.53\% dos dados reais de teste, evidenciando novamente uma precisão baixa do modelo. 
+
+Somado a isso, pode-se também verificar as hipóteses da regressão linear a fim de entender o resultado obtido nas \refFigs{fig-roi-simple-regression-2}{fig-fitted-real-simple-roi}. Inicialmente, a fim de testar a normalidade, foi gerado um Q-Q Plot com os resíduos do modelo:
+
+\figura[H]{qqplot-roi-regressao-simples}{Gráfico Q-Q para verificação da normalidade dos resíduos}{fig-qqplot-roi-regressao-simples}{width=1\textwidth}%
+
+O desvio da linha de referência indica uma não normalidade dos dados nos primeiros e últimos quartis, ocasionando problemas na previsão do modelo. Além disso, essa curva também pode indicar uma não linearidade do \acrshort{ROI} quanto ao orçamento, incitando a inclusão de termos não lineares a regressão.
+
+Para verificar também as demais hipóteses, a análise de resíduos em função dos valores preditos também é necessária:
+
+\figura[H]{resid-fitted-roi-simple-regression}{Resíduos x Valores previstos}{fig-resid-fitted-roi-simple-regression}{width=1\textwidth}%
+
+A curva em vermelho, ao indicar a tendência dos dados, mostra que os resíduos tendem a desviar da média zero, principalmente para valores abaixo de 1 e acima de $1.6$, denotando a ausência de uma variância constante definida como hipótese inicial. Nesse cenário, considerando uma concentração maior de resíduos negativos, o modelo tende a superestimar os valores de \acrshort{ROI} ao prejudicar a estimativa dos coeficientes.
+
+\subsection{Evolução para regressão linear múltipla}\label{multiple-linear-regression}
+De forma a otimizar o modelo (e possivelmente corrigir as hipóteses não atendidas), pode ser realizada a inclusão de mais variáveis independentes (numéricas e categóricas), transformando-o em uma regressão linear múltipla. Para permitir a inclusão das variáveis categóricas, foi necessário representá-las como variáveis \textit{dummie}, ou seja, discretizadas em 0 ou 1. Além disso, devido a existência de variáveis com múltiplos atributos, alguns destes foram selecionados e extraídos como variáveis independentes. Somado a isso, a grande quantidade de colunas resultantes tornou necessário filtrar apenas os valores $0.1\%$ mais frequentes de cada variável \textit{dummie}. A \refTab{tab_dummies} a seguir ilustra as variáveis e atributos escolhidos (quando necessário), bem como a quantidade de colunas resultantes.
+
+\tabela{Variáveis dummies extraídas}{tab_dummies}{|c|c|c|}%
+{\hline
+\textbf{Variáveis} & 
+\textbf{Atributos selecionados} &
+\makecell{\textbf{Quantidade de variáveis} \\ \textbf{\textit{dummie} resultantes}} \\\hline
+Elenco & \makecell{Nome \\ Gênero} & \makecell{50 \\ 1} \\\hline
+Produção & \makecell{Nome \\ Gênero} & \makecell{102 \\ 1} \\\hline
+Idioma original & \makecell{x} & \makecell{1} \\\hline
+Companhias de produção & \makecell{Nome} & \makecell{5} \\\hline
+Gêneros de filmes & \makecell{x} & \makecell{1} \\\hline
+Palavras-chave & \makecell{x} & \makecell{8} \\\hline
+Países produtores & \makecell{x} & \makecell{1} \\\hline
+Idiomas falados & \makecell{x} & \makecell{1} \\\hline
+Pertence à coleção & \makecell{Booleano (sim/não)} & \makecell{2} \\\hline}%
+
+
+
+De posse dessas variáveis dummies acrescidas das colunas numéricas \quotes{orçamento},  \quotes{duração} e \quotes{ano}, separou-se novamente dois subconjuntos de teste e treino, com a proporção de 20\% e 80\% dos dados respectivamente.
+
+Por fim, devido a inclusão de diversas variáveis e buscando evitar a multicolinearidade entre elas, foi realizada uma análise de componentes principais no subconjunto de treino, de modo a reduzir a dimensionalidade. Para definir esse número de componentes, gerou-se a \refFig{fig-pca-roi} que denota a variância do conjunto em função desse quantidade.
+
+
+\figura[H]{pca-roi}{Variância explicada x Número de componentes}{fig-pca-roi}{width=1\textwidth}%
+
+A partir desse resultado, escolheu-se o valor de 155 componentes principais, já que estes abrangem quase a totalidade da variância do subconjunto.
+
+De posses dessas informações, gerou-se então o modelo de regressão linear múltipla com componentes principais para a previsão do \acrshort{ROI}:
+
+\figura[H]{summary-multiple-regression-roi}{Sumário dos resultados de treinamento da regressão linear múltipla}{fig-summary-multiple-regression-roi}{width=1\textwidth}%
+
+Vê-se um aumento significativo no valor de $R^2$ ocasionado pela inclusão de mais variáveis. O $R^2$ ajustado também reflete parte desse aumento, passando a representar $21.8\%$ da variabilidade dos dados. No entanto, essa diferença entre as duas medidas pode indicar um excesso de variáveis que não agregam informação ao modelo. Já a probabilidade do \textit{F-statistic} manteve-se novamente baixa, ainda indicando uma diferença em relação ao modelo nulo.
+
+Já ao aplicar o modelo de regressão linear múltipla para a previsão dos dados de teste, obtém-se o seguinte resultado:
+
+\figura[H]{multiple-roi-test}{Regressão linear múltipla - \acrshort{ROI} real x \acrshort{ROI} previsto}{fig-multiple-roi-test}{width=1\textwidth}%
+
+É notável uma melhora em relação ao primeiro modelo, com uma relação mais visível entre o \acrshort{ROI} previsto e o real, além de um $R^2$ de 0.18. No entanto, ainda é possível observar um grande erro na previsão, com um \acrshort{MAE} de $0.57$, equivalente a um desvio médio de 77.04\% do valor esperado, ilustrado pela grande dispersão dos dados em torno da reta ideal.
+
+Ademais, semelhante ao realizado no modelo linear, pode-se analisar também as hipóteses para a regressão através do \textit{Q-Q Plot} e do gráfico de resíduos em função dos valores previstos:
+
+\figura[H]{qqplot-roi-multipla}{Gráfico Q-Q para verificação da normalidade dos resíduos}{fig-qqplot-roi-regressao-multipla}{width=1\textwidth}%
+
+Ao analisar a \refFig{fig-qqplot-roi-regressao-multipla}, observa-se que os desvios nos primeiros quartis são menores em comparação aos observados na \refFig{fig-qqplot-roi-regressao-simples}. No entanto, o não atendimento completo da hipótese de normalidade dos resíduos ainda pode ter impactado a estimativa dos coeficientes, comprometendo, assim, a qualidade do modelo.
+
+\figura[H]{resid-fitted-roi-multiple}{Resíduos x Valores previstos}{fig-resid-fitted-roi-multiple}{width=1\textwidth}%
+
+Já ao observar a distribuição dos resíduos, a linha de tendência vermelha indica uma melhor proximidade dos valores em torno do eixo $y = 0$, quando comparada ao observado na \refFig{fig-resid-fitted-roi-simple-regression}. Esse comportamento de média zero tende a favorecer o modelo, tornando-o mais confiável. 
+Entretanto, nota-se no gráfico um padrão em formato de cone, caracterizado pelo aumento da faixa de resíduos  à medida que os valores previstos crescem. Esse comportamento evidencia a presença de heterocedasticidade (variância dos resíduos não constante), o que viola uma das hipóteses da regressão linear e tem grande impacto na confiabilidade do modelo ajustado.
+
+\subsection{Validação do modelo}
+Por fim, apesar dos indicadores baixos do modelo construído, para a etapa de validação desses resultados, foi utilizada a técnica de validação cruzada \textit{K-Fold}. Diferentemente do método adotado até o momento para a construção do modelo, baseado na construção de subconjuntos de teste e treino, utilizando \textit{K-fold} a criação de \textit{K} subconjuntos reduz a problemática de superestimação do resultado e fornece uma avaliação mais robusta de seu desempenho geral. Para tal, foram utilizadas 5 divisões do subconjunto de treino, sendo submetidos aos mesmos processos de treinamento do modelo de regressão múltipla, com a utilização da mesma quantidade de componentes principais já descrita no Capítulo \ref{multiple-linear-regression}. Para a avaliação dos resultados, foram coletadas as métricas de $R^2$, $R^2$ ajustado, \acrshort{MAE} e erro médio percentual de cada \textit{fold}, e realizada uma média para uma avaliação geral. Assim, os resultados da validação cruzada podem ser sumarizados na seguinte tabela:
+
+\tabela{Métricas da validação cruzada do modelo de regressão linear múltipla}{metricas_kfold}{|l|c|c|c|c|c|c|}%
+{\hline
+\textbf{Métrica}        & \textbf{Fold 1} & \textbf{Fold 2} & \textbf{Fold 3} & \textbf{Fold 4} & \textbf{Fold 5} & \textbf{Média} \\ \hline
+R²                      & 0.1346          & 0.1994          & 0.1819          & 0.1355          & 0.2498          & 0.1802         \\ \hline
+\acrshort{MAE} em log   & 0.6133          & 0.5599          & 0.5865          & 0.6159          & 0.5794          & 0.5910         \\ \hline
+Erro médio percentual   & 84.65\%         & 75.05\%         & 79.77\%         & 85.13\%         & 78.50\%         & 80.62\%        \\ \hline
+}%
+
+
+
+Vê-se que os valores de $R^2$ por \textit{fold} variaram entre $0.1346$ e $0.2498$, com uma média de $0.1802$. Esse indicador confirma a capacidade limitada do modelo em explicar a variância dos dados de teste.  Já com relação ao \acrshort{MAE} e ao erro médio percentual, têm-se valores semelhante aos já observados anteriormente na \refFig{fig-multiple-roi-test}, com uma variação um pouco maior provavelmente devido ao algoritmo K-Fold e a redução da quantidade de dados para treino.
+
+Por fim, conclui-se que, apesar da regressão linear não ter se mostrado completamente adequada para o conjunto de dados e variáveis utilizadas, pode-se observar certa correlação desses fatores com o \acrshort{ROI} de um filme. Além disso, uma possível melhor seleção de variáveis e aplicação de modelos não lineares poderia trazer resultados mais efetivos na previsão desse indicador.
+
+\subsection{Previsão utilizando árvore de classificação}
+Observado os resultados da regressão linear realizada no capítulo \ref{regressao-linear}, vê-se que a previsão dos valores exatos de \acrshort{ROI} para cada filme mostrou-se custosa e pouco adequada. Considerando isso, uma classificação binária em \acrshort{ROI}s ruins e bons pode revelar-se mais efetiva, visto que permite ao modelo focar na separação entre categorias claras de desempenho, simplificando o problema e aumentando a robustez da análise preditiva. Somado a isso a redução da granularidade simplifica a interpretação dos dados e permite uma visualização mais clara da influência das demais variáveis.
+
+\subsubsection{Definição das categorias de \acrshort{ROI}s}
+Para a classificação binária dos valores de \acrshort{ROI}, foi utilizada a mediana como critério de separação. Essa abordagem foi escolhida por sua capacidade de equalizar a quantidade de dados em ambas as categorias, resultando em um balanceamento mais adequado para o modelo de árvore de classificação. A mediana também apresenta a vantagem de ser um valor menos suscetível a \textit{outliers} extremos, o que torna a separação mais objetiva e consistente, eliminando a necessidade da aplicação da função logarítmica.
+
+Obtida a mediana do \acrshort{ROI} como sendo  $0.685568$, foi necessário categorizar cada um dos filmes abaixo desse limite em \quotes{\acrshort{ROI}s baixos} e acima em \quotes{\acrshort{ROI}s altos}. 
+
+\subsubsection{Seleção de variáveis}
+De forma a reduzir a dimensionalidade dos dados de entrada em relação à regressão linear, e observar o impacto de determinadas características sobre o \acrshort{ROI}, foram selecionadas as seguintes variáveis preditoras: \quotes{orçamento}, \quotes{gêneros de filmes}, \quotes{palavras-chave}, \quotes{duração}, \quotes{países produtores} e \quotes{pertence à coleção}. Exceto por \quotes{orçamento} e \quotes{duração}, foi utilizado o processo de transformação de variáveis categóricas em \textit{dummies}, utilizando \textit{One-hot-encoding} para a criação de colunas binárias.
+
+\subsubsection{Construção do modelo}
+Após as etapas anteriores, o conjunto de dados foi separado em um subconjunto de testes e um de treino, correspondendo respectivamente a 20\% e 80\% dos dados.
+
+Para estimar os hiperparâmetros da árvore de decisão, durante o treinamento foi utilizado o índice de Gini como critério para medir a impureza dos nós. Além disso, considerando a busca em intervalos maiores desses parâmetros, foi utilizado um algoritmo aleatório com 100 iterações, buscando maximizar a acurácia utilizando \textit{K-fold} com 3 \textit{folds} para validação. Desse modo, construiu-se a tabela \refTab{hiperparametros} identificando os intervalos de busca desses parâmetros e o valor ótimo encontrado. Cabe ressaltar que, para esses parâmetros encontrados, obteve-se uma acurácia de aproximadamente 65\%.
+
+\tabela{Intervalos de busca e valores ótimos dos hiperparâmetros do modelo}{hiperparametros}{l|c|c|}%
+{\textbf{Hiperparâmetro}         & \textbf{Intervalo de Busca} & \textbf{Valor Ótimo} \\ \hline
+Profundidade Máxima (\textit{max\_depth})    & 3 a 10                 & 4                   \\ \hline
+Amostras Mínimas para Divisão (\textit{min\_samples\_split}) & 2 a 10                 & 7                   \\ \hline
+Amostras Mínimas por Folha (\textit{min\_samples\_leaf})    & 1 a 10                 & 4                   \\ \hline}%
+
+Construindo um modelo utilizando os hiperparâmetros encontrados, foi gerada uma representação da árvore de decisão, segmentada nas figuras \refFigs{fig-arvore-true}{fig-arvore-false}. Nas duas representações, ramos a esquerda indicam uma avaliação \quotes{verdadeira} relativa à condição, enquanto resultados a direita indicam uma avaliação \quotes{falsa}. Ademais, cabe ressaltar que, como as variáveis categóricas foram binarizadas, as condições $<= 0.5$ indicam a presença da característica (ramos à direita) ou ausência dela (ramos à esquerda).
+
+Ademais, afim de entender a contribuição de cada variável nesse modelo classificador gerado, foram extraídas as importâncias de cada característica na \refTab{tab-variaveis-classificacao}. Essa importância considera o índice de Gini ponderado pelo número de amostras que passa pelo respectivo nó.
+
+\figura[H]{arvore-true}{Árvore de classificação de \acrshort{ROI}s - Ramo à esquerda}{fig-arvore-true}{width=1\textwidth}%
+\figura[H]{arvore-false}{Árvore de classificação de \acrshort{ROI}s - Ramo à direita}{fig-arvore-false}{width=1\textwidth}%
+
+\tabela{Importância das variáveis para a classificação}{tab-variaveis-classificacao}{|l|c|c|c|c|}%
+{\hline
+        \textbf{Variável} & \textbf{Importância} \\
+        \hline
+        Pertence à coleção & 0.467565 \\
+        País Produtor: France & 0.163876 \\
+        budget & 0.102653 \\
+        País Produtor: India & 0.093261 \\
+        Gênero: Comedy & 0.046701 \\
+        Gênero: Horror & 0.031620 \\
+        Palavra-chave: 1960s & 0.027590 \\
+        País Produtor: Belgium & 0.025900 \\
+        Palavra-chave: monster & 0.014965 \\
+        Palavra-chave: gangster & 0.014717 \\
+        Gênero: Mystery & 0.006659 \\
+        runtime & 0.004493 \\
+        \hline}%
+
+Observa-se que na árvore construída, todos os parâmetros de entrada foram utilizados em algum nível para a classificação, com os principais pontos de decisão sendo gerados pelas variáveis categóricas.
+
+Visto a \refTab{tab-variaveis-classificacao}, a variável \quotes{Pertence à Coleção} foi o divisor inicial mais importante, sugerindo que filmes de coleções têm maior probabilidade de obter \acrshort{ROI}s acima da mediana, denotado como nó raiz na árvore. Além disso, vê-se que a presença dos países produtores França e Índia mostra-se também muito importante para o sucesso financeiro de um filme.
+
+Outro ponto de atenção é que a variável \quotes{budget}, apesar de apresentar um índice alto de importância, quando observada sua participação na \refFig{fig-arvore-true}, vê-se que independente da condição, ambos os nós derivados foram classificados como \quotes{Alto}, mostrando que não foi considerada uma condição relevante para a diferenciação pelo modelo.
+
+
+
+
+Além disso, vê-se que o gênero \quotes{Comédia} teve um grande impacto na classificação final de filmes com \acrshort{ROI}s baixos e altos, possuindo um grande número de amostras em ambos os nós derivados.
+
+\subsubsection{Aplicação do modelo nos dados de teste}
+
+Após a construção e treinamento do modelo de árvore de decisão, sua performance foi avaliada sobre o subconjunto de teste, cujos resultados são apresentados no relatório da \refTab{metricas_classificacao}. 
+% e na matriz de confusão da \refTab{}.
+
+\tabela{Relatório da árvore de classificação}{metricas_classificacao}{|l|c|c|c|c|}%
+{\hline
+        Classe & Precisão & Revocação & F1-Score & Suporte \\
+        \hline
+        Alto & 0.68 & 0.65 & 0.67 & 275 \\
+        Baixo & 0.67 & 0.70 & 0.69 & 280 \\
+        \hline
+        Acurácia & & & 0.68 & 555 \\
+        Média (macro) & 0.68 & 0.68 & 0.68 & 555 \\
+        Média ponderada & 0.68 & 0.68 & 0.68 & 555 \\
+        \hline}%
+
+Vê-se que o modelo apresentou uma acurácia geral de 68\%, apresentando uma performance razoável comparado a um classificador ingênuo, o qual ao classificar todas as ocorrências na classe mais frequente, apresentaria uma acurácia de 50\%.
+
+Com relação as métricas de cada classe, nota-se que a precisão de ambas foi bem semelhante, indicando que o modelo ao classificar dentre os dois tipos de \acrshort{ROI} acerta, em média, 68\% das vezes. Outro ponto de atenção é a revocação da classe \quotes{Baixo}, mostrando que 70\% da totalidade de filmes dessa classe foram identificados corretamente, uma performance ligeiramente maior (cerca de 5\%) em relação a classificação para \acrshort{ROI}s altos.
+
+
+
+% \tabela{Matriz de confusão da árvore de classificação}{tab-matriz-confusao}{|c|c|c|}%
+% {\hline
+% & Alto & Baixo \\ \hline
+% Alto & 180 & 95 \\ \hline
+% Baixo & 83 & 197 \\ \hline}%

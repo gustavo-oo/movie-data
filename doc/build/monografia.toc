@@ -1,0 +1,162 @@
+\babel@toc {american}{}\relax 
+\babel@toc {american}{}\relax 
+\babel@toc {brazil}{}\relax 
+\contentsline {chapter}{\numberline {1}Introdução}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Problema}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Motivação}{1}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Objetivo}{2}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Objetivos Específicos}{2}{section.1.4}%
+\contentsline {section}{\numberline {1.5}Metodologia}{2}{section.1.5}%
+\contentsline {section}{\numberline {1.6}Organização dos Capítulos}{3}{section.1.6}%
+\contentsline {chapter}{\numberline {2}Fundamentação teórica}{4}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Indústria do cinema}{4}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Indústria Brasileira de Cinema}{5}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Indústria Americana de Cinema}{5}{subsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.1.3}\acrfull {TMDB}}{6}{subsection.2.1.3}%
+\contentsline {section}{\numberline {2.2}Desempenho Financeiro}{6}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Lucro líquido}{6}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}\acrfull {ROI}}{7}{subsection.2.2.2}%
+\contentsline {section}{\numberline {2.3}Conceitos Fundamentais da Estatística}{7}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}População e amostra}{7}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Desvio padrão}{7}{subsection.2.3.2}%
+\contentsline {subsubsection}{Desvio padrão amostral}{8}{section*.10}%
+\contentsline {subsubsection}{Desvio padrão amostral ponderado}{8}{section*.11}%
+\contentsline {section}{\numberline {2.4}Dados, informação e conhecimento}{8}{section.2.4}%
+\contentsline {section}{\numberline {2.5}\textit {\acrfull {KDD}}}{9}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}Seleção dos Dados}{9}{subsection.2.5.1}%
+\contentsline {subsection}{\numberline {2.5.2}Pré-processamento dos Dados}{10}{subsection.2.5.2}%
+\contentsline {subsection}{\numberline {2.5.3}Transformação dos Dados}{10}{subsection.2.5.3}%
+\contentsline {subsection}{\numberline {2.5.4}Mineração de Dados}{10}{subsection.2.5.4}%
+\contentsline {subsection}{\numberline {2.5.5}Interpretação e Avaliação dos Resultados}{10}{subsection.2.5.5}%
+\contentsline {section}{\numberline {2.6}Técnicas para Mineração de Dados}{10}{section.2.6}%
+\contentsline {subsection}{\numberline {2.6.1}Regressão linear}{10}{subsection.2.6.1}%
+\contentsline {subsubsection}{Regressão linear simples}{10}{section*.12}%
+\contentsline {subsubsection}{Regressão linear múltipla}{11}{section*.13}%
+\contentsline {subsubsection}{Parâmetros de Avaliação do Modelo}{12}{section*.14}%
+\contentsline {subsubsection}{Suposições para utilização da regressão linear}{13}{section*.15}%
+\contentsline {subsection}{\numberline {2.6.2}\textit {K-Fold}}{13}{subsection.2.6.2}%
+\contentsline {subsection}{\numberline {2.6.3}Árvore de Decisão}{14}{subsection.2.6.3}%
+\contentsline {subsection}{\numberline {2.6.4}Árvore de Classificação}{15}{subsection.2.6.4}%
+\contentsline {section}{\numberline {2.7}Ferramentas Utilizadas}{15}{section.2.7}%
+\contentsline {subsection}{\numberline {2.7.1}Python e Bibliotecas}{15}{subsection.2.7.1}%
+\contentsline {subsection}{\numberline {2.7.2}Jupyter Notebook}{16}{subsection.2.7.2}%
+\contentsline {subsection}{\numberline {2.7.3}API REST}{16}{subsection.2.7.3}%
+\contentsline {subsection}{\numberline {2.7.4}GeoJSON}{17}{subsection.2.7.4}%
+\contentsline {section}{\numberline {2.8}Trabalhos Relacionados}{17}{section.2.8}%
+\contentsline {chapter}{\numberline {3}Preparação dos dados}{19}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Coleta dos dados}{19}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Processo de coleta de dados}{19}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Estruturação e armazenamento dos Dados}{20}{subsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.1.3}Estrutura dos dados}{20}{subsection.3.1.3}%
+\contentsline {section}{\numberline {3.2}Seleção e tratamento dos dados}{22}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Fluxo de transformação dos dados}{22}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Mapeamento e transformação de dados}{23}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}Remoção de colunas irrelevantes}{24}{subsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.2.4}Estrutura final dos dados}{25}{subsection.3.2.4}%
+\contentsline {subsection}{\numberline {3.2.5}Filtros Aplicados}{25}{subsection.3.2.5}%
+\contentsline {chapter}{\numberline {4}Análise dos dados}{27}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Análise inicial dos dados}{27}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Análise das variáveis numéricas}{27}{subsection.4.1.1}%
+\contentsline {subsubsection}{\numberline {4.1.1.1}Histograma do Orçamento}{29}{subsubsection.4.1.1.1}%
+\contentsline {subsubsection}{\numberline {4.1.1.2}Histograma da Receita}{30}{subsubsection.4.1.1.2}%
+\contentsline {subsubsection}{\numberline {4.1.1.3}Histograma da Duração}{31}{subsubsection.4.1.1.3}%
+\contentsline {subsubsection}{\numberline {4.1.1.4}Histograma da Quantidade de votos}{32}{subsubsection.4.1.1.4}%
+\contentsline {subsubsection}{\numberline {4.1.1.5}Histograma da Avaliação média}{33}{subsubsection.4.1.1.5}%
+\contentsline {subsection}{\numberline {4.1.2}Distribuição anual da quantidade de filmes por país}{33}{subsection.4.1.2}%
+\contentsline {section}{\numberline {4.2}Análise de conteúdo dos filmes}{38}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Mapa de palavras-chave}{38}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Grafo de Relacionamento entre Palavras-chave}{40}{subsection.4.2.2}%
+\contentsline {subsubsection}{\numberline {4.2.2.1}Evolução das principais palavras-chave de filmes produzidos pelo Brasil e EUA}{42}{subsubsection.4.2.2.1}%
+\contentsline {subsection}{\numberline {4.2.3}Histograma de Gêneros dos Filmes}{43}{subsection.4.2.3}%
+\contentsline {subsubsection}{\numberline {4.2.3.1}Distribuição anual dos principais gêneros de filmes produzidos pelo Brasil e EUA}{45}{subsubsection.4.2.3.1}%
+\contentsline {section}{\numberline {4.3}Análise de Gênero do elenco e produção}{47}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Análise anual de frequência de gêneros do elenco}{47}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Distribuição de gênero em papéis principais e secundários}{49}{subsection.4.3.2}%
+\contentsline {subsubsection}{\numberline {4.3.2.1}Distribuição anual de gêneros em papéis principais e secundários em produções do Brasil e EUA}{52}{subsubsection.4.3.2.1}%
+\contentsline {subsection}{\numberline {4.3.3}Quantidade de filmes realizados por ator gênero}{53}{subsection.4.3.3}%
+\contentsline {subsection}{\numberline {4.3.4}Análise anual de frequência de gêneros na produção}{55}{subsection.4.3.4}%
+\contentsline {subsection}{\numberline {4.3.5}\textit {Heatmap} de gêneros na produção dos filmes}{57}{subsection.4.3.5}%
+\contentsline {subsubsection}{\numberline {4.3.5.1}Distribuição anual de gêneros nos departamentos de produção cinematográfica do Brasil e EUA}{59}{subsubsection.4.3.5.1}%
+\contentsline {section}{\numberline {4.4}Análise econômica dos filmes}{62}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Evolução anual do orçamento, receita e lucro}{62}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Sucesso financeiro em relação aos gêneros dos filmes}{63}{subsection.4.4.2}%
+\contentsline {subsection}{\numberline {4.4.3}Sucesso financeiro em relação a coleções}{67}{subsection.4.4.3}%
+\contentsline {subsection}{\numberline {4.4.4}Relação entre orçamento e \acrshort {ROI} medianos em companhias de produção cinematográfica}{69}{subsection.4.4.4}%
+\contentsline {subsubsection}{\numberline {4.4.4.1}Segmentação da relação orçamento–ROI por gênero de filme}{70}{subsubsection.4.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.5}Sucesso financeiro em relação a países produtores de filmes}{72}{subsection.4.4.5}%
+\contentsline {section}{\numberline {4.5}Previsão do sucesso financeiro de um filme}{74}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Previsão utilizando regressão linear}{74}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}Regressão linear simples}{74}{subsection.4.5.2}%
+\contentsline {subsection}{\numberline {4.5.3}Evolução para regressão linear múltipla}{78}{subsection.4.5.3}%
+\contentsline {subsection}{\numberline {4.5.4}Validação do modelo}{83}{subsection.4.5.4}%
+\contentsline {subsection}{\numberline {4.5.5}Previsão utilizando árvore de classificação}{84}{subsection.4.5.5}%
+\contentsline {subsubsection}{\numberline {4.5.5.1}Definição das categorias de \acrshort {ROI}s}{85}{subsubsection.4.5.5.1}%
+\contentsline {subsubsection}{\numberline {4.5.5.2}Seleção de variáveis}{85}{subsubsection.4.5.5.2}%
+\contentsline {subsubsection}{\numberline {4.5.5.3}Construção do modelo}{85}{subsubsection.4.5.5.3}%
+\contentsline {subsubsection}{\numberline {4.5.5.4}Aplicação do modelo nos dados de teste}{88}{subsubsection.4.5.5.4}%
+\contentsline {chapter}{\numberline {5}Conclusões}{89}{chapter.5}%
+\contentsline {chapter}{Refer\^encias}{91}{section*.16}%
+\babel@toc {american}{}\relax 
+\babel@toc {american}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {american}{}\relax 
+\babel@toc {brazil}{}\relax 

@@ -1,0 +1,230 @@
+Nesta seção, são abordadas as etapas de Seleção dos Dados, Pré-processamento dos Dados e Transformação dos Dados do processo \acrshort{KDD}. A preparação dos dados é essencial para garantir a integridade e a qualidade das informações utilizadas na análise, abrangendo desde a coleta até a estruturação dos dados. Esse processo inclui a seleção de variáveis relevantes, o tratamento de valores nulos e inconsistentes e a transformação de colunas em formatos mais acessíveis para a análise.
+
+% \section{Coleta do dados}\label{coleta-dados}
+% Falar sobre como foram coletados, chamadas de API e salvos em CSV
+
+% Falar sobre estrutura inicial dos dados coletados, explicando cada uma das colunas
+
+% Incluir bibiliografia pra referencia das colunas. Lembrar que order não é um critério objetivo para personagens secundários
+% https://www.themoviedb.org/bible/movie/59f3b16d9251414f20000003
+
+% \section{Visão geral do Dados}
+
+% \section{Seleção de variáveis relevantes}
+
+% Falar sobre as colunas removidas
+
+% \section{Tratamento de outliers}
+
+% Falar sobre análise valores zero, null e strings vazias
+% e remoção de valores 0
+
+% \section{Mapeamento de vetores}
+% Falar sobre mapeamento de genre, keywords, spoken languages, production companies, production contries, cast e crew
+
+
+\section{Coleta dos dados}\label{coleta-dados}
+A obtenção dos dados para este estudo foi realizada a partir da \acrshort{API} \acrshort{REST} do \acrshort{TMDB}, um dos principais repositórios de informações sobre produções cinematográficas. O processo envolveu a extração sistemática de filmes lançados entre os anos de 2013 e 2023, considerando diversas variáveis relevantes para análises econômicas, culturais e de gênero na indústria cinematográfica.
+
+\subsection{Processo de coleta de dados}
+A extração dos dados ocorreu por meio de requisições à \acrshort{API} do \acrshort{TMDB}, garantindo informações detalhadas sobre cada filme identificado. Para otimizar a coleta e garantir a integridade dos dados, foi adotado um processo estruturado, contemplando:
+
+\begin{itemize}
+    \item \textbf{Obtenção da lista de filmes}: Foram coletados filmes lançados em cada ano do intervalo analisado, aplicando filtros diretamente nas requisições para excluir produções com menos de 10 avaliações e conteúdos para adultos. Essa abordagem reduziu a necessidade de etapas adicionais de filtragem na fase de transformação dos dados, ao reduzir a quantidade de filmes desconhecidos e de conteúdo pouco relevante para a análise.
+    \item \textbf{Coleta de detalhes adicionais}: Para cada filme identificado, foram coletadas informações detalhadas sobre orçamento, receita, tempo de duração, elenco, equipe de produção e palavras-chave associadas.
+    \item \textbf{Obtenção de metadados auxiliares}: Informações sobre gêneros de filmes e países também foram extraídas da \acrshort{API} do \acrshort{TMDB}, permitindo posterior mapeamento e padronização dos dados relacionados a essas variáveis.
+\end{itemize}
+
+\subsection{Estruturação e armazenamento dos Dados}
+Os dados coletados foram armazenados no formato CSV, permitindo fácil manipulação e integração com ferramentas analíticas. Para cada ano de coleta (2013 a 2023), foi gerado um arquivo separado contendo os filmes daquele período, seguindo o formato \texttt{tmdb\_dump-\{ano\}.csv}.
+
+Além disso, foram criados dois arquivos auxiliares:
+\begin{itemize}
+    \item \textbf{tmdb\_dump-genres.csv}: Contendo o mapeamento de identificadores de gênero para seus respectivos nomes, estruturado com as seguintes colunas:
+    \begin{itemize}
+        \item \texttt{id}: Identificador numérico do gênero.
+        \item \texttt{name}: Nome do gênero.
+    \end{itemize}
+    \item \textbf{tmdb\_dump-countries.csv}: Contendo a lista de países reconhecidos pelo \acrshort{TMDB}, utilizado para o mapeamento de nacionalidades de produção, com a seguinte estrutura:
+    \begin{itemize}
+        \item \texttt{iso\_3166\_1}: Código do país conforme o padrão ISO 3166-1 \cite{iso3166-1}.
+        \item \texttt{english\_name}: Nome do país em inglês.
+        \item \texttt{native\_name}: Nome do país em seu idioma original.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Estrutura dos dados}
+A \refTab{tab_atributos_bruto} apresenta as colunas extraídas nos arquivos  \texttt{tmdb\_dump-\{ano\}.csv}, com suas descrições conforme a documentação oficial de colaboração do \acrshort{TMDB} \cite{tmdb_bible}.
+
+\tabela{Atributos extraídos da \acrshort{API} do \acrshort{TMDB}}{tab_atributos_bruto}{|l|p{10cm}|}%
+{
+\hline
+        \textbf{Nome da Coluna} & \textbf{Descrição} \\
+        \hline
+        \texttt{adult} & Indica se o filme é classificado como adulto. \\
+        \hline
+        \texttt{backdrop\_path} & Caminho da imagem de fundo do filme. \\
+        \hline
+        \texttt{genre\_ids} & Lista de identificadores dos gêneros do filme. \\
+        \hline
+        \texttt{id} & Identificador único do filme no \acrshort{TMDB}. \\
+        \hline
+        \texttt{original\_language} & Idioma original da produção do filme. \\
+        \hline
+        \texttt{original\_title} & Título original do filme. \\
+        \hline
+        \texttt{overview} & Sinopse oficial do filme. \\
+        \hline
+        \texttt{popularity} & Indicador de popularidade baseado em métricas do \acrshort{TMDB}. \\
+        \hline
+        \texttt{poster\_path} & Caminho da imagem do pôster do filme. \\
+        \hline
+        \texttt{release\_date} & Data de lançamento do filme. \\
+        \hline
+        \texttt{title} & Título do filme. \\
+        \hline
+        \texttt{video} & Indica se o filme possui conteúdo em vídeo associado. \\
+        \hline
+        \texttt{vote\_average} & Média das avaliações dos usuários. \\
+        \hline
+        \texttt{vote\_count} & Número de votos recebidos. \\
+        \hline
+        \texttt{belongs\_to\_collection} & Indica se o filme pertence a uma coleção. \\
+        \hline
+        \texttt{budget} & Orçamento de produção (em dólares). \\
+        \hline
+        \texttt{homepage} & URL da página oficial do filme. \\
+        \hline
+        \texttt{imdb\_id} & Identificador do filme no IMDB. \\
+        \hline
+        \texttt{production\_companies} & Empresas responsáveis pela produção do filme. \\
+        \hline
+        \texttt{production\_countries} & Lista de países onde o filme foi produzido. \\
+        \hline
+        \texttt{revenue} & Receita bruta mundial (em dólares). \\
+        \hline
+        \texttt{runtime} & Duração do filme (em minutos). \\
+        \hline
+        \texttt{spoken\_languages} & Lista de idiomas falados no filme. \\
+        \hline
+        \texttt{status} & Status do filme (exemplo: lançado, em pós-produção, cancelado). \\
+        \hline
+        \texttt{tagline} & Frase promocional associada ao filme. \\
+        \hline
+        \texttt{cast} & Lista de atores principais do filme. \\
+        \hline
+        \texttt{crew} & Equipe de produção do filme. \\
+        \hline
+        \texttt{keywords} & Palavras-chave associadas ao filme. \\
+        \hline
+}%
+
+% \section{Seleção e tratamento dos dados}
+% Nesta seção, são abordadas as etapas de \textit{Seleção dos Dados}, \textit{Pré-processamento dos Dados} e \textit{Transformação dos Dados} do processo \textit{\acrshort{KDD}}, aplicadas aos dados coletados na seção anterior. Esse processo envolve o mapeamento de identificadores para seus respectivos valores, o tratamento de estruturas de dados complexas e a remoção de atributos irrelevantes ou inconsistentes.
+
+% \subsection{Mapeamento e Transformação de Dados}
+
+% Os dados coletados a partir da \acrshort{API} do \acrshort{TMDB} estavam estruturados em diferentes formatos, frequentemente apresentando identificadores numéricos ou estruturas aninhadas que dificultavam a interpretação direta. Portanto, para garantir a integridade das análises, foram realizadas diversas transformações:
+
+% \begin{itemize}
+%     \item \textbf{Mapeamento de Gêneros}: Conversão da coluna \texttt{genre\_ids}, que armazenava identificadores numéricos, para seus respectivos nomes utilizando o arquivo auxiliar \texttt{tmdb\_dump-genres.csv}.
+%     \item \textbf{Mapeamento de Palavras-chave}: Extração apenas dos nomes das palavras-chave da coluna \texttt{keywords}, anteriormente estruturada como um dicionário com ID e nome.
+%     \item \textbf{Mapeamento de Idiomas Falados}: Conversão da coluna \texttt{spoken\_languages}, transformando a estrutura original em dicionário para armazenar apenas o nome do idioma em inglês.
+%     \sloppy
+%     \item \textbf{Mapeamento de Países}: Substituição dos códigos ISO presentes na coluna \texttt{production\_countries} pelos nomes completos dos países, com base no arquivo \texttt{tmdb\_dump-countries.csv}.
+%     \item \textbf{Mapeamento de Empresas de Produção}: Extração do nome e país de origem das empresas da coluna \texttt{production\_companies}, removendo identificadores, logotipos e outras informações irrelevantes.
+%     \item \textbf{Mapeamento de Gênero de Elenco e Equipe Técnica}: Substituição dos valores numéricos das colunas \texttt{cast} e \texttt{crew}, representando gênero (0, 1, 2 ou 3), por suas respectivas descrições conforme a documentação da \acrshort{API} do \acrshort{TMDB}: \textit{Not set/not specified}, \textit{Female}, \textit{Male} e \textit{Non-binary}.
+% \end{itemize}
+
+% \subsection{Remoção de Colunas Irrelevantes}
+% Durante o pré-processamento, algumas colunas foram removidas por não agregarem valor às análises. As remoções foram realizadas de acordo com as seguintes justificativas:
+
+% \begin{itemize}
+%     \item \textbf{Atributos referentes a recursos externos}: \texttt{backdrop\_path}, \texttt{poster\_path}, \texttt{video} e \texttt{homepage} foram removidos, pois apenas referenciavam mídias ou páginas externas.
+%     \item \textbf{Colunas substituídas por outras transformadas}: \texttt{genre\_ids} foi removida após o mapeamento para \texttt{genres}.
+%     \item \textbf{Informações não utilizadas na análise}: \texttt{imdb\_id}, por não haver cruzamento com a base de dados do \acrshort{IMDB}, e \texttt{tagline}, já que não era objetivo realizar análises baseadas nesse dado.
+%     \item \textbf{Colunas redundantes devido à seleção temporal}: \texttt{status} foi descartada, pois todos os filmes considerados já estavam com o status \textit{released}.
+%     \item \textbf{Atributo de difícil interpretação}: \texttt{popularity} foi removida devido à ausência de documentação pública que explicasse a metodologia de cálculo utilizada pelo \acrshort{TMDB}.
+% \end{itemize}
+
+% \subsection{Filtros Aplicados}
+% Para garantir a qualidade dos dados, foram definidos dois tipos de filtros, aplicados em diferentes contextos:
+
+% \begin{itemize}
+%     \item \textbf{Seleção Geral}: Utilizada em todas as análises exploratórias, gráficos e modelos preditivos, exceto seções que comparam Brasil e Estados Unidos explicitamente. Nesse filtro, todas as linhas com valores nulos ou zero em qualquer uma das colunas selecionadas foram removidas.
+%     \item \textbf{Filtro Específico para Brasil e EUA}: Aplicado exclusivamente nas análises que comparam esses dois países, permitindo a inclusão de filmes com valores ausentes em \texttt{budget} e \texttt{revenue}. Esse ajuste foi necessário devido à baixa disponibilidade de dados financeiros para filmes brasileiros, permitindo que outras variáveis fossem analisadas sem perda excessiva de registros. Para manter a coerência, o mesmo critério foi aplicado aos filmes dos EUA nessas análises.
+% \end{itemize}
+
+
+\section{Seleção e tratamento dos dados}
+Nesta seção, são abordadas as etapas de \textit{seleção dos dados}, \textit{pré-processamento dos dados} e \textit{transformação dos dados} do processo \textit{\acrshort{KDD}}, aplicadas aos filmes coletados na seção anterior. Esse processo envolve o mapeamento de identificadores para seus respectivos valores, o tratamento de estruturas de dados complexas e a remoção de atributos irrelevantes ou inconsistentes.
+
+\subsection{Fluxo de transformação dos dados}
+
+A Figura \ref{fig-pipeline-dados} ilustra o pipeline de transformação dos dados aplicado neste estudo. As diferentes etapas de mapeamento, remoção de colunas e aplicação de filtros são representadas conforme sua posição no fluxo de tratamento dos dados. Esse diagrama facilita o acompanhamento das modificações realizadas e a estrutura resultante utilizada para as análises.
+
+No diagrama:
+\begin{itemize}
+    \item \textbf{Losangos} representam os conjuntos de dados, tanto na entrada (dados brutos) quanto na saída (dados tratados e prontos para análise).
+    \item \textbf{Retângulos} indicam os processos de transformação, incluindo o mapeamento de identificadores, remoção de colunas irrelevantes e aplicação de filtros.
+    \item \textbf{Setas} indicam o fluxo de dados, demonstrando a sequência das operações realizadas.
+\end{itemize}
+
+\figura[H]{pipeline-dados}{Fluxo de transformação e seleção de dados}{fig-pipeline-dados}{width=1.1\textwidth}%
+
+\subsection{Mapeamento e transformação de dados}
+
+Os dados coletados a partir da \acrshort{API} do \acrshort{TMDB} estavam estruturados em diferentes formatos, frequentemente apresentando identificadores numéricos ou estruturas aninhadas que dificultavam a interpretação direta. Portanto, para garantir a integridade das análises, foram realizadas diversas transformações:
+
+\begin{itemize}
+    \item \textbf{Mapeamento de gêneros de filmes}: Conversão da coluna \texttt{genre\_ids}, que armazenava identificadores numéricos, para seus respectivos nomes utilizando o arquivo auxiliar \texttt{tmdb\_dump-genres.csv}.
+    \item \textbf{Mapeamento de palavras-chave}: Extração apenas dos nomes das palavras-chave da coluna \texttt{keywords}, anteriormente estruturada como um dicionário com ID e nome.
+    \item \textbf{Mapeamento de idiomas falados}: Conversão da coluna \texttt{spoken\_languages}, transformando a estrutura original em dicionário para armazenar apenas o nome do idioma em inglês.
+    \sloppy
+    \item \textbf{Mapeamento de países}: Substituição dos códigos ISO presentes na coluna \texttt{production\_countries} pelos nomes completos dos países, com base no arquivo \texttt{tmdb\_dump-countries.csv}.
+    \item \textbf{Mapeamento de empresas de produção}: Extração do nome e país de origem das empresas da coluna \texttt{production\_companies}, removendo identificadores, logotipos e outras informações irrelevantes.
+    \item \textbf{Mapeamento de gêneros do elenco e equipe de produção}: Substituição dos valores numéricos das colunas \texttt{cast} e \texttt{crew}, representando gênero (0, 1, 2 ou 3), por suas respectivas descrições conforme a documentação da \acrshort{API} do \acrshort{TMDB}: \textit{Not set/not specified}, \textit{Female}, \textit{Male} e \textit{Non-binary}.
+\end{itemize}
+
+\subsection{Remoção de colunas irrelevantes}
+Durante o pré-processamento, algumas colunas foram removidas por não agregarem valor às análises. As remoções foram realizadas de acordo com as seguintes justificativas:
+
+\begin{itemize}
+    \item \textbf{Atributos referentes a recursos externos}: \texttt{backdrop\_path}, \texttt{poster\_path}, \texttt{video} e \texttt{homepage} foram removidos, pois apenas referenciavam mídias ou páginas externas.
+    \item \textbf{Coluna substituída por outra transformada}: \texttt{genre\_ids} foi removida após o mapeamento para \texttt{genres}.
+    \item \textbf{Informações não utilizadas na análise}: \texttt{imdb\_id}, por não haver cruzamento com a base de dados do \acrshort{IMDB}; e \texttt{tagline} e \texttt{overview}, já que não era objetivo realizar análises baseadas nesses textos.
+    \item \textbf{Colunas redundantes devido à seleção temporal}: \texttt{status} foi descartada, pois todos os filmes considerados já estavam com o status \textit{released}.
+    \item \textbf{Atributo de difícil interpretação}: \texttt{popularity} foi removida devido à ausência de documentação pública que explicasse a metodologia de cálculo utilizada pelo \acrshort{TMDB}.
+\end{itemize}
+
+\subsection{Estrutura final dos dados}
+Após as transformações realizadas, o conjunto de dados final contém as seguintes colunas:
+\begin{itemize}
+    \item \texttt{id}
+    \item \texttt{original\_language}
+    \item \texttt{original\_title}
+    \item \texttt{release\_date}
+    \item \texttt{title}
+    \item \texttt{vote\_average}
+    \item \texttt{vote\_count}
+    \item \texttt{belongs\_to\_collection}
+    \item \texttt{budget}
+    \item \texttt{genres}
+    \item \texttt{production\_companies}
+    \item \texttt{production\_countries}
+    \item \texttt{revenue}
+    \item \texttt{runtime}
+    \item \texttt{spoken\_languages}
+    \item \texttt{cast}
+    \item \texttt{crew}
+    \item \texttt{keywords}
+\end{itemize}
+
+\subsection{Filtros Aplicados}
+Para garantir a qualidade dos dados, foram definidos dois tipos de filtros, aplicados em diferentes contextos:
+
+\begin{itemize}
+    \item \textbf{Seleção Geral}: Utilizada em todas as análises exploratórias, gráficos e modelos preditivos, exceto seções que comparam Brasil e Estados Unidos explicitamente. Nesse filtro, todas as linhas com valores nulos ou zero em qualquer uma das colunas selecionadas foram removidas, resultando em um total de \textbf{2773 registros}.
+    \item \textbf{Filtro Específico para Brasil e EUA}: Aplicado exclusivamente nas análises que comparam esses dois países, permitindo a inclusão de filmes com valores ausentes em \texttt{budget} e \texttt{revenue}. Esse ajuste foi necessário devido à baixa disponibilidade de dados financeiros para filmes brasileiros, permitindo que outras variáveis fossem analisadas sem perda excessiva de registros. Para manter a coerência, o mesmo critério foi aplicado aos filmes dos EUA nessas análises. Como resultado, esse filtro resultou em \textbf{434 registros} para o Brasil e \textbf{8732 registros} para os Estados Unidos.
+\end{itemize}
+

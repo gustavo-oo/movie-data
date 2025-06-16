@@ -1,0 +1,54 @@
+digraph Data_Transformation_Pipeline {
+	dpi=100 nodesep=1.2 rankdir=LR ranksep=1 ratio=expand size=30
+	RAW [label="Dados Brutos (CSV do TMDb)" fillcolor=lightgrey fontsize=60 shape=parallelogram style=filled]
+	MAP [label="Mapeamento e Transformação" fillcolor=lightblue fontsize=60 shape=box style=filled]
+	REMOVE [label="Remoção de Colunas Irrelevantes" fillcolor=lightcoral fontsize=60 shape=box style=filled]
+	FILTER [label="Aplicação de Filtros" fillcolor=lightgreen fontsize=60 shape=box style=filled]
+	FINAL [label="Dados Tratados e Prontos para Análise" fillcolor=gold fontsize=60 shape=parallelogram style=filled]
+	{
+		rank=same
+		MAP_GENRE [label="Mapeamento de Gêneros
+(ID → Nome)" fontsize=55 shape=ellipse]
+		MAP_KEYWORDS [label="Mapeamento de Palavras-chave
+(Dicionário → Nome)" fontsize=55 shape=ellipse]
+		MAP_LANG [label="Mapeamento de Idiomas
+(ID → Nome)" fontsize=55 shape=ellipse]
+		MAP_COUNTRY [label="Mapeamento de Países
+(ISO → Nome)" fontsize=55 shape=ellipse]
+		MAP_COMPANIES [label="Mapeamento de Empresas de Produção
+(Extração Nome + País)" fontsize=55 shape=ellipse]
+		MAP_CAST_CREW [label="Mapeamento de Gênero de Elenco e Equipe
+(ID → Nome)" fontsize=55 shape=ellipse]
+	}
+	{
+		rank=same
+		REMOVE_EXTERNAL [label="Remoção de Referências Externas
+(Imagens, Vídeos, Homepage)" fontsize=55 shape=ellipse]
+		REMOVE_GENRE [label="Remoção de Identificadores Redundantes
+(genre_ids → genres)" fontsize=55 shape=ellipse]
+		REMOVE_UNUSED [label="Remoção de Colunas Não Utilizadas
+(IMDb ID, Tagline, Status, Popularidade)" fontsize=55 shape=ellipse]
+	}
+	{
+		rank=same
+		FILTER_GENERAL [label="Seleção Geral
+(Remove NaN e Valores Zero)" fontsize=55 shape=ellipse]
+		FILTER_BRA_EUA [label="Filtro Brasil x EUA
+(Permite NaN em Receita e Orçamento)" fontsize=55 shape=ellipse]
+	}
+	RAW -> MAP [penwidth=7]
+	MAP -> REMOVE [penwidth=7]
+	REMOVE -> FILTER [penwidth=7]
+	FILTER -> FINAL [penwidth=7]
+	MAP -> MAP_GENRE [penwidth=5 style=dashed]
+	MAP -> MAP_KEYWORDS [penwidth=5 style=dashed]
+	MAP -> MAP_LANG [penwidth=5 style=dashed]
+	MAP -> MAP_COUNTRY [penwidth=5 style=dashed]
+	MAP -> MAP_COMPANIES [penwidth=5 style=dashed]
+	MAP -> MAP_CAST_CREW [penwidth=5 style=dashed]
+	REMOVE -> REMOVE_EXTERNAL [penwidth=5 style=dashed]
+	REMOVE -> REMOVE_GENRE [penwidth=5 style=dashed]
+	REMOVE -> REMOVE_UNUSED [penwidth=5 style=dashed]
+	FILTER -> FILTER_GENERAL [penwidth=5 style=dashed]
+	FILTER -> FILTER_BRA_EUA [penwidth=5 style=dashed]
+}

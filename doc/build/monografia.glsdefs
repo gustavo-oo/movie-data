@@ -1,0 +1,392 @@
+\glsdefs@newdocentry{TMDB}%
+{%
+name={TMDB},%
+sort={TMDB},%
+type={acronym},%
+first={The Movie Database\glsspace (TMDB)},%
+firstplural={The Movie Database\acrpluralsuffix \glsspace (TMDB\acrpluralsuffix )},%
+text={TMDB},%
+plural={TMDB\acrpluralsuffix },%
+description={The Movie Database},%
+descriptionplural={The Movie Database\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={The Movie Database},%
+longplural={The Movie Databases},%
+short={TMDB},%
+shortplural={TMDBs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{NIST}%
+{%
+name={NIST},%
+sort={NIST},%
+type={acronym},%
+first={National Institute of Standards and Technology\glsspace (NIST)},%
+firstplural={National Institute of Standards and Technology\acrpluralsuffix \glsspace (NIST\acrpluralsuffix )},%
+text={NIST},%
+plural={NIST\acrpluralsuffix },%
+description={National Institute of Standards and Technology},%
+descriptionplural={National Institute of Standards and Technology\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={National Institute of Standards and Technology},%
+longplural={National Institute of Standards and Technologys},%
+short={NIST},%
+shortplural={NISTs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{NPS}%
+{%
+name={NPS},%
+sort={NPS},%
+type={acronym},%
+first={Net Promoter Score\glsspace (NPS)},%
+firstplural={Net Promoter Score\acrpluralsuffix \glsspace (NPS\acrpluralsuffix )},%
+text={NPS},%
+plural={NPS\acrpluralsuffix },%
+description={Net Promoter Score},%
+descriptionplural={Net Promoter Score\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Net Promoter Score},%
+longplural={Net Promoter Scores},%
+short={NPS},%
+shortplural={NPSs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{ESRI}%
+{%
+name={ESRI},%
+sort={ESRI},%
+type={acronym},%
+first={Environmental Systems Research Institute\glsspace (ESRI)},%
+firstplural={Environmental Systems Research Institute\acrpluralsuffix \glsspace (ESRI\acrpluralsuffix )},%
+text={ESRI},%
+plural={ESRI\acrpluralsuffix },%
+description={Environmental Systems Research Institute},%
+descriptionplural={Environmental Systems Research Institute\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Environmental Systems Research Institute},%
+longplural={Environmental Systems Research Institutes},%
+short={ESRI},%
+shortplural={ESRIs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{CAPES}%
+{%
+name={CAPES},%
+sort={CAPES},%
+type={acronym},%
+first={Coordenação de Aperfeiçoamento de Pessoal de Nível Superior\glsspace (CAPES)},%
+firstplural={Coordenação de Aperfeiçoamento de Pessoal de Nível Superior\acrpluralsuffix \glsspace (CAPES\acrpluralsuffix )},%
+text={CAPES},%
+plural={CAPES\acrpluralsuffix },%
+description={Coordenação de Aperfeiçoamento de Pessoal de Nível Superior},%
+descriptionplural={Coordenação de Aperfeiçoamento de Pessoal de Nível Superior\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Coordenação de Aperfeiçoamento de Pessoal de Nível Superior},%
+longplural={Coordenação de Aperfeiçoamento de Pessoal de Nível Superiors},%
+short={CAPES},%
+shortplural={CAPESs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{ROI}%
+{%
+name={ROI},%
+sort={ROI},%
+type={acronym},%
+first={Return of Investment\glsspace (ROI)},%
+firstplural={Return of Investment\acrpluralsuffix \glsspace (ROI\acrpluralsuffix )},%
+text={ROI},%
+plural={ROI\acrpluralsuffix },%
+description={Return of Investment},%
+descriptionplural={Return of Investment\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Return of Investment},%
+longplural={Return of Investments},%
+short={ROI},%
+shortplural={ROIs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{CFI}%
+{%
+name={CFI},%
+sort={CFI},%
+type={acronym},%
+first={Corporate Finance Institute\glsspace (CFI)},%
+firstplural={Corporate Finance Institute\acrpluralsuffix \glsspace (CFI\acrpluralsuffix )},%
+text={CFI},%
+plural={CFI\acrpluralsuffix },%
+description={Corporate Finance Institute},%
+descriptionplural={Corporate Finance Institute\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Corporate Finance Institute},%
+longplural={Corporate Finance Institutes},%
+short={CFI},%
+shortplural={CFIs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{KDE}%
+{%
+name={KDE},%
+sort={KDE},%
+type={acronym},%
+first={Kernel density estimation\glsspace (KDE)},%
+firstplural={Kernel density estimation\acrpluralsuffix \glsspace (KDE\acrpluralsuffix )},%
+text={KDE},%
+plural={KDE\acrpluralsuffix },%
+description={Kernel density estimation},%
+descriptionplural={Kernel density estimation\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Kernel density estimation},%
+longplural={Kernel density estimations},%
+short={KDE},%
+shortplural={KDEs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{MAE}%
+{%
+name={MAE},%
+sort={MAE},%
+type={acronym},%
+first={Mean absolute error\glsspace (MAE)},%
+firstplural={Mean absolute error\acrpluralsuffix \glsspace (MAE\acrpluralsuffix )},%
+text={MAE},%
+plural={MAE\acrpluralsuffix },%
+description={Mean absolute error},%
+descriptionplural={Mean absolute error\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Mean absolute error},%
+longplural={Mean absolute errors},%
+short={MAE},%
+shortplural={MAEs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{API}%
+{%
+name={API},%
+sort={API},%
+type={acronym},%
+first={Application programming interface\glsspace (API)},%
+firstplural={Application programming interface\acrpluralsuffix \glsspace (API\acrpluralsuffix )},%
+text={API},%
+plural={API\acrpluralsuffix },%
+description={Application programming interface},%
+descriptionplural={Application programming interface\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Application programming interface},%
+longplural={Application programming interfaces},%
+short={API},%
+shortplural={APIs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{KDD}%
+{%
+name={KDD},%
+sort={KDD},%
+type={acronym},%
+first={Knowledge Discovery in Databases\glsspace (KDD)},%
+firstplural={Knowledge Discovery in Databases\acrpluralsuffix \glsspace (KDD\acrpluralsuffix )},%
+text={KDD},%
+plural={KDD\acrpluralsuffix },%
+description={Knowledge Discovery in Databases},%
+descriptionplural={Knowledge Discovery in Databases\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Knowledge Discovery in Databases},%
+longplural={Knowledge Discovery in Databasess},%
+short={KDD},%
+shortplural={KDDs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{REST}%
+{%
+name={REST},%
+sort={REST},%
+type={acronym},%
+first={Representational State Transfer\glsspace (REST)},%
+firstplural={Representational State Transfer\acrpluralsuffix \glsspace (REST\acrpluralsuffix )},%
+text={REST},%
+plural={REST\acrpluralsuffix },%
+description={Representational State Transfer},%
+descriptionplural={Representational State Transfer\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Representational State Transfer},%
+longplural={Representational State Transfers},%
+short={REST},%
+shortplural={RESTs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{IETF}%
+{%
+name={IETF},%
+sort={IETF},%
+type={acronym},%
+first={Internet Engineering Task Force\glsspace (IETF)},%
+firstplural={Internet Engineering Task Force\acrpluralsuffix \glsspace (IETF\acrpluralsuffix )},%
+text={IETF},%
+plural={IETF\acrpluralsuffix },%
+description={Internet Engineering Task Force},%
+descriptionplural={Internet Engineering Task Force\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Internet Engineering Task Force},%
+longplural={Internet Engineering Task Forces},%
+short={IETF},%
+shortplural={IETFs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{IMDB}%
+{%
+name={IMDB},%
+sort={IMDB},%
+type={acronym},%
+first={Internet Movie Database\glsspace (IMDB)},%
+firstplural={Internet Movie Database\acrpluralsuffix \glsspace (IMDB\acrpluralsuffix )},%
+text={IMDB},%
+plural={IMDB\acrpluralsuffix },%
+description={Internet Movie Database},%
+descriptionplural={Internet Movie Database\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Internet Movie Database},%
+longplural={Internet Movie Databases},%
+short={IMDB},%
+shortplural={IMDBs},%
+counter={page},%
+parent={},%
+%
+}%
+
